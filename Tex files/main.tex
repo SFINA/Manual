@@ -1,0 +1,1185 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The Legrand Orange Book
+% LaTeX Template
+% Version 2.1.1 (14/2/16)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Mathias Legrand (legrand.mathias@gmail.com) with modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+% Compiling this template:
+% This template uses biber for its bibliography and makeindex for its index.
+% When you first open the template, compile it from the command line with the 
+% commands below to make sure your LaTeX distribution is configured correctly:
+%
+% 1) pdflatex main
+% 2) makeindex main.idx -s StyleInd.ist
+% 3) biber main
+% 4) pdflatex main x 2
+%
+% After this, when you wish to update the bibliography/index use the appropriate
+% command above and make sure to compile with pdflatex several times 
+% afterwards to propagate your changes to the document.
+%
+% This template also uses a number of packages which may need to be
+% updated to the newest versions for the template to compile. It is strongly
+% recommended you update your LaTeX distribution if you have any
+% compilation errors.
+%
+% Important note:
+% Chapter heading images should have a 2:1 width:height ratio,
+% e.g. 920px width and 460px height.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
+
+%----------------------------------------------------------------------------------------
+
+\input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begingroup
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+\coordinate [below=12cm] (midpoint) at (current page.north);
+\node at (current page.north west)
+{\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{background}}; % Background image
+\draw[anchor=north] (midpoint) node [fill=ocre!30!white,fill opacity=0.6,text opacity=1,inner sep=1cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering SFINA Manual\\[15pt] % Book title
+{\Large Simulation Framework for Intelligent Network Adaptations}\\[20pt] % Subtitle
+{\Large Chair of Computational Social Science, ETH Zurich }}}; % Author name
+\end{tikzpicture}};
+\end{tikzpicture}
+\vfill
+\endgroup
+%
+%%----------------------------------------------------------------------------------------
+%%	COPYRIGHT PAGE
+%%----------------------------------------------------------------------------------------
+%
+%\newpage
+%~\vfill
+%\thispagestyle{empty}
+%
+%\noindent Copyright \copyright\ 2013 John Smith\\ % Copyright notice
+%
+%\noindent \textsc{Published by Publisher}\\ % Publisher
+%
+%\noindent \textsc{book-website.com}\\ % URL
+%
+%\noindent Licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported License (the ``License''). You may not use this file except in compliance with the License. You may obtain a copy of the License at \url{http://creativecommons.org/licenses/by-nc/3.0}. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \textsc{``as is'' basis, without warranties or conditions of any kind}, either express or implied. See the License for the specific language governing permissions and limitations under the License.\\ % License information
+%
+%\noindent \textit{First printing, March 2013} % Printing/edition date
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\usechapterimagefalse % If you don't want to include a chapter image, use this to toggle images off - it can be enabled later with \usechapterimagetrue
+
+\chapterimage{network2.pdf} % Table of contents heading image
+
+\pagestyle{empty} % No headers
+
+\tableofcontents % Print the table of contents itself
+
+\clearpage % Forces the first chapter to start on an odd page so it's on the right
+
+\pagestyle{fancy} % Print headers again
+
+%----------------------------------------------------------------------------------------
+%	PART GENERAL
+%----------------------------------------------------------------------------------------
+
+\part{General}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER INTRODUCTION
+%----------------------------------------------------------------------------------------
+
+\chapterimage{network2.pdf} % Chapter heading image
+
+\chapter{Introduction}
+This manual explains the functionality of SFINA and gives hands-on advice on how to modify and extend it for one's own needs. If you implement new core functionality, we would be happy to integrate it in the official release for everyone to use. So please contact us in this case or if you have feedback for improvement.
+
+SFINA is a simulation tool for flow networks, highly adaptable for different application domains and scenarios. A flow network is a collection of nodes between which quantities can be exchanged through links. For example in power networks, the nodes are generator/load buses connected by transmission lines through which real and reactive power can flow. Currently a fully functional power simulation is implemented, including cascading failure simulation under different attack scenarios. We are also working on extending the functionality to simulate multi-layer inter-dependent networks. For the future we envision the implementation of more domains such as information, transportation, water or gas. This will provide a unique tool to simulate several scenarios of interconnected multi-domain networks.
+
+This simulation tool is intended to be used for researchers to study the stability, growth and adaptation of flow networks. The goal is to support decision and policy-making by providing a tool for optimization. However, by keeping it very flexible and adaptable, we hope that many others will use it for their own studies with different approaches and use-cases.
+
+\section{Install and setup}\index{Install}
+Depending on the goal one may want to get the full source code of SFINA or only the compiled files for easy use of the current functionality.
+
+\subsection{Using the compiled code}\index{Install!From compiled code}
+This is the way to go, if the current core functionality is sufficient, meaning the currently implemented domain and backends for this domain. It is still possible to implement complex functionality for different experiments on top of this.
+
+\begin{enumerate}
+	\item Download SFINA.jar and necessary libraries from the website.
+	\item Create your own project in the IDE of your choice (Eclipse, Netbeans or others).
+	\item Import SFINA.jar as an external library.
+	\item Create an experiment by following the instructions in section \ref{sec:Simulation_Measurements} on how to run simulations of already implemented applications or in section \ref{sec:apps} on how to create your own application.
+\end{enumerate}
+
+\subsection{Using the full source code}\index{Install!From source}
+If you want to extend the core functionality to your needs, namely adding new domains or new backends for existing domains, then follow these steps:
+\begin{enumerate}
+	\item Get the sources by cloning from Github into the current folder on your computer. For this open a terminal window, navigate to the folder you want to use and type: 
+	\begin{lstlisting}
+	git clone https://github.com/epournaras/SFINA.git
+	\end{lstlisting}
+	\item Import the project into an IDE (SFINA is developed on Netbeans, so using this would be the easiest to setup).
+	\item Add the necessary packages, which can be found in SFINA library folder.
+	\item Start to adjust it to your needs by following the instructions in the following chapters.
+\end{enumerate}
+
+\section{Performing simulations and measurements}\index{Measurements}\index{Files}\index{Application}\label{sec:Simulation_Measurements}
+If the application one wants to use is already implemented and the goal is to only execute it with own parameters and input data, this section explains how to do so. In this case the algorithm and the types of performed measurements cannot be changed. But still several things can be adjusted in order to run different experiments: The name of the experiment, for how many time steps to run the simulation, the backend to use, any event to be executed at any time and when to reload a network from files or when not to do so. In order to run a simulation, one should follow these steps:
+
+\begin{itemize}
+	\item Create a folder in experiments for this simulation, and put an input folder. Let’s call our simulation “test”, then we would need to create experiments/experiment-test/input
+	\item Put all the necessary input files there
+	\begin{itemize}
+		\item sfinaParameters.txt
+		\item events.txt
+		\item backendParameters.txt
+		\item time\_1/topology/nodes.txt and links.txt
+		\item time\_1/flow/nodes.txt and links.txt
+		\item More time folders in the same structure as time\_1, if we want to restore the network at some time steps to its initial state, or if we want to load a different configuration. For more details on the input files and how to format them, see section \ref{subsec:config_files}.
+	\end{itemize}
+	\item Specify which domain and backend to use in sfinaParameters.txt and any other backend specific necessary parameters in the backend parameter files
+	\item Optionally put events to be executed in events.txt. Here it is also possible to define the reloading of the first input folder by putting at time n, where this should happen:
+	\begin{lstlisting}
+		n,system,-,-,reload,1
+	\end{lstlisting}
+	\item  Create a new class (e.g. testExperiment.java to run the PowerCascadeAgent.java application) in the following way:
+\end{itemize}
+	\begin{lstlisting}[frame=single] 
+import application.PowerCascadeAgent;
+import applications.BenchmarkLogReplayer;
+import protopeer.Experiment;
+import protopeer.Peer;
+import protopeer.PeerFactory;
+import protopeer.SimulatedExperiment;
+import protopeer.util.quantities.Time;
+
+public class testExperiment extends SimulatedExperiment{    
+
+    // define a name for this experiment
+    private final static String expName="test";    
+    private static String experimentID="experiment-"+expName;
+    
+    // time steps including bootstrap time
+    private final static int runDuration=10;
+
+    // other simulation Parameters
+    private final static int bootstrapTime=2000;
+    private final static int runTime=1000;
+    private final static int N=1;
+    
+    public static void main(String[] args) {
+        Experiment.initEnvironment();
+        testExperiment test = new testExperiment();
+        test.init();
+        
+        // create the instance of PowerCascadeAgent, 
+        // contained in a Protopeer peer
+        PeerFactory peerFactory=new PeerFactory() {
+          public Peer createPeer(int peerIndex, Experiment experiment){
+              Peer newPeer = new Peer(peerIndex);
+              newPeer.addPeerlet(new PowerCascadeAgent(
+                      experimentID, 
+                      Time.inMilliseconds(bootstrapTime),
+                      Time.inMilliseconds(runTime)));
+              return newPeer;
+            }
+        };
+        test.initPeers(0,N,peerFactory);
+        test.startPeers(0,N);
+
+        // run the simulation
+        test.runSimulation(Time.inSeconds(runDuration));
+
+        // analyze measurements
+        BenchmarkLogReplayer replayer =
+        new BenchmarkLogReplayer(expName, 0, 1000);
+}
+	\end{lstlisting}
+First notice, that our testExperiment class extends SimulatedExperiment, which is a Protopeer class (section \ref{subsec:protopeer}) providing useful functionality like time and measurements. Then it is necessary to assign to expName the same name as the input directory is called, in order for the experiment to find the files. The runDuration variable defines for how many time steps the simulation will run, including the bootstrap time, which is used to initialize the experiment. Defining the bootstrapTime as 2000 ms and the runTime as 1000 ms, a runDuration of 10 corresponds to 8 simulation steps. So in general: \textit{runDuration = bootstrapTime/runTime + number of actual simulation steps}. 
+
+The only thing left to do, is to initialize a peer which creates the PowerCascadeAgent, and finally executing it with test.runSimulation(...).
+
+All the measurement results are saved to a binary file in peerlets-log/experiment-test/peer-0, from where it can be loaded after the simulation finished to compute, display and output measurement results. This is done automatically when initializing the provided BenchmarkLogReplayer object, like shown in the last line of the above example. 
+
+To see what is going on during the simulation, logging is useful. For this first it is necessary to make sure in conf/log4j.properties the line “log4j.rootLogger=info, I, stdout” isn’t commented out. This will show information during the simulation and also the measurement output in the console and in the file log/info.log. To get a more fine grained output, uncomment “log4j.rootLogger=debug, D, stdout” in the same .properties file.
+
+Now you can go ahead and run this class.
+
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER ARCHITECTURE
+%----------------------------------------------------------------------------------------
+
+\chapter{Architecture}
+
+For running experiments which are already implemented it is only necessary to understand the file system and the concept of events. For a deeper understanding and to implement own applications, the information about the flow network, simulation agent and Protopeer will come in handy. 
+
+%------------------------------------------------
+
+\section{File System}\index{Files}\label{sec:file_system}
+The SFINA file system allows easy input and output of all the network information needed for the simulation. Every agent has its own file system, where for each experiment a new directory has to be created and provided with input data and configuration files. The simulation automatically performs the output in the same format as the input, i.e. one folder per time step, however extended by finer grained simulation steps (iterations). The notion of time and iterations is explained in the following paragraphs. The file system is illustrated by figure \ref{fig:file_system}, where input files or folders that show a solid contour have to be provided, the dashed ones are optional, as explained in more detail below.
+
+\begin{figure}[h]
+\centering\includegraphics[width=0.95\textwidth]{file_system.pdf}
+\caption{Visualisation of the SFINA file system. In input, files/folders with dashed boxes don't have to be provided. The output folder is created automatically.}
+\label{fig:file_system}
+\end{figure}
+
+\subsection{Location of the files}\index{Files!Location}
+Each experiment is assigned a string identifier, defined when running experiments (section \ref{sec:Simulation_Measurements}). The input files of an experiment with the ID “someExperiment” have to placed in the folder experiments/experiment-someExperiment, where “someExperiment” can be any string.
+
+\subsection{Configuration files}\index{Files!Configuration files}\index{Domain}\index{Backend}\index{Events}\label{subsec:config_files}
+Three configuration files are part of an experiment, providing general settings for the experiment like the domain and backend to use (sfinaParameters.txt), settings for the currently used backend (backendParameters.txt) and defining events to be automatically executed (events.txt). The first has to be provided, not doing so will result in an error. The backend parameter file doesn’t have to be provided (i.e. will not result in an error), however depending on the backend certain parameters might be necessary. This is for example the case of AC or DC in the power domain. The event file can be provided, but the simulation will also run without it. 
+
+\textbf{The SFINA and backend parameters files} are specified in the format “name=value”. The currently available settings are summarized in the following table.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l| l| l|}
+\hline
+\rowcolor{Gray}
+File & Name & Possible values\\
+\hline
+\multirow{2}{*}{sfinaParameters.txt} & domain & power \\ \cline{2-3}
+ & backend & matpower,interpss \\ \hline
+\multirow{2}{*}{\parbox{4cm}{backendParameters.txt (power domain)} } & flowType & AC, DC \\ 
+\cline{2-3} & toleranceParameter & value of type double \\ \hline
+\end{tabular}
+\label{table:params}
+\caption{Parameters that can be specified in the parameter files.}
+\end{table}
+
+\textbf{The events file} has the following format, defining one event per line with comma separated values:
+
+\begin{lstlisting}[frame=single] 
+time,feature,component,id,parameter,value
+2,topology,link,10,status,0
+3,flow,link,9,resistance,0.1
+3,system,-,-,backend,interpss
+...
+\end{lstlisting}
+
+For a more detailed explanation how events events work and which ones are available, see  section \ref{sec:events}. The events are loaded at the beginning, but each of them is executed at the time specified in the first column. It allows to define certain important events before running the experiment and without the need to modify the code. 
+
+\subsection{Network data}\index{Files!Network data}\index{Flow}\index{Topology}
+Each time\_n folder in input as well as in output\/iteration\_m contains the full network data, separated into general topological information and domain specific flow information. All the output files are generated automatically, so only the input folder has to be provided in order to run an experiment. A folder time\_n in input is loaded at time step n and replaces all the network information (both topological and flow) from earlier times. At least the time\_1 folder with data has to be provided in order for the experiment to have sufficient data to run properly. If a folder at any time step is present, it will automatically be loaded, discarding the data from before and replacing it with the new one. On the other hand it will continue with the information from the time step before, if no folder for the current time is present.
+
+\paragraph{Topological data} The topological data provides the nodes/links with a unique ID, which can be any string, and a status attribute which specifies if it is active or not. In the latter case the simulation treats it as if it was not present, but it can be activated during runtime for example by events. Links are directed, which can be specified by the ids of the nodes where it starts and ends. An undirected link can be simulated by creating two links, one in each direction. The formatting of the files is shown in figure \ref{fig:input_files}.
+
+\begin{figure}[!h]
+\centering\includegraphics[width=0.95\textwidth]{input_files.pdf}
+\caption{Format of topology and flow input files.}
+\label{fig:input_files}
+\end{figure}
+
+\paragraph{Flow data} The flow data is very flexible and has the same format for both nodes and links, as shown in figure \ref{fig:input_files}. For each node/link information can be loaded which is necessary for the current domains flow simulation. For example in the power domain this might be the generation output or load of a node or the resistance of a link. The values are then stored in the nodes and links of the ID specified in the first column. 
+
+The flow data is domain specific and therefore has to be defined seperately for each one. Currently this is the case for the power domain, other domains are not supported yet.
+
+In the most general case of purely topological networks, the flow data could be used to assign weights to the links or nodes. However in general it is not necessary to provide flow input files, in that case a topological network with no further attributes is generated.
+
+Some nodes or links might be of a different kind than others, making it necessary to assign certain values to them but not to the others. In the power domain this is for example the case for nodes that generate power, which additionally need among others the power generation output information. In this case a dash (-) can be used to exclude this information from all other nodes as seen for value31 in the example above, it will be ignored during loading. 
+
+\subsection{Manually loading network data}\index{Loading}\index{Files!Loading}
+As explained in section \ref{sec:simu_agent} about the simulation agent, at the beginning of each time step, the corresponding input data is automatically loaded, if provided by the user. It is however also possible to initiate data loading manually, by calling the method loadData(time), where “time” is a string to be replaced with the time matching the input folder time to be loaded. It is also possible to trigger this “reload” of the time x input at time y by an event, as explained further below.
+
+\subsection{Changing the file system structure}
+The structure of the file system and names of folders outlined above is defined in a configuration file, which is loaded at bootstraping of the simulation agent (section \ref{sec:simu_agent}. It is placed in the folder conf\/fileSystem.conf. Besides the names of all the folders and parameter files, it also defines the column separator and the string which is used for excluding data for some of the nodes\/links (missingValue) in the input data files, as explained above. These values can be changed, which is however not recommended.
+
+%------------------------------------------------
+
+\section{Events}\index{Events}\label{sec:events}
+Events are designed for making changes to the simulation or to the network structure during runtime. They can be used in two ways:
+\begin{enumerate}
+	\item Specified in events.txt to be loaded at the beginning and executed automatically at their specified time. 
+	\item Written in the code of applications in order to change parameters “online”.
+\end{enumerate}
+
+An event is defined by six parameters, specifying what action is to be executed at which time step. An overview of these parameters is given with the following table:
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l| l|l|l | l| l|}
+	\hline
+	\rowcolor{Gray}
+	Parameter & \multicolumn{5}{l|}{Value/Description}\\
+	\hline
+	\textbf{time} & \multicolumn{5}{l|}{When the event is executed} \\ \hline
+	\textbf{feature} & \multicolumn{2}{l|}{topology} & \multicolumn{2}{l|}{flow} & system \\ \hline
+	\textbf{component} & node & link & node & link & n/a (placeholder '-') \\ \hline
+	\textbf{id} & \multicolumn{4}{l|}{id of the link/node whose information is changed} & n/a (placeholder '-') \\
+	\hline
+	\textbf{parameter} & status & \multicolumn{1}{p{2.5cm}|}{\begin{itemize}[leftmargin=*,label={-}]
+			\item status
+			\item start node id
+			\item end node id
+		\end{itemize}} & \multicolumn{2}{p{4.5cm}|}{Any flow information which was loaded or added} & \multicolumn{1}{p{2.5cm}|}{\begin{itemize}[leftmargin=*,label={-}]
+		\item domain
+		\item backend
+		\item reload
+	\end{itemize}}\\
+	\hline
+	\textbf{value} & 0,1 & \multicolumn{1}{p{2.5cm}|}{\begin{itemize}[leftmargin=*,label={-}]
+			\item 0,1
+			\item new node id
+			\item new node id
+		\end{itemize}} & \multicolumn{2}{p{4.5cm}|}{New value} & \multicolumn{1}{p{3cm}|}{\begin{itemize}[leftmargin=*,label={-}]
+		\item new domain
+		\item new backend
+		\item Time from which input data should be reloaded
+	\end{itemize}}\\
+	\hline	
+	\end{tabular}
+	\caption{Summary of currently available events and how to define them.}
+	\label{table:events}
+\end{table}
+
+\subsection{Using events.txt}
+Each line in the events configuration file defines one event, with comma separated entries for each of the six categories introduced above. As a general rule, the entries should correspond to the same strings which are also used in the other files, namely sfinaParameters.txt, backendParameters.txt and the data files. For example in the power domain if the goal is to change the resistance of a specific link with id 9 at time 3, it would be:
+\begin{lstlisting}
+time,feature,component,id,parameter,value
+3,flow,link,9,resistance,0.1
+\end{lstlisting}
+In the case of a system parameter change, component and ID are not applicable. In this case, just put a dash (-) instead. For example to change from power to gas domain at time 10:
+\begin{lstlisting}
+time,feature,component,id,parameter,value
+10,system,-,-,domain,gas
+\end{lstlisting}
+See section \ref{sec:file_system} about the file system for more details.
+
+\subsection{Using events in an application}
+The same categories are used to define events in the code, however instead of strings the appropriate Enum types are used. The constructor of the Event class takes as arguments:
+\begin{lstlisting}
+Event(int time, 
+	EventType eventType, 
+	NetworkComponent networkComponent, 
+	String componentID, 
+	Enum parameter, 
+	Object value)
+\end{lstlisting}
+Let’s look at an example, which deactivates link 20 at time step 10:
+\begin{lstlisting}
+Event event = new Event(
+	10,
+	EventType.TOPOLOGY,
+	NetworkComponent.LINK,
+	"20",
+	LinkState.STATUS,
+	false);
+getEvents().add(event);
+\end{lstlisting}
+%------------------------------------------------
+
+\section{Flow Network}\index{Flow Network}\label{sec:flow_net}
+The flow network is an object containing all the nodes and links and providing several useful methods, explained in the following. 
+
+\subsection{Activation status and connectivity}\index{Activated}\index{Connected}\index{Islands}
+First of all the flow network takes care of adding nodes/links to and removing them from the network and updating the network topology accordingly. The two basic topological properties a node/link can have are
+\begin{enumerate}
+	\item isConnected(): A node which has (activated) links attached, or a link that has both (activated) start and end node, is connected.
+	\item isActivated(): A node/link that is functional, is activated. Deactivating a node, will not deactivate the attached links, but just disconnect them. Likewise, a disconnected node is still activated.
+\end{enumerate}
+
+Once the network is loaded, it is possible to activate/deactivate nodes/links in the network, which will include/exclude them from any computation but will not remove them entirely. This way they can be used again later on. The nodes and links also keep track of their connectivitiy, i.e. if any other objects are connected or not. This information can be retrieved by the method isConnected().
+
+An important method in the network is computeIslands() which extracts disconnected components from the topology of the network and returns them as an ArrayList containing a new flow network for each island. It takes all activated nodes/links into account, as can be seen in figure \ref{fig:flow_net}.
+
+\begin{figure}[!h]
+\centering\includegraphics[width=0.95\textwidth]{flow_network.pdf}
+\caption{Illustration of the connectivity and activation status of nodes and links, and how they affect the computation of disconnected compontents (i.e. islands).}
+\label{fig:flow_net}
+\end{figure}
+
+\subsection{Metrics}\index{Metrics}
+Furthermore the flow network provides some useful methods to calculate metrics like degree distribution, clustering coefficient or to find the shortest path between two nodes. Some of these methods use the openly available \href{http://jgrapht.org/}{JGraphT library}. A more detailed list can be found in the method summary in section \ref{sec:net_methods}.
+
+\subsection{Flow and capacity}\index{Flow}\index{Capacity}
+The flow network provides a flexible way to define the flow and capacity, meaning which physical quantities (contained in the nodes and links) is the measure of flow or how much flow a node/link can support. Use setLinkFlowType(...) and setLinkCapacityType(...) and for the nodes respectively for this purpose. This is done in the setFlowParameters() method in the simulation agent, where each domain has its default settings. When developing a new application, the developer is expected to check these. Default values are summarized in the following table.
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l| p{2.5cm}| p{2.5cm}|l|l|}
+	\hline
+	\rowcolor{Gray}
+	Domain & Link flow type & Node flow type & Link capacity type & Node capacity type\\
+	\hline
+	Power & Real power flow from & Voltage magnitude & C rating & Max. voltage\\
+	\hline
+	\dots &&&&\\
+	\hline
+	\end{tabular}
+	\caption{Default values for capacity and flow for the different domains.}
+	\label{table:flow_capacity}
+\end{table}
+
+\subsection{Accessing the flow network and its values}\index{Flow Network}
+Some hints which might come in handy when writing applications:
+\begin{enumerate}
+	\item When writing an application which extends the SimulationAgent, the current flow network can always be retrieved by the method getFlowNetwork().
+	\item To add new flow information to a node or link, use the .addProperty(...) method.
+	\item To get or change the flow information already contained in the nodes or links, use the .getProperty(...) or .replacePropertyElement(...) method respectively. The former requires casting the return value to the correct type.
+\end{enumerate}
+
+Here you see these in action, doubling the real power demand of node 15 in the current flow network:
+\begin{lstlisting}[frame=single] 
+FlowNetwork net = getFlowNetwork();
+Node someNode = net.getNode(15); // node having ID 15
+double pwr = 
+	(Double)someNode.getProperty(PowerNodeState.POWER_DEMAND_REAL);
+someNode.replacePropertyElement(PowerNodeState.POWER_DEMAND_REAL,pwr*2);
+\end{lstlisting}
+
+A summary of methods can be found in the appendix (section \ref{sec:net_methods}).
+
+%------------------------------------------------
+
+\section{Simulation Agent}\index{Agent!Simulation Agent}\label{sec:simu_agent}
+At the heart of any simulation is the simulation agent. Applications extend it and can therefore make use of its functionality (see section on adding applications for more detail). The simulation agent takes care of performing several tasks which are necessary for any simulation. These include keeping track of simulation steps, loading and performing output, executing events and calling key methods at every time step. The time evolution of the simulation agent is illustrated by figure \ref{fig:time_iter}.
+
+\begin{figure}[!h]
+\centering\includegraphics[width=0.95\textwidth]{time_iterations.pdf}
+\caption{Time steps and iterations performed by the active state.}
+\label{fig:time_iter}
+\end{figure}
+
+\subsection{The Active State}\index{Active State}\index{Events}
+The runActiveState() method is the main runtime of the simulation agent (\textbf{compare to passive state?}). After bootstraping, during which the experiment is initialized by loading the configuration files from the experiment folder, the main simulation is orchestrated by the this method. It is executed at every time step automatically and initiates the above mentioned tasks, as depicted in detail in figure \ref{fig:active_state}.
+
+\begin{figure}[!h]
+\centering\includegraphics[width=0.95\textwidth]{active_state.pdf}
+\caption{Methods executed by the active state in each time step.}
+\label{fig:active_state}
+\end{figure}
+
+The SimulationAgent class is providing this minimal but extensible structure, without implementing any specific algorithm on how to perform the flow analysis at each time step. Such algorithms are meant to be implemented in applications by overriding 
+\begin{enumerate}
+	\item initialStateOperations()
+	\item runFlowAnalysis()
+	\item finalStateOperations().
+\end{enumerate}
+
+In the SimulationAgent, the initialStateOperations and finalStateOperations methods are empty, whereas in runFlowAnalysis() two other core methods are called, namely callBackend(), to calculate the actual flow distribution in the network, and nextIteration(), to make a data output. These two methods can be called as often as necessary, for example if a simulation at the current time step requires several iterations. It is up to the developer of an application to call the backend and to initiate the output when appropriate (see section \ref{sec:apps} on implementing new applications for more detail).
+
+The two methods initialStateOperations() and finalStateOperations() are especially useful for making measurements before and after the flow analysis. Also this allows to implement measurements, which depend on the state before and after the flow analysis. However, they can also be used to implement additional functionality, especially adjustments to the network at the beginning through events, which are then executed automatically in the executeAllEvents() method (more details in section \ref{sec:Simulation_Measurements} about measurements).
+
+The callBackend() method executes the backend, which is automatically selected according to the parameters set in the parameter files. Currently implemented backends are shown in the followig table.
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l| l |l|}
+	\hline
+	\rowcolor{Gray}
+	\textbf{Domain}&\textbf{Backend}&\textbf{String to use in sfinaParameters.txt}\\
+	\hline
+	\multirow{2}{*}{power}&interPSS & interpss\\
+	\cline{2-3}
+	& Matpower (Matlab Required)& matpower\\
+	\hline
+	\dots & \dots & \\
+	\hline
+	\end{tabular}
+	\label{table:backends}
+	\caption{Currently integrated backends to calculate flow in a network.}
+\end{table}
+
+\subsection{Iterations and output}\index{Iterations}\index{Output}
+The core simulation agent (SimulationAgent) provides the important method nextIteration() which calls the output function at the current iteration and then increments the iteration number. However, it is not called automatically, but it is up the developer, who implements an application (i.e. overwriting runFlowAnalysis()), to call it when appropriate. Every time it is executed, a new output in the current time step but in a new subfolder corresponding to the current iteration is created.
+
+%------------------------------------------------
+
+\section{Protopeer Toolkit (redo, maybe split in part here and appendix)}\index{Protopeer}\label{subsec:protopeer}
+SFINA makes use of the Protopeer Toolkit which was developed at EPFL university Lausanne to provide a framework for peer to peer distributed experiments (\href{http://infoscience.epfl.ch/record/128659/files/protopeer_demo.pdf}{paper}). It provides useful basic functionality like time based events and measurement methods. Another important concept is peers and peerlets, which allow a fully decentralized deployment. A peer is an independent simulation instance, which can communicate over the network with other peers. Every peer can contain several peerlets, which allow to further split up a peer in seperate simulations. Currently experiments conducted with SFINA initialize just one peer with one peerlet. However this potentially allows for a very flexible use of the SFINA framework in the future.
+%------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	PART FOR DEVs
+%----------------------------------------------------------------------------------------
+
+\part{For developers}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER APPLICATIONS
+%----------------------------------------------------------------------------------------
+
+\chapterimage{network1.pdf} % Chapter heading image
+
+\chapter{New applications}
+
+\begin{figure}[!ht]
+\centering\includegraphics[width=0.95\textwidth]{applications.pdf}
+\caption{Architecture of the applications. The ones with dashed solid contours are already implemented, the dashed-contour applications are examples for possible extensions.}
+\label{fig:apps}
+\end{figure}
+
+\section{Application architecture}\label{sec:apps}
+SFINA is designed such that it is flexible and can be easily extended. These extensions can be the implementation of a new application as described in this section, more sophisticated measurements, and more. Currently implemented applications for showcasing the capabilities of the framework as well as for providing basic functionality, are an agent for benchmarking (i.e. making measurements), a model for cascading failures and a specific implementation of the latter for power grid simulations. New applications can be build on top of them in order to make use of their functionalities. If this is not of interest to the developer, totally new applications can be implemented on top of the SFINA core functionality. In any case, whether the SimulationAgent or one of the existing applications are used for the basis of new applications, the capability of Java to extend classes and override methods is used, which will be explained in more detail below. In figure \ref{fig:apps} the current applications are shown, as well as how possible extensions could be realized.
+
+\section{Implementing an Agent}\index{Agent}
+Let’s have a look on how extending one of the existing agent works, taking the example of the Benchmark Agent. Its beginning looks as follows:
+\begin{lstlisting}[frame=single]
+public class BenchmarkSimulationAgent extends SimulationAgent{
+    
+    private static final Logger logger = 
+    	Logger.getLogger(BenchmarkSimulationAgent.class);
+    
+    private HashMap<Integer,
+    	HashMap<String,HashMap<Metrics,Object>>> temporalLinkMetrics;
+    private HashMap<Integer,
+    	HashMap<String,HashMap<Metrics,Object>>> temporalNodeMetrics;
+    private HashMap<Integer,
+    	HashMap<Metrics,Object>> temporalSystemMetrics;
+    private long simulationStartTime;
+    
+    public BenchmarkSimulationAgent(String experimentID, 
+            Time bootstrapTime, 
+            Time runTime){
+        super(experimentID,
+                bootstrapTime,
+                runTime);
+        this.temporalLinkMetrics=new HashMap();
+        this.temporalNodeMetrics=new HashMap();
+        this.temporalSystemMetrics=new HashMap();
+    }
+    // Methods
+}
+\end{lstlisting}
+The first thing to notice is the first line, where we define that the BenchmarkSimulationAgent extends the SimulationAgent. This makes all public methods of the latter available for our Benchmark Agent. Then some variables are defined which are needed for this Agent to store measurement values during runtime. The constructor has to take at least the variables which the SimulationAgent’s constructor needs and passes them on by using the super() method. More variables that are just used for this agent can be added here as well.
+
+Next let’s look at the methods in this agent. Most of them are just new methods necessary for the measurements, for example for initializing the measurement variables in each epoch. The important methods however are the overwritten ones, for example:
+\begin{lstlisting}[frame=single]
+@Override
+public void performInitialStateOperations(){
+	// some methods
+}
+    
+@Override
+public void performFinalStateOperations(){
+	// some methods
+}
+\end{lstlisting}
+They are defined in the SFINA Agent but don’t have any meaningful implementation there. By overwriting them here, we can “plug in” our own functionality, in this case making measurements before and after the actual flow simulation (see the next section on how to implement measurements for more details).
+
+The SFINA agent is the core of every simulation, and is not supposed to be changed except if the implementation of a totally new domain or backend is needed (see sections \ref{sec:backend} and \ref{sec:domain} of this tutorial). Like the methods just introduced, it provides a general structure with methods that can be overwritten, namely:
+\begin{enumerate}
+	\item public void performInitialStateOperations()
+	\item public void runFlowAnalysis()
+	\item public void performFinalStateOperations()
+	\item public void scheduleMeasurements()
+\end{enumerate}
+
+To be precise, these are the only methods of the SimulationAgent that should be overwritten when implementing applications. If your specific application doesn’t seem to fit in this structure, then you maybe didn’t try enough to simplify it, or the current implementation of the SFINA Agent is not as general as it can be. If this is the case, then you’re welcome to adjust it to your needs and we would be happy to hear about your suggestions and incorporate the changes ourselves.
+
+\subsection{Example: PowerCascadeAgent}\index{Agent!PowerCascadeAgent}
+This is an example of a more sophisticated application. As can be seen in figure \ref{fig:apps} there are two levels:
+\begin{enumerate}
+	\item Cascade Agent: Implementing a general cascade algorithm with a method that checks the links for overloads (i.e. the flow in the link exceeding its capacity). It implements (overrides) the runFlowAnalysis() method of the SimulationAgent, but also introduces a new method, namely flowConvergenceStrategy() which is an intermediary step before calling the backend to calculate the power flow in the network. This allows a very flexible implementation of different (domain dependent) necessary adjustments. This is exactly what is implemented by the Power Cascade Agent, which brings us to the next point.
+	\item The Power Cascade Agent mainly implements flowConvergenceStrategy() from the Cascade Agent. It first checks if the current island just consists of one isolated node, returning directly non-convergence (i.e. blackout) in this case. Then it checks if there is a generator present in the island, because without power supply the island is also blacked out. Furthermore it tries to improve convergence, i.e. finding a stable solution for the power flowing in the network, by adjusting load and generation. Finally the Power Cascade Agent implements some more measurements, for example the number of islands and isolated nodes and the load loss.
+\end{enumerate}
+
+\subsection{Measurements}\index{Measurements}
+In the last chapter we touched on the topic of measurements already by looking at how the Benchmark Agent is implemented. Here we will explore in more detail how one could implement new measurements, either replacing or by reusing the existing ones. 
+Two methods are designed especially to handle measurements:
+\begin{enumerate}
+	\item public void performInitialStateOperations()
+	\item public void performFinalStateOperations()
+\end{enumerate}
+They are executed before and after the main flow analysis respectively, and allow to save values during the current time step, for example into one of the measurement variables temporalLinkMetrics, temporalNodeMetrics or temporalSystemMetrics.
+To make this more clear, let’s take again the Benchmark Agent as an example:
+\begin{lstlisting}[frame=single]
+public void initMeasurementVariables(){
+    HashMap<String,HashMap<Metrics,Object>> linkMetrics=new HashMap<>();
+    for(Link link:this.getFlowNetwork().getLinks()){
+        HashMap<Metrics,Object> metrics=new HashMap<>();
+        linkMetrics.put(link.getIndex(), metrics);
+    }
+    this.getTemporalLinkMetrics().put(
+    	this.getSimulationTime(), linkMetrics);
+    // initialization of other measurement variables
+}        
+
+public void calculateFlow(){
+    for(Link link:this.getFlowNetwork().getLinks()){
+        double flow=link.getFlow();
+        HashMap<Metrics,Object> metrics = 
+        this.getTemporalLinkMetrics().get(
+        	this.getSimulationTime()).get(link.getIndex());
+        metrics.put(
+        	Metrics.LINE_FLOW, (link.isActivated()) ? flow : 0.0);
+    }
+}
+
+@Override
+public void performInitialStateOperations(){
+    this.initMeasurementVariables();
+}
+    
+@Override
+public void performFinalStateOperations(){
+    this.calculateFlow();
+    // more measurement methods
+}
+\end{lstlisting}
+
+Here you see the two overwritten measurement methods introduced above, which now include new methods performing measurement tasks. The first one just initializes the needed variables to hold the measurement data. The second one gets the current flow through every line and saves it for later use. As long as these measurements are implemented in their own public methods, such as the calculateFlow() method in the above example, they can also be used by other Agents, which further extend the current one.
+
+Measurements in SFINA are using the Protopeer framework (see section \ref{subsec:protopeer} for more details). At the end of each time step, information from the variables introduced above can be saved for later use. This is done in the method scheduleMeasurements() by using log.log(int epoch, Object tag, double value), which assigns to each value the epoch (time step) in which the measurement takes place and one or multiple tags. This information is then saved to a binary serializable file on the hard drive. 
+
+The serializable object can be loaded after the simulation finished to perform further calculations and examination The epoch number and tags are used to retrieve the measured values. Additionally Protopeer provides handy methods to do calculations on the data, such as statistics, calculating the mean, retrieving the maximum value, etc. An implementation of this procedure can be seen in the BenchmarkLogReplayer application.
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER CORE FUNCTIONALITY
+%----------------------------------------------------------------------------------------
+
+\chapter{Core functionality extension}
+
+\section{New backend}\index{Backend}\index{Backend!Interpss}\index{Backend!Matpower}\index{Backend!Interface}\label{sec:backend}
+Backends are software modules that implement algorithms for the calculation of the flow in the network. Often simulation software already exist for various domains, for example MATPOWER or InterPSS to perform power flow analysis. Three ways to implement new backends:
+\begin{enumerate}
+	\item Implementing the flow calculation from scratch, using the SFINA data stored in the flow network, nodes and links. This is the most straight-forward way, and definitely the cleanest, resulting in a fully integrated backend. Depending on the complexity however, this can be quite a big task.
+	\item Integrate an existing backend which was written in Java. This was done for example for InterPSS. First the SFINA data has to be translated to the new backends specific format, then its power flow algorithm is called and finally the data is translated back to SFINA. It can be tedious to make sure the data is translated in the correct way, but potentially providing an easy way to integrate a new backend.
+	\item Integrate an existing backend written in another language. MATPOWER, which is written in Matlab, was integrated that way. The approach of 2. applies here as well, however on top an interface between Java and the other language has to be developed or integrated. In the Matlab case a package called matlabcontrol written by a third party was used to call Matlab and pass commands to it.
+\end{enumerate}
+
+Any backend implements the Backend Interface with the some core methods. Therefore its skeleton has the following structure:
+
+\begin{lstlisting}[frame=single]
+public class SomeBackend implements FlowBackendInterface{
+    
+    private FlowNetwork net;
+    private boolean converged;
+    private static final Logger logger = 
+    	Logger.getLogger(SomeBackend.class);
+    
+    public SomeBackend(HashMap<Enum,Object> backendParameters){
+        this.converged=false;
+        setBackendParameters(backendParameters);
+    }
+
+    @Override
+    public void setBackendParameters(
+    	HashMap<Enum,Object> backendParameters){
+        // parameters for this backend can be 
+        // retrieved from the HashMap and set here
+    }
+    
+    @Override
+    public boolean flowAnalysis(FlowNetwork net, 
+    		HashMap<Enum,Object> backendParameters){
+        setBackendParameters(backendParameters);
+        return flowAnalysis(net);
+    }
+    
+    @Override
+    public boolean flowAnalysis(FlowNetwork net){
+        // the actual flow analysis is computed here
+        return converged;
+    }
+}
+\end{lstlisting}
+
+Any backend has to implement the FlowBackendInterface, which one can see in the first row. If there are necessary parameters for the computation of this specific backend, they can be passed through the backendParameters HashMap, either to the constructor or directly calling the flowAnalysis() method. The actual computation happens in the latter method. Finally the flowAnalysis method of the backend should return a boolean value specifying if it found a stable solution for the flow in the network based on the given input, i.e. if it converged.
+
+The next step is to adjust the loaders, so it knows how to deal with the new backend. For this it is necessary to modify the following in the input package (replacing Domain* by the current domain the backend is made for):
+\begin{enumerate}
+	\item Add the new backend as an enum type variable to Domain*Backend.java. Choose a name for it that is unique and easy to understand
+	\item Add the new backend to SfinaParameterLoader.java and choose a string for the name, which should be used to initialize experiments, i.e. written to the configuration files in order to use this backend.
+	\item Add the new backend to the getActualSystemValue(...) method in EventLoader.java. The same string like in SfinaParameterLoader should be used. This makes sure, that the backend can be changed during runtime by events.
+	\item If backend specific parameters are necessary for the new backend (passed to it by the backendParameters HashMap, see above for explanations), then they have to be added to Domain*BackendParametersLoader.java. The necessary Enum variables can be specified similarly to PowerBackendParameter.java. Now they can be loaded from the backendParameters.txt file during initialization of experiments.
+	\item Last of all, the new backend has to be added in SimulationAgent.java to the method callBackend(FlowNetwork net) for the corresponding domain. Now it is called automatically, when specified in the sfinaParameters.txt configuration file.
+\end{enumerate}
+
+\subsection{Overview of necessary adjustments}
+To summarize, the following methods in the SFINA architecture have to be modified in order to add a new backend:
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l |l |l|}
+	\hline
+	\rowcolor{Gray}
+	Package & Class & Method/Explanation\\
+	\hline
+	\multirow{3}{*}{domain*.backend}&Create a new class for the backend & all \\
+	\cline{2-3}
+	& Domain*Backend.java & Add enum for new backend \\
+	\cline{2-3}
+	& Domain*BackendParameter.java & \multirow{2}{*}{\parbox{4cm}{Optional, if backend parameters are necessary}}\\
+	\cline{1-2}
+	domain*.input & Domain*BackendParametersLoader.java & \\
+	\hline
+	\multirow{2}{*}{input} & SfinaParameterLoader.java & loadSfinaParameters(args)\\
+	\cline{2-3}
+	& EventLoader.java & getActualSystemValue(args)\\
+	\hline
+	core & SimulationAgent.java & callBackend(args)\\
+	\hline
+	\end{tabular}
+	\label{table:new_backend}
+	\caption{Necessary adjustments for implementing a new backend. * replace with name of the corresponding domain.}
+\end{table}
+%----------------------------------------------------------------------------------------
+
+\section{New domain}\index{Domain}\label{sec:domain}
+Currently only some domains are supported, but we envision the extension of SFINA to more domains like transportation, information, gas or general topological diffusion networks. How would one go about integrating a new domain? This is a task which requires changes outlined in the following section.
+
+\subsection{Data}\index{Files}
+First of all, a new domain requires specific data in order to be able to calculate the flow/distribution of some quantity in the network for given conditions. Therefore one has to decide, which data is necessary in addition to the topological structure of nodes and links. This data then has to be written in the SFINA file format, either by converting it from other data sources or by creating your own test case files (more information  in section \ref{sec:file_system} about the file system).
+
+\subsection{Backend}\index{Backend}
+When the data is ready, the next step is to extend the code such that it can load the new flow information. The topological information is general and its loading is implemented already independently of the domain. To load the flow information, a flow loader has to be created for the domain having the following structure (calling the domain now “NewDomain”, which should be replaced by the corresponding domain name):
+
+\begin{lstlisting}[frame=single]
+public class NewDomainFlowLoader {
+    private final FlowNetwork net;
+    private final String parameterValueSeparator;
+    private final String missingValue;
+    private static final Logger logger =
+    	 Logger.getLogger(NewDomainLoader.class);
+    
+    public NewDomainLoader(FlowNetwork net, 
+	    	String parameterValueSeparator, 
+    		String missingValue){
+        this.net=net;
+        this.parameterValueSeparator=parameterValueSeparator;
+        this.missingValue=missingValue;
+    }
+    
+    public void loadNodeFlowData(String location){
+        // implement loading here
+    }
+    
+    public void loadLinkFlowData(String location){
+        // implement loading here
+    }
+\end{lstlisting}
+
+The constructor and necessary private variables in the above code example are generic for any flow loader and can be used as shown. What has to be implemented for the new domain are the two methods loadNodeFlowData(...) and loadLinkFlowData(...). Create two new enum list java classes called NewDomainNodeState.java and NewDomainLinkState.java (replacing “NewDomain” accordingly) and add enum types for each flow information, which is necessary for the nodes and links. Then in the two methods in the flow loader, load the flow data and add it to the links and nodes in the following way:
+\begin{lstlisting}
+if(!value.equals(this.missingValue))
+	node.addProperty(NewDomainNodeState.NewNodeState, value)
+\end{lstlisting}
+Where NewNodeState is one of the enum type that was created before and value is the value we got from the file corresponding to this node state. We only add this state to the node, if the value is not the missing value string, as is explained in section \ref{fig:input_files}. The same procedure applies for the links. It is a good idea to follow the same procedure used in the PowerFlowLoader.java.
+
+Now we have the data loaded and available for running our experiments. To complete the handling of the new data, it is also necessary to create a class that writes the data again in the same format to files. Just follow the PowerFlowWriter.java example to do so.
+
+\subsection{Integrate the domain into the framework}
+Next, a new domain needs a backend, which uses the data that we now have at hand to compute the distribution or evolution in the network for the giving constraints. This is already explained in detail in section \ref{sec:backend} on how to integrate a new backend.
+
+Having the data and the backend, most of the work is done. As a last step, it is necessary to integrate the domain in several spots in the framework, in order to make it available for using (again summarized in the table further below):
+\begin{enumerate}
+	\item Add the new domain as an enum variable to Domain.java.
+	\item Modify in SFINA Agent the method
+	\begin{enumerate}
+		\item loadData(): Add the domain to the switch(domain) statement and create an instance of the new flow data loader
+		\item setFlowParameters(): Add the domain to switch(domain) and define which flow variables define flow and capacity
+		\item outputData(): Same as for loadData()
+	\end{enumerate}
+	\item Add the new domain to the loadSfinaParameters() method in SfinaParameterLoader.java
+	\item In EventLoader.java 
+	\begin{enumerate}
+		\item add the new domain to the “case FLOW” part and create a new lookupDomainNodeState() and lookupDomainLinkState() method with the new flow information
+		\item add the new domain to the method getActualSystemValue() and assign a string name to it, which can be used to define events in events.txt
+		\end{enumerate}
+\end{enumerate}
+
+Congrats, now the new domain is ready to be used in applications (section \ref{sec:apps}) and experiments (section \ref{sec:Simulation_Measurements}).
+
+\subsection{Overview of necessary adjustments}
+In addition to the adjustments already explained in the section about creating a new backend, the following table gives an overview for implementing a new domain:
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\rowcolor{Gray}
+		Package & Class & Method/Explanation\\
+		\hline 
+		\multirow{3}{*}{input}& Domain.java & add enum\\
+		\cline{2-3}
+		& SfinaParametersLoader.java & loadSfinaParameters()\\
+		\cline{2-3}
+		& EventLoader.java & {\parbox{5.5cm}{
+		\begin{itemize}[leftmargin=*,label={-}]
+			\item loadEvents()
+			\item lookupDomain*NodeState()
+			\item lookupDomain*LinkState()
+			\item getActualDomain*NodeValue()
+			\item getActualDomain*LinkValue()
+		\end{itemize}}}\\
+		\hline
+		\multirow{3}{*}{domain*.input} & Domain*FlowLoader.java & \multirow{4}{*}{all}\\
+		\cline{2-2}
+		& Domain*LinkState.java & \\
+		\cline{2-2}
+		& Domain*NodeState.java & \\
+		\cline{1-2}
+		domain*.output & Domain*FlowWriter.java & \\
+		\hline
+		core & SimulationAgent.java & {\parbox{4cm}{\begin{itemize}[label={-},leftmargin=*]
+			\item loadData()
+			\item setFlowParameters()
+			\item outputData()
+		\end{itemize}}} \\
+		\hline
+		\end{tabular}
+		\caption{Necessary adjustments for implementing a new domain. * replace with name of new domain.}
+		\end{table}
+
+%----------------------------------------------------------------------------------------
+%	PART APPENDIX
+%----------------------------------------------------------------------------------------
+
+\part{Appendix}
+
+\chapter{Appendix}
+
+\section{Glossary}
+\paragraph{flow network}\index{Flow Network}
+A mathematical graph with physical properties. A collection of nodes connected by links through which (conserved or nonconserved) quantities flow.
+
+\paragraph{node}\index{Node}
+A point in the network to/from which links point and which can have any number of properties, defining its behaviour.
+
+\paragraph{link}\index{Link}
+A connection between two nodes, having a defined direction from a start node to an end node. Can have any number of properties, defining its behaviour.
+
+\paragraph{topology}\index{Topology}
+The network structure created by nodes and links.
+
+\paragraph{flow}\index{Flow}
+Data about the quantities flowing through the flow network, i.e. through the nodes and links.
+
+\paragraph{domain}\index{Domain}
+The general physical setting of the flow network, defining which quantities of the nodes and links are necessary in order to compute the flow through the network. Examples: Electrical power, transportation, information, ...
+
+\paragraph{backend}\index{Backend}
+Code that can compute the flow through the nodes/links if the necessary values for its domain are provided. Can converge or not converge, whose meaning has to be understood physically.
+
+\paragraph{event}\index{Event}
+A change in the flow network, or its nodes/links respectively.
+\begin{enumerate}
+	\item Event \textbf{feature}: Abstract notion of the network part (topology, flow, system).
+	\item Event \textbf{component}: Node or link.
+	\item Event \textbf{parameter}: Defining what is to be changed.
+	\item Event \textbf{value}: New value for the corresponding parameter.
+\end{enumerate}
+
+\paragraph{agent}\index{Agent}
+Implementation of SFINA functionality and its applications.
+
+\paragraph{time step}\index{Time}
+Implementation of SFINA functionality and its applications.
+
+\paragraph{simulation time}\index{simulation time}
+...
+
+\paragraph{epoch}\index{Epoch}
+...
+
+\paragraph{iteration}\index{Iteration}
+...
+
+\section{Useful flow network methods}\index{Flow Network}\label{sec:net_methods}
+\begin{table}[!ht]
+\centering
+\begin{tabular}{| p{7cm} | p{9cm} |}
+\hline
+\rowcolor{Gray}
+Names & Description \\
+\hline
+getNode({"id"}) & Retrieve a node from the network by their id \\
+\hline
+getLink("id") & Retrieve a link from the network by their id \\
+\hline
+getNodes() & Get all nodes. Returns a collection \\
+\hline
+getLinks() & Get all links. Returns a collection \\
+\hline
+activateNode("id"), deactivateNode("id") & Activate/deactivate node by their Id \\
+\hline
+activateLink("id"), deactivateLink("id") & Activate/deactivate link by their Id \\
+\hline
+computeIslands() & Extract disconnected components. Returns ArrayList of flow networks \\
+\hline
+getShortestPath(Node a, Node b) & Computes the shortest path between two nodes \\
+\hline
+getDegreeDist() & Returns a LinkedHashMap of node degree vs number of nodes \\
+\hline
+getClustCoeff() & Compute clustering coefficient. Returns double value \\
+\hline
+getAvgNodeDegree() & Compute average node degree. Returns double value \\
+\hline
+getClosenessCentrality(Node node) & Computes node closeness centrality \\
+\hline
+getDegreeCentrality(Node node) & Compute node degree centrality \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\section{Useful nodes methods}\index{Nodes}\label{sec:node_methods}
+\begin{table}[!ht]
+\centering
+\begin{tabular}{| p{7cm} | p{9cm} |}
+\hline
+\rowcolor{Gray}
+Names & Description \\
+\hline
+getIndex() & Returns the index of node\\
+\hline
+getLinks() & Returns a collection of links \\
+\hline
+isActivated() & Returns a boolean weather a node is operational or not \\
+\hline
+isConnected() & Returns a boolean weather a node is connected or not \\
+\hline
+getIncomingLinks() & Returns all the incoming links \\
+\hline
+getOutgoingLinks() & Returns all the outgoing links \\
+\hline
+getCapacity() & Returns the capacity of the node \\
+\hline
+setCapacity() & Sets the capacity of the node \\
+\hline
+addLink({"id"}) & Adds a link specified by their id \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\section{Useful links methods}\index{Links}\label{sec:link_methods}
+\begin{table}[!ht]
+\centering
+\begin{tabular}{| p{7cm} | p{9cm} |}
+\hline
+\rowcolor{Gray}
+Names & Description \\
+\hline
+getIndex() &  Returns the index of link\\
+\hline
+isActivated() & Returns a boolean weather a link is operational or not \\
+\hline
+isConnected() & Returns a boolean weather a link is connected or not \\
+\hline
+getStartNode() & Returns the start node of the link \\
+\hline
+getEndNode() & Returns the end node of the link \\
+\hline
+getCapacity() & Returns the flow capacity of the link \\
+\hline
+setCapacity() & Sets the capacity of the link \\
+\hline
+getFlow() & Returns the double for flow in the link \\
+\hline
+setFlow() & Sets the flow of the link to the assigned value \\
+\hline
+\end{tabular}
+\end{table}
+%
+%\part{template examples}
+%
+%%----------------------------------------------------------------------------------------
+%%	CHAPTER 3
+%%----------------------------------------------------------------------------------------
+%
+%\chapterimage{network1.pdf} % Chapter heading image
+%
+%\chapter{Presenting Information}
+%
+%\subsection{Descriptions and Definitions}
+%
+%\begin{description}
+%\item[Name] Description
+%\item[Word] Definition
+%\item[Comment] Elaboration
+%\end{description}
+%
+%\section{Theorems}
+%
+%This is an example of theorems.
+%
+%\subsection{Several equations}
+%This is a theorem consisting of several equations.
+%
+%\begin{theorem}[Name of the theorem]
+%In $E=\mathbb{R}^n$ all norms are equivalent. It has the properties:
+%\begin{align}
+%& \big| ||\mathbf{x}|| - ||\mathbf{y}|| \big|\leq || \mathbf{x}- \mathbf{y}||\\
+%&  ||\sum_{i=1}^n\mathbf{x}_i||\leq \sum_{i=1}^n||\mathbf{x}_i||\quad\text{where $n$ is a finite integer}
+%\end{align}
+%\end{theorem}
+%
+%\subsection{Single Line}
+%This is a theorem consisting of just one line.
+%
+%\begin{theorem}
+%A set $\mathcal{D}(G)$ in dense in $L^2(G)$, $|\cdot|_0$. 
+%\end{theorem}
+%
+%%------------------------------------------------
+%
+%\section{Definitions}
+%
+%This is an example of a definition. A definition could be mathematical or it could define a concept.
+%
+%\begin{definition}[Definition name]
+%Given a vector space $E$, a norm on $E$ is an application, denoted $||\cdot||$, $E$ in $\mathbb{R}^+=[0,+\infty[$ such that:
+%\begin{align}
+%& ||\mathbf{x}||=0\ \Rightarrow\ \mathbf{x}=\mathbf{0}\\
+%& ||\lambda \mathbf{x}||=|\lambda|\cdot ||\mathbf{x}||\\
+%& ||\mathbf{x}+\mathbf{y}||\leq ||\mathbf{x}||+||\mathbf{y}||
+%\end{align}
+%\end{definition}
+%
+%%------------------------------------------------
+%
+%\section{Notations}
+%
+%\begin{notation}
+%Given an open subset $G$ of $\mathbb{R}^n$, the set of functions $\varphi$ are:
+%\begin{enumerate}
+%\item Bounded support $G$;
+%\item Infinitely differentiable;
+%\end{enumerate}
+%a vector space is denoted by $\mathcal{D}(G)$. 
+%\end{notation}
+%
+%%------------------------------------------------
+%
+%\section{Remarks}
+%
+%This is an example of a remark.
+%
+%\begin{remark}
+%The concepts presented here are now in conventional employment in mathematics. Vector spaces are taken over the field $\mathbb{K}=\mathbb{R}$, however, established properties are easily extended to $\mathbb{K}=\mathbb{C}$.
+%\end{remark}
+%
+%%------------------------------------------------
+%
+%\section{Corollaries}
+%
+%This is an example of a corollary.
+%
+%\begin{corollary}[Corollary name]
+%The concepts presented here are now in conventional employment in mathematics. Vector spaces are taken over the field $\mathbb{K}=\mathbb{R}$, however, established properties are easily extended to $\mathbb{K}=\mathbb{C}$.
+%\end{corollary}
+%
+%%------------------------------------------------
+%
+%\section{Propositions}
+%
+%This is an example of propositions.
+%
+%\subsection{Several equations}
+%
+%\begin{proposition}[Proposition name]
+%It has the properties:
+%\begin{align}
+%& \big| ||\mathbf{x}|| - ||\mathbf{y}|| \big|\leq || \mathbf{x}- \mathbf{y}||\\
+%&  ||\sum_{i=1}^n\mathbf{x}_i||\leq \sum_{i=1}^n||\mathbf{x}_i||\quad\text{where $n$ is a finite integer}
+%\end{align}
+%\end{proposition}
+%
+%\subsection{Single Line}
+%
+%\begin{proposition} 
+%Let $f,g\in L^2(G)$; if $\forall \varphi\in\mathcal{D}(G)$, $(f,\varphi)_0=(g,\varphi)_0$ then $f = g$. 
+%\end{proposition}
+%
+%%------------------------------------------------
+%
+%\section{Examples}
+%
+%This is an example of examples.
+%
+%\subsection{Equation and Text}
+%
+%\begin{example}
+%Let $G=\{x\in\mathbb{R}^2:|x|<3\}$ and denoted by: $x^0=(1,1)$; consider the function:
+%\begin{equation}
+%f(x)=\left\{\begin{aligned} & \mathrm{e}^{|x|} & & \text{si $|x-x^0|\leq 1/2$}\\
+%& 0 & & \text{si $|x-x^0|> 1/2$}\end{aligned}\right.
+%\end{equation}
+%The function $f$ has bounded support, we can take $A=\{x\in\mathbb{R}^2:|x-x^0|\leq 1/2+\epsilon\}$ for all $\epsilon\in\intoo{0}{5/2-\sqrt{2}}$.
+%\end{example}
+%
+%\subsection{Paragraph of Text}
+%
+%\begin{example}[Example name]
+%\lipsum[2]
+%\end{example}
+%
+%%------------------------------------------------
+%
+%\section{Exercises}
+%
+%This is an example of an exercise.
+%
+%\begin{exercise}
+%This is a good place to ask a question to test learning progress or further cement ideas into students' minds.
+%\end{exercise}
+%
+%%------------------------------------------------
+%
+%\section{Problems}
+%
+%\begin{problem}
+%What is the average airspeed velocity of an unladen swallow?
+%\end{problem}
+%
+%%------------------------------------------------
+%
+%\section{Vocabulary}
+%
+%Define a word to improve a students' vocabulary.
+%
+%\begin{vocabulary}[Word]
+%Definition of word.
+%\end{vocabulary}
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+%
+%\chapter*{Bibliography}
+%\addcontentsline{toc}{chapter}{\textcolor{ocre}{Bibliography}}
+%\section*{Books}
+%\addcontentsline{toc}{section}{Books}
+%\printbibliography[heading=bibempty,type=book]
+%\section*{Articles}
+%\addcontentsline{toc}{section}{Articles}
+%\printbibliography[heading=bibempty,type=article]
+
+%----------------------------------------------------------------------------------------
+%	INDEX
+%----------------------------------------------------------------------------------------
+
+\cleardoublepage
+\phantomsection
+\setlength{\columnsep}{0.75cm}
+\addcontentsline{toc}{chapter}{\textcolor{ocre}{Index}}
+\printindex
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
