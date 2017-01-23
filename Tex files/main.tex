@@ -264,15 +264,15 @@ Three configuration files are part of an experiment, providing general settings 
 \rowcolor{Gray}
 File & Name & Possible values\\
 \hline
-\multirow{2}{*}{sfinaParameters.txt} & domain & power \\ \cline{2-3}
- & backend & matpower,interpss \\ \hline
+\multirow{2}{*}{sfinaParameters.txt} & domain & power, disaster\textunderscore spread \\ \cline{2-3}
+ & backend & matpower,interpss,helbingetal \\ \hline
 \multirow{2}{*}{\parbox{4cm}{backendParameters.txt (power domain)} } & flowType & AC, DC \\ 
 \cline{2-3} & toleranceParameter & value of type double \\ \hline
 \end{tabular}
 \label{table:params}
 \caption{Parameters that can be specified in the parameter files.}
 \end{table}
-
+In case of disaster\textunderscore spread domain, the \textbf{backend parameters file} is empty.\\
 \textbf{The events file} has the following format, defining one event per line with comma separated values:
 
 \begin{lstlisting}[frame=single] 
@@ -283,7 +283,7 @@ time,feature,component,id,parameter,value
 ...
 \end{lstlisting}
 
-For a more detailed explanation how events events work and which ones are available, see  section \ref{sec:events}. The events are loaded at the beginning, but each of them is executed at the time specified in the first column. It allows to define certain important events before running the experiment and without the need to modify the code. 
+For a more detailed explanation how events work and which ones are available, see  section \ref{sec:events}. The events are loaded at the beginning, but each of them is executed at the time specified in the first column. It allows to define certain important events before running the experiment and without the need to modify the code. 
 
 \subsection{Network data}\index{Files!Network data}\index{Flow}\index{Topology}
 Each time\_n folder in input as well as in output\/iteration\_m contains the full network data, separated into general topological information and domain specific flow information. All the output files are generated automatically, so only the input folder has to be provided in order to run an experiment. A folder time\_n in input is loaded at time step n and replaces all the network information (both topological and flow) from earlier times. At least the time\_1 folder with data has to be provided in order for the experiment to have sufficient data to run properly. If a folder at any time step is present, it will automatically be loaded, discarding the data from before and replacing it with the new one. On the other hand it will continue with the information from the time step before, if no folder for the current time is present.
@@ -296,7 +296,7 @@ Each time\_n folder in input as well as in output\/iteration\_m contains the ful
 \label{fig:input_files}
 \end{figure}
 
-\paragraph{Flow data} The flow data is very flexible and has the same format for both nodes and links, as shown in figure \ref{fig:input_files}. For each node/link information can be loaded which is necessary for the current domains flow simulation. For example in the power domain this might be the generation output or load of a node or the resistance of a link. The values are then stored in the nodes and links of the ID specified in the first column. 
+\paragraph{Flow data} The flow data is very flexible and has the same format for both nodes and links, as shown in figure \ref{fig:input_files}. For each node/link information can be loaded which is necessary for the current domains flow simulation. For example in the power domain this might be the generation output or load of a node or the resistance of a link. Similarly, for disaster\textunderscore spread domain, flow data for links could be connection strength and time delay whereas for nodes this could be initial recovery rate or tolerance of the node. The values are then stored in the nodes and links of the ID specified in the first column.
 
 The flow data is domain specific and therefore has to be defined seperately for each one. Currently this is the case for the power domain, other domains are not supported yet.
 
@@ -740,10 +740,11 @@ To summarize, the following methods in the SFINA architecture have to be modifie
 %----------------------------------------------------------------------------------------
 
 \section{New domain}\index{Domain}\label{sec:domain}
-Currently only some domains are supported, but we envision the extension of SFINA to more domains like transportation, information, gas or general topological diffusion networks. How would one go about integrating a new domain? This is a task which requires changes outlined in the following section.
+Currently only some domains like power and disaster\textunderscore spread are supported, but we envision the extension of SFINA to more domains like transportation, information, gas or general topological diffusion networks. How would one go about integrating a new domain? This is a task which requires changes outlined in the following section.
 
 \subsection{Data}\index{Files}
-First of all, a new domain requires specific data in order to be able to calculate the flow/distribution of some quantity in the network for given conditions. Therefore one has to decide, which data is necessary in addition to the topological structure of nodes and links. This data then has to be written in the SFINA file format, either by converting it from other data sources or by creating your own test case files (more information  in section \ref{sec:file_system} about the file system).
+First of all, a new domain requires specific data in order to be able to calculate the flow/distribution of some quantity in the network for given conditions. Therefore one has to decide, which data is necessary in addition to the topological structure of nodes and links. This data then has to be written in the SFINA file format, either by converting it from other data sources or by creating your own test case files (more information  in section \ref{sec:file_system} about the file system). \\
+In case of Disaster Spread domain, data was generated using python packages and converted into Sfina Format using python script.
 
 \subsection{Backend}\index{Backend}
 When the data is ready, the next step is to extend the code such that it can load the new flow information. The topological information is general and its loading is implemented already independently of the domain. To load the flow information, a flow loader has to be created for the domain having the following structure (calling the domain now “NewDomain”, which should be replaced by the corresponding domain name):
@@ -782,6 +783,9 @@ Where NewNodeState is one of the enum type that was created before and value is 
 
 Now we have the data loaded and available for running our experiments. To complete the handling of the new data, it is also necessary to create a class that writes the data again in the same format to files. Just follow the PowerFlowWriter.java example to do so.
 
+For example, for the Disaster Spread domain, DisasterSpreadFlowLoader is implemented in the class of same name. Corresponding DisasterSpreadNodeState.java and DisasterSpreadLinkState.java store information about node and link states respectively.
+Similarly, to write output data to files, DisasterSpreadFlowWriter is implemented which outputs files corresponding to disaster spread node and link states.
+
 \subsection{Integrate the domain into the framework}
 Next, a new domain needs a backend, which uses the data that we now have at hand to compute the distribution or evolution in the network for the giving constraints. This is already explained in detail in section \ref{sec:backend} on how to integrate a new backend.
 
@@ -801,6 +805,8 @@ Having the data and the backend, most of the work is done. As a last step, it is
 		\item add the new domain to the method getActualSystemValue() and assign a string name to it, which can be used to define events in events.txt
 		\end{enumerate}
 \end{enumerate}
+
+In the case of disaster\textunderscore spread domain, enum variable DISASTERSPREAD was added to Domain.java. In loadInputData(), a new case DISASTERSPREAD was added and corresponding domain specific loaders were called. Similarly, disaster\textunderscore spread domain was defined in loadSfinaParameters() method in SfinaParameterLoader.java. In Event Loader, lookupDisasterSystemParameterState(), lookupDisasterNodeState() and lookupDisasterLinkState() methods were defined with the new flow information. Additionally, methods getActualPowerNodeValue() and getActualPowerLinkValue() were also defined. New case was added to getActualSystemValue() as well.
 
 Congrats, now the new domain is ready to be used in applications (section \ref{sec:apps}) and experiments (section \ref{sec:Simulation_Measurements}).
 
