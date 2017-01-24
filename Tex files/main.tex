@@ -44,6 +44,12 @@
 
 \documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
 
+\newcommand{\mainagent}{simulation agent }
+\newcommand{\MainAgent}{Simulation Agent }
+\newcommand{\TimeAgent}{Time Agent }
+\newcommand{\DomainAgent}{Domain Agent }
+\newcommand{\Backend}{Domain Calculator }
+
 %----------------------------------------------------------------------------------------
 
 \input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
@@ -140,15 +146,18 @@ If you want to extend the core functionality to your needs, namely adding new do
 \begin{enumerate}
 	\item Get the sources by cloning from Github into the current folder on your computer. For this open a terminal window, navigate to the folder you want to use and type: 
 	\begin{lstlisting}
-	git clone https://github.com/epournaras/SFINA.git
+	git clone https://github.com/SFINA/SFINA.git
 	\end{lstlisting}
 	\item Import the project into an IDE (SFINA is developed on Netbeans, so using this would be the easiest to setup).
-	\item Add the necessary packages, which can be found in SFINA library folder.
+	\item Add the necessary packages, which can be found in github.com/SFINA/SFINA/libraries.
 	\item Start to adjust it to your needs by following the instructions in the following chapters.
 \end{enumerate}
 
+\section{The graphical user interface}\index{GUI}\index{GUI}
+To be completed (Dinesh).
+
 \section{Performing simulations and measurements}\index{Measurements}\index{Files}\index{Application}\label{sec:Simulation_Measurements}
-If the application one wants to use is already implemented and the goal is to only execute it with own parameters and input data, this section explains how to do so. In this case the algorithm and the types of performed measurements cannot be changed. But still several things can be adjusted in order to run different experiments: The name of the experiment, for how many time steps to run the simulation, the backend to use, any event to be executed at any time and when to reload a network from files or when not to do so. In order to run a simulation, one should follow these steps:
+If the application one wants to use is already implemented and the goal is to only execute it with own parameters and input data, this section explains how to do so. In this case the algorithm and the types of performed measurements cannot be changed. But still several things can be adjusted in order to run different experiments: The name of the experiment, for how many time steps to run the simulation, the backend to use, any event to be executed at any time and when to reload a network from files or when not to do so. In order to run a simulation, one should follow these steps: 
 
 \begin{itemize}
 	\item Create a folder in experiments for this simulation, and put an input folder. Let’s call our simulation “test”, then we would need to create experiments/experiment-test/input
@@ -159,9 +168,8 @@ If the application one wants to use is already implemented and the goal is to on
 		\item backendParameters.txt
 		\item time\_1/topology/nodes.txt and links.txt
 		\item time\_1/flow/nodes.txt and links.txt
-		\item More time folders in the same structure as time\_1, if we want to restore the network at some time steps to its initial state, or if we want to load a different configuration. For more details on the input files and how to format them, see section \ref{subsec:config_files}.
+		\item More time folders in the same structure as time\_1, if we want to load a different new network configuration at a later time step. If no input files are provided, the simulation continues to use the data from the last simulation step. For more details on the input files and how to format them, see section \ref{subsec:config_files}.
 	\end{itemize}
-	\item Specify which domain and backend to use in sfinaParameters.txt and any other backend specific necessary parameters in the backend parameter files
 	\item Optionally put events to be executed in events.txt. Here it is also possible to define the reloading of the first input folder by putting at time n, where this should happen:
 	\begin{lstlisting}
 		n,system,-,-,reload,1
@@ -201,10 +209,16 @@ public class testExperiment extends SimulatedExperiment{
         PeerFactory peerFactory=new PeerFactory() {
           public Peer createPeer(int peerIndex, Experiment experiment){
               Peer newPeer = new Peer(peerIndex);
+              // add the simulation agent
               newPeer.addPeerlet(new PowerCascadeAgent(
                       experimentID, 
                       Time.inMilliseconds(bootstrapTime),
                       Time.inMilliseconds(runTime)));
+              // add the agent managing the simulation steps
+              newPeer.addPeerlet(new SimpleTimeSteppingAgent());
+              // add the backend, 
+              // in this case Power Simulation with InterPSS
+              newPeer.addPeerlet(new InterpssFlowDomainAgent());
               return newPeer;
             }
         };
@@ -219,9 +233,16 @@ public class testExperiment extends SimulatedExperiment{
         new BenchmarkLogReplayer(expName, 0, 1000);
 }
 	\end{lstlisting}
-First notice, that our testExperiment class extends SimulatedExperiment, which is a Protopeer class (section \ref{subsec:protopeer}) providing useful functionality like time and measurements. Then it is necessary to assign to expName the same name as the input directory is called, in order for the experiment to find the files. The runDuration variable defines for how many time steps the simulation will run, including the bootstrap time, which is used to initialize the experiment. Defining the bootstrapTime as 2000 ms and the runTime as 1000 ms, a runDuration of 10 corresponds to 8 simulation steps. So in general: \textit{runDuration = bootstrapTime/runTime + number of actual simulation steps}. 
+First notice, that our testExperiment class extends SimulatedExperiment, which is a Protopeer class (section \ref{subsec:protopeer}) providing useful functionality like time and measurements. Then it is necessary to assign to experimentID the same name as the input directory is called, in order for the experiment to find the files. The runDuration variable defines for how many time steps the simulation will run, including the bootstrap time, which is used to initialize the experiment. Defining the bootstrapTime as 2000 ms and the runTime as 1000 ms, a runDuration of 10 corresponds to 8 simulation steps. So in general: \textit{runDuration = bootstrapTime/runTime + number of actual simulation steps}. 
 
-The only thing left to do, is to initialize a peer which creates the PowerCascadeAgent, and finally executing it with test.runSimulation(...).
+Different agents, encapsulating separate functionality, have to be added. For more details see section \ref{sec:agents}. Different configurations are possible, however at least one of the following three categories are necessary:
+\begin{enumerate}
+	\item A SimulationAgent, which is extended to different functionality, for example PowerCascadeAgent, DisasterSpreadAgent (?) and SmartTransformerAgent (?).
+	\item TimeSteppingAgent, for a non-interconnected simulation on one network this is the SimpleTimeSteppingAgent as in the above example.
+	\item A BackendAgent, for example InterpssBackend or MatpowerBackend (requiring a Matlab installation) in the case of a power network simulation.
+\end{enumerate}
+
+The only thing left to do, is to initialize the peer we just set up, and finally executing it with test.runSimulation(...).
 
 All the measurement results are saved to a binary file in peerlets-log/experiment-test/peer-0, from where it can be loaded after the simulation finished to compute, display and output measurement results. This is done automatically when initializing the provided BenchmarkLogReplayer object, like shown in the last line of the above example. 
 
@@ -236,7 +257,7 @@ Now you can go ahead and run this class.
 
 \chapter{Architecture}
 
-For running experiments which are already implemented it is only necessary to understand the file system and the concept of events. For a deeper understanding and to implement own applications, the information about the flow network, simulation agent and Protopeer will come in handy. 
+For running experiments which are already implemented it is only necessary to understand the file system and the concept of events. For a deeper understanding and to implement own applications, the information about the flow network, the different agents and Protopeer will come in handy. 
 
 %------------------------------------------------
 
@@ -255,7 +276,7 @@ Each experiment is assigned a string identifier, defined when running experiment
 \subsection{Configuration files}\index{Files!Configuration files}\index{Domain}\index{Backend}\index{Events}\label{subsec:config_files}
 Three configuration files are part of an experiment, providing general settings for the experiment like the domain and backend to use (sfinaParameters.txt), settings for the currently used backend (backendParameters.txt) and defining events to be automatically executed (events.txt). The first has to be provided, not doing so will result in an error. The backend parameter file doesn’t have to be provided (i.e. will not result in an error), however depending on the backend certain parameters might be necessary. This is for example the case of AC or DC in the power domain. The event file can be provided, but the simulation will also run without it. 
 
-\textbf{The SFINA and backend parameters files} are specified in the format “name=value”. The currently available settings are summarized in the following table.
+\textbf{The SFINA and backend parameters files} are specified in the format “name=value”. The currently available settings are summarized in table \ref{table:params}.
 
 \begin{table}[h]
 \centering
@@ -279,7 +300,7 @@ In case of disaster\textunderscore spread domain, the \textbf{backend parameters
 time,feature,component,id,parameter,value
 2,topology,link,10,status,0
 3,flow,link,9,resistance,0.1
-3,system,-,-,backend,interpss
+3,system,-,-,reload,1
 ...
 \end{lstlisting}
 
@@ -305,10 +326,10 @@ In the most general case of purely topological networks, the flow data could be 
 Some nodes or links might be of a different kind than others, making it necessary to assign certain values to them but not to the others. In the power domain this is for example the case for nodes that generate power, which additionally need among others the power generation output information. In this case a dash (-) can be used to exclude this information from all other nodes as seen for value31 in the example above, it will be ignored during loading. 
 
 \subsection{Manually loading network data}\index{Loading}\index{Files!Loading}
-As explained in section \ref{sec:simu_agent} about the simulation agent, at the beginning of each time step, the corresponding input data is automatically loaded, if provided by the user. It is however also possible to initiate data loading manually, by calling the method loadData(time), where “time” is a string to be replaced with the time matching the input folder time to be loaded. It is also possible to trigger this “reload” of the time x input at time y by an event, as explained further below.
+As explained in section \ref{sec:simu_agent} about the \mainagent, at the beginning of each time step, the corresponding input data is automatically loaded, if provided by the user. It is however also possible to initiate data loading manually, by calling the method loadData(time), where “time” is a string to be replaced with the time matching the input folder time to be loaded. It is also possible to trigger this “reload” of the time x input at time y by an event, as explained further below.
 
 \subsection{Changing the file system structure}
-The structure of the file system and names of folders outlined above is defined in a configuration file, which is loaded at bootstraping of the simulation agent (section \ref{sec:simu_agent}. It is placed in the folder conf\/fileSystem.conf. Besides the names of all the folders and parameter files, it also defines the column separator and the string which is used for excluding data for some of the nodes\/links (missingValue) in the input data files, as explained above. These values can be changed, which is however not recommended.
+The structure of the file system and names of folders outlined above is defined in a configuration file, which is loaded at bootstraping of the \mainagent (section \ref{sec:simu_agent}. It is placed in the folder conf\/fileSystem.conf. Besides the names of all the folders and parameter files, it also defines the column separator and the string which is used for excluding data for some of the nodes\/links (missingValue) in the input data files, as explained above. These values can be changed, which is however not recommended.
 
 %------------------------------------------------
 
@@ -337,9 +358,8 @@ An event is defined by six parameters, specifying what action is to be executed 
 			\item start node id
 			\item end node id
 		\end{itemize}} & \multicolumn{2}{p{4.5cm}|}{Any flow information which was loaded or added} & \multicolumn{1}{p{2.5cm}|}{\begin{itemize}[leftmargin=*,label={-}]
-		\item domain
-		\item backend
 		\item reload
+		\item ...
 	\end{itemize}}\\
 	\hline
 	\textbf{value} & 0,1 & \multicolumn{1}{p{2.5cm}|}{\begin{itemize}[leftmargin=*,label={-}]
@@ -347,9 +367,8 @@ An event is defined by six parameters, specifying what action is to be executed 
 			\item new node id
 			\item new node id
 		\end{itemize}} & \multicolumn{2}{p{4.5cm}|}{New value} & \multicolumn{1}{p{3cm}|}{\begin{itemize}[leftmargin=*,label={-}]
-		\item new domain
-		\item new backend
 		\item Time from which input data should be reloaded
+		\item ...
 	\end{itemize}}\\
 	\hline	
 	\end{tabular}
@@ -417,7 +436,7 @@ An important method in the network is computeIslands() which extracts disconnect
 Furthermore the flow network provides some useful methods to calculate metrics like degree distribution, clustering coefficient or to find the shortest path between two nodes. Some of these methods use the openly available \href{http://jgrapht.org/}{JGraphT library}. A more detailed list can be found in the method summary in section \ref{sec:net_methods}.
 
 \subsection{Flow and capacity}\index{Flow}\index{Capacity}
-The flow network provides a flexible way to define the flow and capacity, meaning which physical quantities (contained in the nodes and links) is the measure of flow or how much flow a node/link can support. Use setLinkFlowType(...) and setLinkCapacityType(...) and for the nodes respectively for this purpose. This is done in the setFlowParameters() method in the simulation agent, where each domain has its default settings. When developing a new application, the developer is expected to check these. Default values are summarized in the following table.
+The flow network provides a flexible way to define the flow and capacity, meaning which physical quantities (contained in the nodes and links) is the measure of flow or how much flow a node/link can support. Use setLinkFlowType(...) and setLinkCapacityType(...) and for the nodes respectively for this purpose. This is done in the setFlowParameters() method in the \mainagent, where each domain has its default settings. When developing a new application, the developer is expected to check these. Default values are summarized in the following table.
 \begin{table}[h]
 	\centering
 	\begin{tabular}{|l| p{2.5cm}| p{2.5cm}|l|l|}
@@ -454,9 +473,21 @@ someNode.replacePropertyElement(PowerNodeState.POWER_DEMAND_REAL,pwr*2);
 A summary of methods can be found in the appendix (section \ref{sec:net_methods}).
 
 %------------------------------------------------
+\section{Agents}\index{agent, peerlet}\label{sec:agents}
+Each simulation is configured as a peer (see above for an example). When creating a peer, different agents are added as peerlets, encapsulating separate functionality. One of each of the following three categories always has to be added to the peer as peerlets when setting up an experiment (see section \ref{sec:Simulation_Measurements}):
+\begin{enumerate}
+	\item \MainAgent
+	\item \TimeAgent
+	\item \DomainAgent
+\end{enumerate}
+These are explained in more detail in the following.
 
-\section{Simulation Agent}\index{Agent!Simulation Agent}\label{sec:simu_agent}
-At the heart of any simulation is the simulation agent. Applications extend it and can therefore make use of its functionality (see section on adding applications for more detail). The simulation agent takes care of performing several tasks which are necessary for any simulation. These include keeping track of simulation steps, loading and performing output, executing events and calling key methods at every time step. The time evolution of the simulation agent is illustrated by figure \ref{fig:time_iter}.
+\subsection{Simulation Agent}\index{Agent!Simulation Agent}\label{sec:simu_agent}
+At the heart of any simulation is the simulation agent. Applications extend it and can therefore make use of its functionality (see section on adding applications for more detail). The \mainagent takes care of performing several tasks which are necessary for any simulation. These include loading and performing output, executing events and calling key methods at every time step. The time evolution of the simulation agent is illustrated by figure \ref{fig:time_iter}. Itself, it provides only barebone functionality and is extended for enabling more complex simulations, for example the
+	\begin{enumerate}
+		\item FlowMonitor, measuring and logging information during simulation.
+		\item CascadeAgent and its extention PowerCascadeAgent: Simulating cascading failures due to link and/or node overloads (i.e. capacity < flow). The latter specifically implements strategies and modifications for cascades in power networks.
+	\end{enumerate}
 
 \begin{figure}[!h]
 \centering\includegraphics[width=0.95\textwidth]{time_iterations.pdf}
@@ -464,8 +495,8 @@ At the heart of any simulation is the simulation agent. Applications extend it a
 \label{fig:time_iter}
 \end{figure}
 
-\subsection{The Active State}\index{Active State}\index{Events}
-The runActiveState() method is the main runtime of the simulation agent (\textbf{compare to passive state?}). After bootstraping, during which the experiment is initialized by loading the configuration files from the experiment folder, the main simulation is orchestrated by the this method. It is executed at every time step automatically and initiates the above mentioned tasks, as depicted in detail in figure \ref{fig:active_state}.
+\subsubsection{The Active State}\index{Active State}\index{Events}
+The runActiveState() method is the main runtime of the \mainagent (\textbf{compare to passive state?}). After bootstraping, during which the experiment is initialized by loading the configuration files from the experiment folder, the main simulation is orchestrated by the this method. It is executed at every time step automatically and initiates the above mentioned tasks, as depicted in detail in figure \ref{fig:active_state}.
 
 \begin{figure}[!h]
 \centering\includegraphics[width=0.95\textwidth]{active_state.pdf}
@@ -503,11 +534,27 @@ The callBackend() method executes the backend, which is automatically selected a
 	\caption{Currently integrated backends to calculate flow in a network.}
 \end{table}
 
-\subsection{Iterations and output}\index{Iterations}\index{Output}
-The core simulation agent (SimulationAgent) provides the important method nextIteration() which calls the output function at the current iteration and then increments the iteration number. However, it is not called automatically, but it is up the developer, who implements an application (i.e. overwriting runFlowAnalysis()), to call it when appropriate. Every time it is executed, a new output in the current time step but in a new subfolder corresponding to the current iteration is created.
+\subsubsection{Iterations and output}\index{Iterations}\index{Output}
+The core \mainagent (SimulationAgent) provides the important method nextIteration() which calls the output function at the current iteration and then increments the iteration number. However, it is not called automatically, but it is up the developer, who implements an application (i.e. overwriting runFlowAnalysis()), to call it when appropriate. Every time it is executed, a new output in the current time step but in a new subfolder corresponding to the current iteration is created.
 
 %------------------------------------------------
+\subsection{\TimeAgent}\index{Agent!\TimeAgent}\label{sec:time_agent}
+Organizing the time steps of the simulation, calling SimulationAgent when it should simulate the network. The following extentions exist:
+	\begin{enumerate}
+		\item SimpleTimeSteppingAgent, simulating a single network, advancing directly when it is ready.
+		\item CommunicationAgentInterdependentSimulation, allowing for multiple networks to be connected, thus managing their synchronisation and exchange of information. For more information on interdependent network simulations, see section \ref{sec:interdep}.
+		\item CommunicationAgentTokenSimulation, also organizes interdependent networks, but executing them in a sequential rather than parallel order.
+	\end{enumerate}
+	
+%------------------------------------------------
+\subsection{\DomainAgent}\index{Agent!\DomainAgent}\label{sec:domain_agent}
+Providing the simulation of a distribution of flows in the network for given input data. It also handles the translation of the input file values during input and output. In the case of power simulations this can be InterpssBackend or MatpowerBackend.
+%------------------------------------------------
 
+\section{Interdependent network simulations}\index{interdependent}\label{sec:interdep}
+To be completed.
+
+%------------------------------------------------
 \section{Protopeer Toolkit (redo, maybe split in part here and appendix)}\index{Protopeer}\label{subsec:protopeer}
 SFINA makes use of the Protopeer Toolkit which was developed at EPFL university Lausanne to provide a framework for peer to peer distributed experiments (\href{http://infoscience.epfl.ch/record/128659/files/protopeer_demo.pdf}{paper}). It provides useful basic functionality like time based events and measurement methods. Another important concept is peers and peerlets, which allow a fully decentralized deployment. A peer is an independent simulation instance, which can communicate over the network with other peers. Every peer can contain several peerlets, which allow to further split up a peer in seperate simulations. Currently experiments conducted with SFINA initialize just one peer with one peerlet. However this potentially allows for a very flexible use of the SFINA framework in the future.
 %------------------------------------------------
@@ -536,7 +583,7 @@ SFINA makes use of the Protopeer Toolkit which was developed at EPFL university 
 \section{Application architecture}\label{sec:apps}
 SFINA is designed such that it is flexible and can be easily extended. These extensions can be the implementation of a new application as described in this section, more sophisticated measurements, and more. Currently implemented applications for showcasing the capabilities of the framework as well as for providing basic functionality, are an agent for benchmarking (i.e. making measurements), a model for cascading failures and a specific implementation of the latter for power grid simulations. New applications can be build on top of them in order to make use of their functionalities. If this is not of interest to the developer, totally new applications can be implemented on top of the SFINA core functionality. In any case, whether the SimulationAgent or one of the existing applications are used for the basis of new applications, the capability of Java to extend classes and override methods is used, which will be explained in more detail below. In figure \ref{fig:apps} the current applications are shown, as well as how possible extensions could be realized.
 
-\section{Implementing an Agent}\index{Agent}
+\section{Implementing a new Application Agent}\index{Agent}
 Let’s have a look on how extending one of the existing agent works, taking the example of the Benchmark Agent. Its beginning looks as follows:
 \begin{lstlisting}[frame=single]
 public class BenchmarkSimulationAgent extends SimulationAgent{
@@ -654,7 +701,7 @@ The serializable object can be loaded after the simulation finished to perform f
 
 \chapter{Core functionality extension}
 
-\section{New backend}\index{Backend}\index{Backend!Interpss}\index{Backend!Matpower}\index{Backend!Interface}\label{sec:backend}
+\section{New \Backend}\index{Backend}\index{Backend!Interpss}\index{Backend!Matpower}\index{Backend!Interface}\label{sec:backend}
 Backends are software modules that implement algorithms for the calculation of the flow in the network. Often simulation software already exist for various domains, for example MATPOWER or InterPSS to perform power flow analysis. Three ways to implement new backends:
 \begin{enumerate}
 	\item Implementing the flow calculation from scratch, using the SFINA data stored in the flow network, nodes and links. This is the most straight-forward way, and definitely the cleanest, resulting in a fully integrated backend. Depending on the complexity however, this can be quite a big task.
