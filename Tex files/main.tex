@@ -237,9 +237,9 @@ First notice, that our testExperiment class extends SimulatedExperiment, which i
 
 Different agents, encapsulating separate functionality, have to be added. For more details see section \ref{sec:agents}. Different configurations are possible, however at least one of the following three categories are necessary:
 \begin{enumerate}
-	\item A SimulationAgent, which is extended to different functionality, for example PowerCascadeAgent, DisasterSpreadAgent (?) and SmartTransformerAgent (?).
-	\item TimeSteppingAgent, for a non-interconnected simulation on one network this is the SimpleTimeSteppingAgent as in the above example.
-	\item A BackendAgent, for example InterpssBackend or MatpowerBackend (requiring a Matlab installation) in the case of a power network simulation.
+	\item A \MainAgent, which is extended to different functionality, for example BenchmarkAgent for measurements or the PowerCascadeAgent.
+	\item \TimeAgent, for a non-interconnected simulation on one network this is the SimpleTimeSteppingAgent as in the above example.
+	\item A \DomainAgent, for example InterpssBackend or MatpowerBackend (requiring a Matlab installation) in the case of a power network simulation.
 \end{enumerate}
 
 The only thing left to do, is to initialize the peer we just set up, and finally executing it with test.runSimulation(...).
@@ -271,10 +271,10 @@ The SFINA file system allows easy input and output of all the network informatio
 \end{figure}
 
 \subsection{Location of the files}\index{Files!Location}
-Each experiment is assigned a string identifier, defined when running experiments (section \ref{sec:Simulation_Measurements}). The input files of an experiment with the ID “someExperiment” have to placed in the folder experiments/experiment-someExperiment, where “someExperiment” can be any string.
+Each experiment is assigned a string identifier, defined when running experiments (section \ref{sec:Simulation_Measurements}). The input files of an experiment with the identifier “someExperiment” have to placed in the folder experiments/someExperiment, where “someExperiment” can be any string.
 
 \subsection{Configuration files}\index{Files!Configuration files}\index{Domain}\index{Backend}\index{Events}\label{subsec:config_files}
-Three configuration files are part of an experiment, providing general settings for the experiment like the domain and backend to use (sfinaParameters.txt), settings for the currently used backend (backendParameters.txt) and defining events to be automatically executed (events.txt). The first has to be provided, not doing so will result in an error. The backend parameter file doesn’t have to be provided (i.e. will not result in an error), however depending on the backend certain parameters might be necessary. This is for example the case of AC or DC in the power domain. The event file can be provided, but the simulation will also run without it. 
+Three configuration files are part of an experiment, providing general settings for the experiment (sfinaParameters.txt), settings for the currently used backend (backendParameters.txt) and defining events to be automatically executed (events.txt). The first has to be provided but can be empty. The backend parameter file doesn’t have to be provided (i.e. will not result in an error), however depending on the backend certain parameters might be necessary. This is for example the case of AC or DC in the power domain. The event file can be provided, but the simulation will also run without it. 
 
 \textbf{The SFINA and backend parameters files} are specified in the format “name=value”. The currently available settings are summarized in table \ref{table:params}.
 
@@ -285,8 +285,7 @@ Three configuration files are part of an experiment, providing general settings 
 \rowcolor{Gray}
 File & Name & Possible values\\
 \hline
-\multirow{2}{*}{sfinaParameters.txt} & domain & power, disaster\textunderscore spread \\ \cline{2-3}
- & backend & matpower,interpss,helbingetal \\ \hline
+{sfinaParameters.txt} & - & -\\ \hline
 \multirow{2}{*}{\parbox{4cm}{backendParameters.txt (power domain)} } & flowType & AC, DC \\ 
 \cline{2-3} & toleranceParameter & value of type double \\ \hline
 \end{tabular}
@@ -307,9 +306,9 @@ time,feature,component,id,parameter,value
 For a more detailed explanation how events work and which ones are available, see  section \ref{sec:events}. The events are loaded at the beginning, but each of them is executed at the time specified in the first column. It allows to define certain important events before running the experiment and without the need to modify the code. 
 
 \subsection{Network data}\index{Files!Network data}\index{Flow}\index{Topology}
-Each time\_n folder in input as well as in output\/iteration\_m contains the full network data, separated into general topological information and domain specific flow information. All the output files are generated automatically, so only the input folder has to be provided in order to run an experiment. A folder time\_n in input is loaded at time step n and replaces all the network information (both topological and flow) from earlier times. At least the time\_1 folder with data has to be provided in order for the experiment to have sufficient data to run properly. If a folder at any time step is present, it will automatically be loaded, discarding the data from before and replacing it with the new one. On the other hand it will continue with the information from the time step before, if no folder for the current time is present.
+Each time\_n folder in input as well as in output/iteration\_m contains the full network data, separated into general topological information and domain specific flow information. All the output files are generated automatically, so only the input folder has to be provided in order to run an experiment. A folder time\_n in input is loaded at time step n and replaces all the network information (both topological and flow) from earlier times. At least the time\_1 folder with data has to be provided in order for the experiment to have sufficient data to run. If a folder at any time step is present, it will automatically be loaded, discarding the data from before and replacing it with the new one. On the other hand it will continue with the information from the time step before, if no folder for the current time is present.
 
-\paragraph{Topological data} The topological data provides the nodes/links with a unique ID, which can be any string, and a status attribute which specifies if it is active or not. In the latter case the simulation treats it as if it was not present, but it can be activated during runtime for example by events. Links are directed, which can be specified by the ids of the nodes where it starts and ends. An undirected link can be simulated by creating two links, one in each direction. The formatting of the files is shown in figure \ref{fig:input_files}.
+\paragraph{Topological data} The topological data provides the nodes/links with a unique ID, which can be any string, and a status attribute which specifies if it is active or not. In the latter case the simulation treats it as if it was not present, but it can be activated during runtime for example by events. Links are directed, which can be specified by the IDs of the nodes where it starts and ends. An undirected link can be simulated by creating two links, one in each direction. The formatting of the files is shown in figure \ref{fig:input_files}.
 
 \begin{figure}[!h]
 \centering\includegraphics[width=0.95\textwidth]{input_files.pdf}
@@ -382,10 +381,10 @@ Each line in the events configuration file defines one event, with comma separat
 time,feature,component,id,parameter,value
 3,flow,link,9,resistance,0.1
 \end{lstlisting}
-In the case of a system parameter change, component and ID are not applicable. In this case, just put a dash (-) instead. For example to change from power to gas domain at time 10:
+In the case of a system parameter change, component and ID are not applicable. In this case, just put a dash (-) instead. For example to reload data at time 10 form input folder time\_1:
 \begin{lstlisting}
 time,feature,component,id,parameter,value
-10,system,-,-,domain,gas
+10,system,-,-,reload,1
 \end{lstlisting}
 See section \ref{sec:file_system} about the file system for more details.
 
@@ -515,19 +514,19 @@ In the SimulationAgent, the initialStateOperations and finalStateOperations meth
 
 The two methods initialStateOperations() and finalStateOperations() are especially useful for making measurements before and after the flow analysis. Also this allows to implement measurements, which depend on the state before and after the flow analysis. However, they can also be used to implement additional functionality, especially adjustments to the network at the beginning through events, which are then executed automatically in the executeAllEvents() method (more details in section \ref{sec:Simulation_Measurements} about measurements).
 
-The callBackend() method executes the backend, which is automatically selected according to the parameters set in the parameter files. Currently implemented backends are shown in the followig table.
+The callBackend() method executes the backend, which is automatically selected according to the FlowDomainAgent chosen in the experiment class. Currently implemented backends are shown in the followig table.
 \begin{table}[h]
 	\centering
 	\begin{tabular}{|l| l |l|}
 	\hline
 	\rowcolor{Gray}
-	\textbf{Domain}&\textbf{Backend}&\textbf{String to use in sfinaParameters.txt}\\
+	\textbf{Domain}&\textbf{Backend}\\
 	\hline
-	\multirow{2}{*}{power}&interPSS & interpss\\
-	\cline{2-3}
-	& Matpower (Matlab Required)& matpower\\
+	power & interPSS, Matpower (Matlab required)\\
 	\hline
-	\dots & \dots & \\
+	disaster\_spread & helbingetal\\
+	\hline
+	\dots & \dots\\
 	\hline
 	\end{tabular}
 	\label{table:backends}

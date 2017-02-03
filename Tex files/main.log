@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.7)  24 JAN 2017 23:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.7)  3 FEB 2017 14:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1507,21 +1507,21 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 56.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 57.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -1589,7 +1589,7 @@ e
 ))
 ABD: EveryShipout initializing macros
 \c@lstlisting=\count355
-LaTeX Info: Redefining \microtypecontext on input line 56.
+LaTeX Info: Redefining \microtypecontext on input line 57.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1611,10 +1611,10 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 56.
-Package biblatex Info: Reference segment=0 on input line 56.
+Package biblatex Info: Reference section=0 on input line 57.
+Package biblatex Info: Reference segment=0 on input line 57.
 \AtBeginShipoutBox=\box63
-Package hyperref Info: Link coloring OFF on input line 56.
+Package hyperref Info: Link coloring OFF on input line 57.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -1623,36 +1623,36 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count356
 )
-LaTeX Info: Redefining \ref on input line 56.
-LaTeX Info: Redefining \pageref on input line 56.
-LaTeX Info: Redefining \nameref on input line 56.
+LaTeX Info: Redefining \ref on input line 57.
+LaTeX Info: Redefining \pageref on input line 57.
+LaTeX Info: Redefining \nameref on input line 57.
 
 <Pictures/background.pdf, id=7, 584.1825pt x 835.12pt>
 File: Pictures/background.pdf Graphic file (type pdf)
 
 <use Pictures/background.pdf>
-Package pdftex.def Info: Pictures/background.pdf used on input line 68.
+Package pdftex.def Info: Pictures/background.pdf used on input line 69.
 (pdftex.def)             Requested size: 597.50787pt x 854.24503pt.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 69.
-LaTeX Font Info:    Try loading font information for T1+pag on input line 69.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 70.
+LaTeX Font Info:    Try loading font information for T1+pag on input line 70.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/t1pag.fd
 File: t1pag.fd 2001/06/04 font definitions for T1/pag.
 )
 LaTeX Font Info:    Font shape `T1/pag/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/pag/b/n' tried instead on input line 69.
+(Font)              Font shape `T1/pag/b/n' tried instead on input line 70.
 LaTeX Font Info:    Font shape `T1/pag/b/n' in size <24.88> not available
-(Font)              Font shape `T1/pag/db/n' tried instead on input line 69.
+(Font)              Font shape `T1/pag/db/n' tried instead on input line 70.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `pag' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/pag/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/pag/b/n' tried instead on input line 71.
+(Font)              Font shape `T1/pag/b/n' tried instead on input line 72.
 LaTeX Font Info:    Font shape `T1/pag/b/n' in size <14.4> not available
-(Font)              Font shape `T1/pag/db/n' tried instead on input line 71.
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 71
+(Font)              Font shape `T1/pag/db/n' tried instead on input line 72.
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 72
 .
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
@@ -1662,35 +1662,35 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `ztmcm' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 71
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 72
 .
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 71
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 72
 .
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 71
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 72
 .
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 71.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 72.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 71.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 72.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 71.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 72.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 71.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 72.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
@@ -1704,12 +1704,12 @@ res/background.pdf>] <Pictures/network2.pdf, id=16, 479.7925pt x 239.89626pt>
 File: Pictures/network2.pdf Graphic file (type pdf)
 
 <use Pictures/network2.pdf>
-Package pdftex.def Info: Pictures/network2.pdf used on input line 105.
+Package pdftex.def Info: Pictures/network2.pdf used on input line 106.
 (pdftex.def)             Requested size: 597.50787pt x 298.77873pt.
 LaTeX Font Info:    Font shape `T1/pag/bx/n' in size <20.74> not available
-(Font)              Font shape `T1/pag/b/n' tried instead on input line 105.
+(Font)              Font shape `T1/pag/b/n' tried instead on input line 106.
 LaTeX Font Info:    Font shape `T1/pag/b/n' in size <20.74> not available
-(Font)              Font shape `T1/pag/db/n' tried instead on input line 105.
+(Font)              Font shape `T1/pag/db/n' tried instead on input line 106.
  (./main.toc
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 5.
@@ -1744,15 +1744,15 @@ LaTeX Font Info:    Font shape `T1/pag/b/n' in size <10.95> not available
  [3]
 \c@ttl@toc@default=\count357
 LaTeX Font Info:    Font shape `T1/pag/bx/n' in size <220> not available
-(Font)              Font shape `T1/pag/b/n' tried instead on input line 115.
+(Font)              Font shape `T1/pag/b/n' tried instead on input line 116.
 LaTeX Font Info:    Font shape `T1/pag/b/n' in size <220> not available
-(Font)              Font shape `T1/pag/db/n' tried instead on input line 115.
+(Font)              Font shape `T1/pag/db/n' tried instead on input line 116.
 
 (./main.ptc)
 LaTeX Font Info:    Font shape `T1/pag/bx/n' in size <30> not available
-(Font)              Font shape `T1/pag/b/n' tried instead on input line 115.
+(Font)              Font shape `T1/pag/b/n' tried instead on input line 116.
 LaTeX Font Info:    Font shape `T1/pag/b/n' in size <30> not available
-(Font)              Font shape `T1/pag/db/n' tried instead on input line 115.
+(Font)              Font shape `T1/pag/db/n' tried instead on input line 116.
  [4
 
 
@@ -1760,40 +1760,40 @@ LaTeX Font Info:    Font shape `T1/pag/b/n' in size <30> not available
 Chapter 1.
 File: Pictures/network2.pdf Graphic file (type pdf)
 <use Pictures/network2.pdf>
-Package pdftex.def Info: Pictures/network2.pdf used on input line 123.
+Package pdftex.def Info: Pictures/network2.pdf used on input line 124.
 (pdftex.def)             Requested size: 597.50787pt x 298.77873pt.
  [5
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 162.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 163.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 162.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 163.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 165.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 166.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 174.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 175.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 174.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 175.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 179.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 180.
  [6] [7]
 [8]
 Chapter 2.
 File: Pictures/network2.pdf Graphic file (type pdf)
 <use Pictures/network2.pdf>
-Package pdftex.def Info: Pictures/network2.pdf used on input line 257.
+Package pdftex.def Info: Pictures/network2.pdf used on input line 258.
 (pdftex.def)             Requested size: 597.50787pt x 298.77873pt.
 
 <Pictures/file_system.pdf, id=335, 602.25pt x 451.6875pt>
 File: Pictures/file_system.pdf Graphic file (type pdf)
 
 <use Pictures/file_system.pdf>
-Package pdftex.def Info: Pictures/file_system.pdf used on input line 267.
+Package pdftex.def Info: Pictures/file_system.pdf used on input line 268.
 (pdftex.def)             Requested size: 405.45047pt x 304.09708pt.
 
 
@@ -1806,7 +1806,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 289--289
 []\T1/ptm/m/n/10.95 (+20) backendParameters.txt
  []
 
-[10 <./Pictures/file_system.pdf>]
+
+Underfull \vbox (badness 1521) has occurred while \output is active []
+
+ [10 <./Pictures/file_system.pdf>]
 LaTeX Font Info:    Font shape `T1/pag/bx/n' in size <10> not available
 (Font)              Font shape `T1/pag/b/n' tried instead on input line 311.
 LaTeX Font Info:    Font shape `T1/pag/b/n' in size <10> not available
@@ -2014,10 +2017,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 34326 strings out of 493089
- 627074 string characters out of 6134842
- 1193972 words of memory out of 5000000
- 36676 multiletter control sequences out of 15000+600000
+ 34325 strings out of 493089
+ 627062 string characters out of 6134842
+ 1193986 words of memory out of 5000000
+ 36675 multiletter control sequences out of 15000+600000
  115921 words of font info for 264 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,14n,55p,10507b,3196s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2028,7 +2031,7 @@ xlive/2015/texmf-dist/fonts/type1/urw/avantgar/uagd8a.pfb></usr/local/texlive/2
 mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fo
 nts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
 urw/times/utmri8a.pfb>
-Output written on main.pdf (34 pages, 1026779 bytes).
+Output written on main.pdf (34 pages, 1026446 bytes).
 PDF statistics:
  1232 PDF objects out of 1440 (max. 8388607)
  971 compressed objects within 10 object streams
