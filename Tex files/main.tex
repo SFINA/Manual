@@ -45,8 +45,9 @@
 \documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
 
 \newcommand{\mainagent}{simulation agent}
-\newcommand{\MainAgent}{Simulation Agent}
-\newcommand{\TimeAgent}{Time Agent}
+\newcommand{\MainAgent}{Simulation Agent }
+\newcommand{\TimeAgent}{Time Agent }
+\newcommand{\CommunicationAgent}{Communication Agent }
 \newcommand{\DomainAgent}{Domain Agent} % e.g. InterpssFlowDomainAgent
 \newcommand{\InterpssDomainAgent}{InterpssBackend}
 \newcommand{\MatpowerDomainAgent}{MatpowerBackend}
@@ -260,6 +261,16 @@ All the measurement results are saved to a binary file in peerlets-log/experimen
 To see what is going on during the simulation, logging is useful. For this first it is necessary to make sure in conf/log4j.properties the line “log4j.rootLogger=info, I, stdout” isn’t commented out. This will show information during the simulation and also the measurement output in the console and in the file log/info.log. To get a more fine grained output, uncomment “log4j.rootLogger=debug, D, stdout” in the same .properties file.
 
 Now you can go ahead and run this class.
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER Terminology
+%----------------------------------------------------------------------------------------
+
+\chapter{Terminology}
+For obtaining a deeper understanding of SFINA it is necessary to become acquainted with some SFINA related terminology.
+
+
+\section{Time and iteration}
 
 
 %----------------------------------------------------------------------------------------
@@ -554,12 +565,19 @@ The \mainagent{} takes care of the iterations and output. After one simulation s
 
 %------------------------------------------------
 \subsection{\TimeAgent}\index{Agent!\TimeAgent}\label{sec:time_agent}
-Organizing the time steps of the simulation, calling \MainAgent when it should simulate the network. The following extentions exist:
+Organizes the time steps of the simulation, calls \MainAgent when it should simulate the network. The following extention exist:
 	\begin{enumerate}
-		\item SimpleTimeSteppingAgent, simulating a single network, advancing directly when it is ready.
-		\item CommunicationAgentInterdependentSimulation, allowing for multiple networks to be connected, thus managing their synchronisation and exchange of information. For more information on interdependent network simulations, see section \ref{sec:interdep}.
-		\item CommunicationAgentTokenSimulation, also organizes interdependent networks, but executing them in a sequential rather than parallel order.
+		\item SimpleTimeSteppingAgent, simulates a single network, advances \MainAgent directly when its ready.
 	\end{enumerate}
+%------------------------------------------------
+\subsection{\CommunicationAgent}\index{Communication Agent! \CommunicationAgent}\label{sec:communication_agent}	
+Abstract class which extends SimpleTimeSteppingAgent. Thus it has the same core responsibility as \TimeAgent.
+In addition \CommunicationAgent handles the communication between interdependent networks and is responsible for the order of execution of Simulation iterations. The following two extensions exist:
+\begin{enumerate}
+	\item CommunicationAgentInterdependentSimulation, allowing for multiple networks to be connected, thus managing their synchronisation and exchange of information. For more information on interdependent network simulations, see section \ref{sec:interdep}.
+	\item CommunicationAgentTokenSimulation, also organizes interdependent networks, but executing them in a sequential rather than parallel order.
+\end{enumerate}
+	
 	
 %------------------------------------------------
 \subsection{\DomainAgent}\index{Agent!\DomainAgent}\label{sec:domain_agent}
@@ -567,7 +585,8 @@ Providing the simulation of a distribution of flows in the network for given inp
 
 %------------------------------------------------
 \section{Interdependent network simulations}\index{interdependent}\label{sec:interdep}
-Work in progress.
+Working progress...
+
 
 %------------------------------------------------
 \section{Protopeer Toolkit (redo, maybe split in part here and appendix)}\index{Protopeer}\label{subsec:protopeer}
