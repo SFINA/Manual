@@ -497,7 +497,14 @@ someNode.replacePropertyElement(PowerNodeState.POWER_DEMAND_REAL,pwr*2);
 A summary of methods can be found in the appendix (section \ref{sec:net_methods}).
 
 %------------------------------------------------
-\section{Agents}\index{agent, peerlet}\label{sec:agents}
+\section{Protopeer Toolkit (redo, maybe split in part here and appendix)}\index{Protopeer}\label{subsec:protopeer}
+SFINA makes use of the Protopeer Toolkit which was developed at EPFL university Lausanne to provide a framework for peer to peer distributed experiments (\href{http://infoscience.epfl.ch/record/128659/files/protopeer_demo.pdf}{paper}). It provides useful basic functionality like time based events and measurement methods. Another important concept is peers and peerlets, which allow a fully decentralized deployment. A peer is an independent simulation instance, which can communicate over the network with other peers. Every peer can contain several peerlets, which allow to further split up a peer in seperate simulations. Currently experiments conducted with SFINA initialize just one peer with one peerlet. However this potentially allows for a very flexible use of the SFINA framework in the future.
+%------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+\chapter{Agents}\index{agent, peerlet}\label{sec:agents}
+%----------------------------------------------------------------------------------------
+
 Each simulation is configured as a peer (see above for an example). When creating a peer, different agents are added as peerlets, encapsulating separate functionality. One of each of the following three categories always has to be added to the peer as peerlets when setting up an experiment (see section \ref{sec:Simulation_Measurements}):
 \begin{enumerate}
 	\item \MainAgent
@@ -506,7 +513,7 @@ Each simulation is configured as a peer (see above for an example). When creatin
 \end{enumerate}
 These are explained in more detail in the following.
 
-\subsection{Simulation Agent}\index{Agent!Simulation Agent}\label{sec:simu_agent}
+\section{Simulation Agent}\index{Agent!Simulation Agent}\label{sec:simu_agent}
 At the heart of any simulation is the simulation agent. Applications extend it and can therefore make use of its functionality (see section on adding applications for more detail). The \mainagent{} takes care of performing several tasks which are necessary for any simulation. These include loading and performing output, executing events and calling key methods at every time step. The time evolution of the simulation agent is illustrated by figure \ref{fig:time_iter}. Itself, it provides only barebone functionality and is extended for enabling more complex simulations, for example the
 	\begin{enumerate}
 		\item FlowMonitor, measuring and logging information during simulation.
@@ -564,13 +571,13 @@ The callBackend() method executes the \backend{}, which is automatically selecte
 The \mainagent{} takes care of the iterations and output. After one simulation step the event queue is checked for events to be executed in the current time step. If this is the case a new iteration in the current time step is initiated. If not the simulation will advance to the next time step. In other words the user indirectly triggers multiple iterations by calling queueEvent(event) with an event defined for the current time step. Automatically at the end of every iteration the network data at the current status is written to output files.
 
 %------------------------------------------------
-\subsection{\TimeAgent}\index{Agent!\TimeAgent}\label{sec:time_agent}
+\section{\TimeAgent}\index{Agent!\TimeAgent}\label{sec:time_agent}
 Organizes the time steps of the simulation, calls \MainAgent when it should simulate the network. The following extention exist:
 	\begin{enumerate}
 		\item SimpleTimeSteppingAgent, simulates a single network, advances \MainAgent directly when its ready.
 	\end{enumerate}
 %------------------------------------------------
-\subsection{\CommunicationAgent}\index{Communication Agent! \CommunicationAgent}\label{sec:communication_agent}	
+\section{\CommunicationAgent}\index{Communication Agent! \CommunicationAgent}\label{sec:communication_agent}	
 Abstract class which extends SimpleTimeSteppingAgent. Thus it has the same core responsibility as \TimeAgent.
 In addition \CommunicationAgent handles the communication between interdependent networks and is responsible for the order of execution of Simulation iterations. The following two extensions exist:
 \begin{enumerate}
@@ -580,19 +587,17 @@ In addition \CommunicationAgent handles the communication between interdependent
 	
 	
 %------------------------------------------------
-\subsection{\DomainAgent}\index{Agent!\DomainAgent}\label{sec:domain_agent}
+\section{\DomainAgent}\index{Agent!\DomainAgent}\label{sec:domain_agent}
 Providing the simulation of a distribution of flows in the network for given input data. It also handles the translation of the input file values which are specific to each \domain{} during input and output. In the case of power simulations this can be \InterpssDomainAgent{} or \MatpowerDomainAgent{}.
 
-%------------------------------------------------
-\section{Interdependent network simulations}\index{interdependent}\label{sec:interdep}
+
+
+
+
+%----------------------------------------------------------------------------------------
+\chapter{Interdependent Network Simulations}\index{interdependent}\label{sec:interdep}
 Working progress...
-
-
-%------------------------------------------------
-\section{Protopeer Toolkit (redo, maybe split in part here and appendix)}\index{Protopeer}\label{subsec:protopeer}
-SFINA makes use of the Protopeer Toolkit which was developed at EPFL university Lausanne to provide a framework for peer to peer distributed experiments (\href{http://infoscience.epfl.ch/record/128659/files/protopeer_demo.pdf}{paper}). It provides useful basic functionality like time based events and measurement methods. Another important concept is peers and peerlets, which allow a fully decentralized deployment. A peer is an independent simulation instance, which can communicate over the network with other peers. Every peer can contain several peerlets, which allow to further split up a peer in seperate simulations. Currently experiments conducted with SFINA initialize just one peer with one peerlet. However this potentially allows for a very flexible use of the SFINA framework in the future.
-%------------------------------------------------
-
+%----------------------------------------------------------------------------------------
 
 %----------------------------------------------------------------------------------------
 %	PART FOR DEVs
