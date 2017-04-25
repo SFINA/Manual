@@ -49,6 +49,7 @@
 \newcommand{\TimeAgent}{Time Agent }
 \newcommand{\CommunicationAgent}{Communication Agent }
 \newcommand{\DomainAgent}{Domain Agent} % e.g. InterpssFlowDomainAgent
+\newcommand{\NegotiatorAgent}{Negotiator Agent}
 \newcommand{\InterpssDomainAgent}{InterpssBackend}
 \newcommand{\MatpowerDomainAgent}{MatpowerBackend}
 \newcommand{\BenchmarkAgent}{BenchmarkSimulationAgent}
@@ -262,15 +263,10 @@ To see what is going on during the simulation, logging is useful. For this first
 
 Now you can go ahead and run this class.
 
-%----------------------------------------------------------------------------------------
-%	CHAPTER Terminology
-%----------------------------------------------------------------------------------------
-
-\chapter{Terminology}
-For obtaining a deeper understanding of SFINA it is necessary to become acquainted with some SFINA related terminology.
 
 
-\section{Time and iteration}
+
+
 
 
 %----------------------------------------------------------------------------------------
@@ -510,8 +506,11 @@ Each simulation is configured as a peer (see above for an example). When creatin
 	\item \MainAgent
 	\item \TimeAgent
 	\item \DomainAgent
+	\item \NegotiatorAgent \; (in interdependent case)
 \end{enumerate}
-These are explained in more detail in the following.
+Hence a SFINA experiment can be set up in a modular way, allowing for simple functionality extensions.
+
+The different agents are explained in more detail in the following.
 
 \section{Simulation Agent}\index{Agent!Simulation Agent}\label{sec:simu_agent}
 At the heart of any simulation is the simulation agent. Applications extend it and can therefore make use of its functionality (see section on adding applications for more detail). The \mainagent{} takes care of performing several tasks which are necessary for any simulation. These include loading and performing output, executing events and calling key methods at every time step. The time evolution of the simulation agent is illustrated by figure \ref{fig:time_iter}. Itself, it provides only barebone functionality and is extended for enabling more complex simulations, for example the
@@ -572,26 +571,113 @@ The \mainagent{} takes care of the iterations and output. After one simulation s
 
 %------------------------------------------------
 \section{\TimeAgent}\index{Agent!\TimeAgent}\label{sec:time_agent}
-Organizes the time steps of the simulation, calls \MainAgent when it should simulate the network. The following extention exist:
+Organizes the time steps of the simulation, calls \MainAgent when it should simulate the network and gets in turn notified by the \MainAgent when it finished its iteration. 
+Has to implement the following interface in order to function with the SFINA framework:
+
+\begin{lstlisting}[frame=single] 
+/**
+* A TimeStepping Agent needs to implement this interface.
+* @author mcb
+*/
+public interface TimeSteppingAgentInterface {
+
+/**
+* SimulationAgent can notify the TimeSteppingAgent that it finished its Step
+* 
+*/
+public void agentFinishedActiveState();
+
+/**
+* SimulationAgent can notify the TimeSteppingAgent that it finished its Bootstrap
+*/
+public void agentFinishedBootStrap();
+
+/**
+* Returns the current Simulation Time.
+* @return 
+*/
+public int getSimulationTime(); 
+}
+\end{lstlisting}
+
+
+The following default implementation exist:
 	\begin{enumerate}
-		\item SimpleTimeSteppingAgent, simulates a single network, advances \MainAgent directly when its ready.
+		\item TimeSteppingAgent: Simulates a single network, advances \MainAgent directly when its ready.
 	\end{enumerate}
 %------------------------------------------------
 \section{\CommunicationAgent}\index{Communication Agent! \CommunicationAgent}\label{sec:communication_agent}	
 Abstract class which extends SimpleTimeSteppingAgent. Thus it has the same core responsibility as \TimeAgent.
 In addition \CommunicationAgent handles the communication between interdependent networks and is responsible for the order of execution of Simulation iterations. The following two extensions exist:
 \begin{enumerate}
-	\item CommunicationAgentInterdependentSimulation, allowing for multiple networks to be connected, thus managing their synchronisation and exchange of information. For more information on interdependent network simulations, see section \ref{sec:interdep}.
-	\item CommunicationAgentTokenSimulation, also organizes interdependent networks, but executing them in a sequential rather than parallel order.
+	\item InterdependentCommunicationAgent: Allows for multiple networks to be connected, thus manages their synchronization and exchange of information. The execution logic is of paralel nature: Each iteration of all networks happens in parallel, after which the network update each other. 
+	\item TokenCommunicationAgent: Organizes interdependent networks, but executes them in a sequential rather than parallel order. Hence i.e. iteration 1 of network 1 happens before iteration 1 of network 2.
 \end{enumerate}
+
+For more information on interdependent network simulations, see section \ref{sec:interdep}.
 	
 	
 %------------------------------------------------
 \section{\DomainAgent}\index{Agent!\DomainAgent}\label{sec:domain_agent}
-Providing the simulation of a distribution of flows in the network for given input data. It also handles the translation of the input file values which are specific to each \domain{} during input and output. In the case of power simulations this can be \InterpssDomainAgent{} or \MatpowerDomainAgent{}.
+Provides the simulation of a distribution of flows in the network for given input data. It also handles the translation of the input file values which are specific to each \domain{} during input and output. In the case of power simulations this can be \InterpssDomainAgent{} or \MatpowerDomainAgent{}.
 
 
+%------------------------------------------------
+\section{\NegotiatorAgent}\index{Agent!\NegotiatorAgent}\label{sec:negotiator_agent}
+Responsible to resolve event conflicts in interdependent network simulations.
 
+%----------------------------------------------------------------------------------------
+%	CHAPTER Terminology
+%----------------------------------------------------------------------------------------
+
+\chapter{Terminology \& General Understanding}
+For obtaining a deeper understanding of SFINA it is necessary to become acquainted with some SFINA related terminology.
+
+
+\section{Time and iteration}
+A SFINA simulation is clocked by time units, which are executed sequentially. At the beginning of each time unit new input files (toplogy, flow and events) can be provided to the simulation.
+
+During each time step several simulation iterations can be performed, depending on the logic implemented in the \TimeAgent . I.e. one can decided to perform another simulation, if the simulation did not converge in the previous iteration.
+
+%----------------------------------------------------------------------------------------
+\section{Process Flow of a basic Simulation }
+\textbf{- Best would be to provide a graphic.}
+
+In the following we present the general process flow of a simulation. This is true for the interdependent and non-interdependent case.
+\begin{enumerate}
+	\item Initialization:
+	\begin{itemize}
+		\item All Peers call \textit{init()} on their Agents (Peerlets)
+		\item The agents perform necessary initializations
+	\end{itemize}
+	\item Start:
+	\begin{itemize}
+		\item Peers call \textit{start()} on all their Agents.
+		\item \textit{start()} should only be implemented in the \TimeAgent
+		\item \TimeAgent calls \textit{runBootstrapping()} on the \MainAgent
+	\end{itemize}
+	\item Bootstrap:
+	\begin{itemize}
+		\item \MainAgent reads necessary parameters from input files, schedules measurements etc.
+		\item when finished, \MainAgent calls \textit{agentFinishedBootstrap()} on \TimeAgent
+	\end{itemize}
+	\item Start Simulation
+	\begin{itemize}
+		\item \TimeAgent calls \textit{progressToNextTimeStep()} on \MainAgent
+		\item \MainAgent initializes the first time step.
+		\item Afterwards \MainAgent calls \textit{agentFinishedActiveState()} on \TimeAgent
+		\item in turn \TimeAgent progresses \MainAgent to next iteration. In order for this to function, \MainAgent has to signal, that it did not converge yet.
+	\end{itemize}
+	\item Progess of Simulation
+	\begin{itemize}
+		\item From now on, after each simulation iteration \MainAgent calls \textit{agentFinishedActiveState()} on \TimeAgent. \TimeAgent then decides to 
+		\begin{enumerate}[label=(\alph*)]
+			\item either perform another simulation iteration through calling \textit{progressToNextIteration()} on \MainAgent
+			\item or to skip the next iteration (makes sense for interdependent case) through calling \textit{skipNextIteration()} on \MainAgent
+			\item or to progress \MainAgent to the next time step through calling \textit{progressToNextTimeStep()}.
+		\end{enumerate}  
+	\end{itemize}
+\end{enumerate}
 
 
 %----------------------------------------------------------------------------------------

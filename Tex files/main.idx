@@ -6,57 +6,58 @@
 \indexentry{Measurements|hyperpage}{6}
 \indexentry{Files|hyperpage}{6}
 \indexentry{Application|hyperpage}{6}
-\indexentry{Files|hyperpage}{10}
-\indexentry{Files!Location|hyperpage}{10}
-\indexentry{Files!Configuration files|hyperpage}{11}
-\indexentry{Domain|hyperpage}{11}
-\indexentry{\Backend{}|hyperpage}{11}
-\indexentry{Events|hyperpage}{11}
-\indexentry{Files!Network data|hyperpage}{12}
-\indexentry{Flow|hyperpage}{12}
-\indexentry{Topology|hyperpage}{12}
-\indexentry{Loading|hyperpage}{13}
-\indexentry{Files!Loading|hyperpage}{13}
-\indexentry{Events|hyperpage}{13}
+\indexentry{Files|hyperpage}{9}
+\indexentry{Files!Location|hyperpage}{9}
+\indexentry{Files!Configuration files|hyperpage}{9}
+\indexentry{Domain|hyperpage}{9}
+\indexentry{\Backend{}|hyperpage}{9}
+\indexentry{Events|hyperpage}{9}
+\indexentry{Files!Network data|hyperpage}{11}
+\indexentry{Flow|hyperpage}{11}
+\indexentry{Topology|hyperpage}{11}
+\indexentry{Loading|hyperpage}{12}
+\indexentry{Files!Loading|hyperpage}{12}
+\indexentry{Events|hyperpage}{12}
+\indexentry{Flow Network|hyperpage}{13}
+\indexentry{Activated|hyperpage}{13}
+\indexentry{Connected|hyperpage}{13}
+\indexentry{Islands|hyperpage}{13}
+\indexentry{Metrics|hyperpage}{14}
+\indexentry{Flow|hyperpage}{14}
+\indexentry{Capacity|hyperpage}{14}
 \indexentry{Flow Network|hyperpage}{14}
-\indexentry{Activated|hyperpage}{14}
-\indexentry{Connected|hyperpage}{14}
-\indexentry{Islands|hyperpage}{14}
-\indexentry{Metrics|hyperpage}{15}
-\indexentry{Flow|hyperpage}{15}
-\indexentry{Capacity|hyperpage}{15}
-\indexentry{Flow Network|hyperpage}{15}
-\indexentry{Protopeer|hyperpage}{16}
-\indexentry{agent, peerlet|hyperpage}{17}
-\indexentry{Agent!Simulation Agent|hyperpage}{17}
+\indexentry{Protopeer|hyperpage}{15}
+\indexentry{agent, peerlet|hyperpage}{16}
+\indexentry{Agent!Simulation Agent|hyperpage}{16}
 \indexentry{Active State|hyperpage}{17}
 \indexentry{Events|hyperpage}{17}
-\indexentry{Iterations|hyperpage}{19}
-\indexentry{Output|hyperpage}{19}
-\indexentry{Agent!\TimeAgent|hyperpage}{19}
+\indexentry{Iterations|hyperpage}{18}
+\indexentry{Output|hyperpage}{18}
+\indexentry{Agent!\TimeAgent|hyperpage}{18}
 \indexentry{Communication Agent! \CommunicationAgent|hyperpage}{19}
 \indexentry{Agent!\DomainAgent|hyperpage}{19}
-\indexentry{interdependent|hyperpage}{20}
-\indexentry{Agent|hyperpage}{23}
-\indexentry{Agent!Power\CascadeAgent{}|hyperpage}{24}
-\indexentry{Measurements|hyperpage}{24}
-\indexentry{\Backend{}|hyperpage}{27}
-\indexentry{\Backend{} !Interpss|hyperpage}{27}
-\indexentry{\Backend{} !Matpower|hyperpage}{27}
-\indexentry{\Backend{} !Interface|hyperpage}{27}
-\indexentry{Flow Network|hyperpage}{31}
-\indexentry{Node|hyperpage}{31}
-\indexentry{Link|hyperpage}{31}
-\indexentry{Topology|hyperpage}{31}
-\indexentry{Flow|hyperpage}{31}
-\indexentry{\domain{}|hyperpage}{31}
-\indexentry{\backend{}|hyperpage}{31}
-\indexentry{Event|hyperpage}{31}
-\indexentry{Agent|hyperpage}{32}
-\indexentry{Time|hyperpage}{32}
-\indexentry{simulation time|hyperpage}{32}
-\indexentry{Epoch|hyperpage}{32}
-\indexentry{Iteration|hyperpage}{32}
-\indexentry{Flow Network|hyperpage}{32}
-\indexentry{Nodes|hyperpage}{32}
-\indexentry{Links|hyperpage}{32}
+\indexentry{Agent!\NegotiatorAgent|hyperpage}{19}
+\indexentry{interdependent|hyperpage}{22}
+\indexentry{Agent|hyperpage}{25}
+\indexentry{Agent!Power\CascadeAgent{}|hyperpage}{26}
+\indexentry{Measurements|hyperpage}{26}
+\indexentry{\Backend{}|hyperpage}{29}
+\indexentry{\Backend{} !Interpss|hyperpage}{29}
+\indexentry{\Backend{} !Matpower|hyperpage}{29}
+\indexentry{\Backend{} !Interface|hyperpage}{29}
+\indexentry{Flow Network|hyperpage}{33}
+\indexentry{Node|hyperpage}{33}
+\indexentry{Link|hyperpage}{33}
+\indexentry{Topology|hyperpage}{33}
+\indexentry{Flow|hyperpage}{33}
+\indexentry{\domain{}|hyperpage}{33}
+\indexentry{\backend{}|hyperpage}{33}
+\indexentry{Event|hyperpage}{33}
+\indexentry{Agent|hyperpage}{34}
+\indexentry{Time|hyperpage}{34}
+\indexentry{simulation time|hyperpage}{34}
+\indexentry{Epoch|hyperpage}{34}
+\indexentry{Iteration|hyperpage}{34}
+\indexentry{Flow Network|hyperpage}{34}
+\indexentry{Nodes|hyperpage}{34}
+\indexentry{Links|hyperpage}{34}
