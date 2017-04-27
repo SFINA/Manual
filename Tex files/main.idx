@@ -26,9 +26,8 @@
 \indexentry{Flow|hyperpage}{14}
 \indexentry{Capacity|hyperpage}{14}
 \indexentry{Flow Network|hyperpage}{14}
-\indexentry{Protopeer|hyperpage}{15}
 \indexentry{agent, peerlet|hyperpage}{16}
-\indexentry{Agent!Simulation Agent|hyperpage}{16}
+\indexentry{Agent!Simulation Agent|hyperpage}{17}
 \indexentry{Active State|hyperpage}{17}
 \indexentry{Events|hyperpage}{17}
 \indexentry{Iterations|hyperpage}{18}
@@ -37,6 +36,7 @@
 \indexentry{Communication Agent! \CommunicationAgent|hyperpage}{19}
 \indexentry{Agent!\DomainAgent|hyperpage}{19}
 \indexentry{Agent!\NegotiatorAgent|hyperpage}{19}
+\indexentry{Protopeer|hyperpage}{21}
 \indexentry{interdependent|hyperpage}{22}
 \indexentry{\Backend{}|hyperpage}{25}
 \indexentry{\Backend{} !Interpss|hyperpage}{25}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.12)  27 APR 2017 12:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.12)  27 APR 2017 13:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -462,6 +462,10 @@ Package: listings 2015/06/04 1.6 (Carsten Heinz)
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
+(/usr/share/texlive/texmf-dist/tex/latex/tabto-ltx/tabto.sty
+Package: tabto 2013/03/25  v 1.3  Another tabbing mechanism
+\CurrentLineWidth=\dimen182
+)
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/avant.sty
 Package: avant 2005/04/12 PSNFSS-v9.2a (SPQR) 
 )
@@ -506,7 +510,7 @@ Package: microtype 2013/05/23 v2.5a Micro-typographical refinements (RS)
 \MT@toks=\toks32
 \MT@count=\count126
 LaTeX Info: Redefining \textls on input line 766.
-\MT@outer@kern=\dimen182
+\MT@outer@kern=\dimen183
 LaTeX Info: Redefining \textmicrotypecontext on input line 1285.
 \MT@listname@count=\count127
 
@@ -1076,8 +1080,8 @@ Package biblatex Warning: 'babel' option is deprecated, use 'autolang' instead.
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count312
 \calc@Bcount=\count313
-\calc@Adimen=\dimen183
-\calc@Bdimen=\dimen184
+\calc@Adimen=\dimen184
+\calc@Bdimen=\dimen185
 \calc@Askip=\skip62
 \calc@Bskip=\skip63
 LaTeX Info: Redefining \setlength on input line 80.
@@ -1095,7 +1099,7 @@ Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
 Writing index file main.idx
 (/usr/share/texlive/texmf-dist/tex/latex/titlesec/titletoc.sty
 Package: titletoc 2011/12/15 v1.6 TOC entries
-\ttl@leftsep=\dimen185
+\ttl@leftsep=\dimen186
 )
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 \fancy@headwidth=\skip65
@@ -1119,11 +1123,11 @@ Package: amstext 2000/06/29 v2.01 AMS text
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks35
-\ex@=\dimen186
+\ex@=\dimen187
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen187
+\pmbraise@=\dimen188
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
@@ -1140,7 +1144,7 @@ LaTeX Info: Redefining \dots on input line 397.
 LaTeX Info: Redefining \cdots on input line 518.
 \Mathstrutbox@=\box40
 \strutbox@=\box41
-\big@size=\dimen188
+\big@size=\dimen189
 LaTeX Font Info:    Redeclaring font encoding OML on input line 630.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
 \macc@depth=\count320
@@ -1153,12 +1157,12 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
 \column@=\count325
 \maxfields@=\count326
 \andhelp@=\toks37
-\eqnshift@=\dimen189
-\alignsep@=\dimen190
-\tagshift@=\dimen191
-\tagwidth@=\dimen192
-\totwidth@=\dimen193
-\lineht@=\dimen194
+\eqnshift@=\dimen190
+\alignsep@=\dimen191
+\tagshift@=\dimen192
+\tagwidth@=\dimen193
+\totwidth@=\dimen194
+\lineht@=\dimen195
 \@envbody=\toks38
 \multlinegap=\skip75
 \multlinetaggap=\skip76
@@ -1232,12 +1236,12 @@ L3 Module: l3file 2015/12/03 v6317 L3 File and I/O operations
 \l__iow_current_word_int=\count343
 \l__iow_current_indentation_int=\count344
 L3 Module: l3skip 2016/01/05 v6366 L3 Dimensions and skips
-\c_zero_dim=\dimen195
-\c_max_dim=\dimen196
-\l_tmpa_dim=\dimen197
-\l_tmpb_dim=\dimen198
-\g_tmpa_dim=\dimen199
-\g_tmpb_dim=\dimen256
+\c_zero_dim=\dimen196
+\c_max_dim=\dimen197
+\l_tmpa_dim=\dimen198
+\l_tmpb_dim=\dimen199
+\g_tmpa_dim=\dimen256
+\g_tmpb_dim=\dimen257
 \c_zero_skip=\skip80
 \c_max_skip=\skip81
 \l_tmpa_skip=\skip82
@@ -1271,13 +1275,13 @@ L3 Module: l3box 2015/08/09 v5822 L3 Experimental boxes
 \g_tmpb_box=\box46
 L3 Module: l3coffins 2015/08/06 v5789 L3 Coffin code layer
 \l__coffin_internal_box=\box47
-\l__coffin_internal_dim=\dimen257
-\l__coffin_offset_x_dim=\dimen258
-\l__coffin_offset_y_dim=\dimen259
-\l__coffin_x_dim=\dimen260
-\l__coffin_y_dim=\dimen261
-\l__coffin_x_prime_dim=\dimen262
-\l__coffin_y_prime_dim=\dimen263
+\l__coffin_internal_dim=\dimen258
+\l__coffin_offset_x_dim=\dimen259
+\l__coffin_offset_y_dim=\dimen260
+\l__coffin_x_dim=\dimen261
+\l__coffin_y_dim=\dimen262
+\l__coffin_x_prime_dim=\dimen263
+\l__coffin_y_prime_dim=\dimen264
 \c_empty_coffin=\box48
 \l__coffin_aligned_coffin=\box49
 \l__coffin_aligned_internal_coffin=\box50
@@ -1286,28 +1290,28 @@ L3 Module: l3coffins 2015/08/06 v5789 L3 Coffin code layer
 \l__coffin_display_coffin=\box53
 \l__coffin_display_coord_coffin=\box54
 \l__coffin_display_pole_coffin=\box55
-\l__coffin_display_offset_dim=\dimen264
-\l__coffin_display_x_dim=\dimen265
-\l__coffin_display_y_dim=\dimen266
+\l__coffin_display_offset_dim=\dimen265
+\l__coffin_display_x_dim=\dimen266
+\l__coffin_display_y_dim=\dimen267
 L3 Module: l3color 2014/08/23 v5354 L3 Experimental color support
 L3 Module: l3sys 2015/09/25 v6087 L3 Experimental system/runtime functions
 L3 Module: l3candidates 2016/01/14 v6376 L3 Experimental additions to l3kernel
-\l__box_top_dim=\dimen267
-\l__box_bottom_dim=\dimen268
-\l__box_left_dim=\dimen269
-\l__box_right_dim=\dimen270
-\l__box_top_new_dim=\dimen271
-\l__box_bottom_new_dim=\dimen272
-\l__box_left_new_dim=\dimen273
-\l__box_right_new_dim=\dimen274
+\l__box_top_dim=\dimen268
+\l__box_bottom_dim=\dimen269
+\l__box_left_dim=\dimen270
+\l__box_right_dim=\dimen271
+\l__box_top_new_dim=\dimen272
+\l__box_bottom_new_dim=\dimen273
+\l__box_left_new_dim=\dimen274
+\l__box_right_new_dim=\dimen275
 \l__box_internal_box=\box56
-\l__coffin_bounding_shift_dim=\dimen275
-\l__coffin_left_corner_dim=\dimen276
-\l__coffin_right_corner_dim=\dimen277
-\l__coffin_bottom_corner_dim=\dimen278
-\l__coffin_top_corner_dim=\dimen279
-\l__coffin_scaled_total_height_dim=\dimen280
-\l__coffin_scaled_width_dim=\dimen281
+\l__coffin_bounding_shift_dim=\dimen276
+\l__coffin_left_corner_dim=\dimen277
+\l__coffin_right_corner_dim=\dimen278
+\l__coffin_bottom_corner_dim=\dimen279
+\l__coffin_top_corner_dim=\dimen280
+\l__coffin_scaled_total_height_dim=\dimen281
+\l__coffin_scaled_width_dim=\dimen282
 L3 Module: l3luatex 2015/11/11 v6250 L3 Experimental LuaTeX-specific functions
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
@@ -1491,7 +1495,7 @@ Package hobsub Info: Skipping package `atbegshi' (already loaded).
 Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
 Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
 )
-\@linkdim=\dimen282
+\@linkdim=\dimen283
 \Hy@linkcounter=\count369
 \Hy@pagecounter=\count370
 
@@ -1514,10 +1518,10 @@ Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4688.
 \c@Hy@tempcnt=\count372
 LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen283
+\XeTeXLinkMargin=\dimen284
 \Fld@menulength=\count373
-\Field@Width=\dimen284
-\Fld@charsize=\dimen285
+\Field@Width=\dimen285
+\Fld@charsize=\dimen286
 Package hyperref Info: Hyper figures OFF on input line 6295.
 Package hyperref Info: Link nesting OFF on input line 6300.
 Package hyperref Info: Hyper index ON on input line 6303.
@@ -1549,23 +1553,23 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 
 Package hyperref Warning: Option `backref' has already been used,
-(hyperref)                setting the option has no effect on input line 484.
+(hyperref)                setting the option has no effect on input line 486.
 
 
 Package hyperref Warning: Option `pagebackref' has already been used,
-(hyperref)                setting the option has no effect on input line 484.
+(hyperref)                setting the option has no effect on input line 486.
 
 
 Package hyperref Warning: Option `hyperindex' has already been used,
-(hyperref)                setting the option has no effect on input line 484.
+(hyperref)                setting the option has no effect on input line 486.
 
-Package hyperref Info: Option `colorlinks' set `false' on input line 484.
-Package hyperref Info: Option `breaklinks' set `true' on input line 484.
+Package hyperref Info: Option `colorlinks' set `false' on input line 486.
+Package hyperref Info: Option `breaklinks' set `true' on input line 486.
 
 Package hyperref Warning: Option `bookmarks' has already been used,
-(hyperref)                setting the option has no effect on input line 484.
+(hyperref)                setting the option has no effect on input line 486.
 
-Package hyperref Info: Option `bookmarksopen' set `false' on input line 484.
+Package hyperref Info: Option `bookmarksopen' set `false' on input line 486.
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/bookmark.sty
 Package: bookmark 2011/12/02 v1.24 PDF bookmarks (HO)
 
@@ -1643,13 +1647,13 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count383
-\scratchdimen=\dimen286
+\scratchdimen=\dimen287
 \scratchbox=\box62
 \nofMPsegments=\count384
 \nofMParguments=\count385
 \everyMPshowfont=\toks46
 \MPscratchCnt=\count386
-\MPscratchDim=\dimen287
+\MPscratchDim=\dimen288
 \MPnumerator=\count387
 \makeMPintoPDFobject=\count388
 \everyMPtoPDFconversion=\toks47
@@ -1848,34 +1852,34 @@ Package pdftex.def Info: Pictures/network2.pdf used on input line 137.
  [5
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 176.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 177.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 176.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 177.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 179.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 180.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 188.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 189.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 188.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 189.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 193.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 194.
  [6] [7] [8]
 Chapter 2.
 File: Pictures/network2.pdf Graphic file (type pdf)
 <use Pictures/network2.pdf>
-Package pdftex.def Info: Pictures/network2.pdf used on input line 276.
+Package pdftex.def Info: Pictures/network2.pdf used on input line 277.
 (pdftex.def)             Requested size: 597.50787pt x 298.77873pt.
 
 <Pictures/file_system.pdf, id=364, 602.25pt x 451.6875pt>
 File: Pictures/file_system.pdf Graphic file (type pdf)
 
 <use Pictures/file_system.pdf>
-Package pdftex.def Info: Pictures/file_system.pdf used on input line 286.
+Package pdftex.def Info: Pictures/file_system.pdf used on input line 287.
 (pdftex.def)             Requested size: 405.45047pt x 304.09708pt.
 
 
@@ -1884,21 +1888,21 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [9
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 307--307
+Underfull \hbox (badness 10000) in paragraph at lines 308--308
 []\T1/ptm/m/n/10.95 (+20) backendParameters.txt
  []
 
 [10 <./Pictures/file_system.pdf>]
 LaTeX Font Info:    Font shape `T1/pag/bx/n' in size <10> not available
-(Font)              Font shape `T1/pag/b/n' tried instead on input line 330.
+(Font)              Font shape `T1/pag/b/n' tried instead on input line 331.
 LaTeX Font Info:    Font shape `T1/pag/b/n' in size <10> not available
-(Font)              Font shape `T1/pag/db/n' tried instead on input line 330.
+(Font)              Font shape `T1/pag/db/n' tried instead on input line 331.
 
 <Pictures/input_files.pdf, id=397, 648.4225pt x 159.59625pt>
 File: Pictures/input_files.pdf Graphic file (type pdf)
 
 <use Pictures/input_files.pdf>
-Package pdftex.def Info: Pictures/input_files.pdf used on input line 333.
+Package pdftex.def Info: Pictures/input_files.pdf used on input line 334.
 (pdftex.def)             Requested size: 418.2537pt x 102.94485pt.
 
 Underfull \vbox (badness 2653) has occurred while \output is active []
@@ -1908,27 +1912,27 @@ Underfull \vbox (badness 2653) has occurred while \output is active []
 File: Pictures/flow_network.pdf Graphic file (type pdf)
 
 <use Pictures/flow_network.pdf>
-Package pdftex.def Info: Pictures/flow_network.pdf used on input line 448.
+Package pdftex.def Info: Pictures/flow_network.pdf used on input line 449.
 (pdftex.def)             Requested size: 405.45047pt x 259.99461pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [13]
-Underfull \hbox (badness 2221) in paragraph at lines 465--465
+Underfull \hbox (badness 2221) in paragraph at lines 466--466
 []|\T1/ptm/m/n/10.95 (+20) Voltage mag-ni-
  []
 
 
-Overfull \hbox (8.67365pt too wide) in paragraph at lines 460--472
+Overfull \hbox (8.67365pt too wide) in paragraph at lines 461--473
  [][] 
  []
 
 [14 <./Pictures/flow_network.pdf>]
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 490.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 491.
 
-Overfull \hbox (5.21304pt too wide) in paragraph at lines 490--491
+Overfull \hbox (5.21304pt too wide) in paragraph at lines 491--492
 [][][][][][][][][][][][][] 
  []
 
@@ -1936,49 +1940,50 @@ Overfull \hbox (5.21304pt too wide) in paragraph at lines 490--491
 Chapter 3.
 File: Pictures/network2.pdf Graphic file (type pdf)
 <use Pictures/network2.pdf>
-Package pdftex.def Info: Pictures/network2.pdf used on input line 501.
+Package pdftex.def Info: Pictures/network2.pdf used on input line 499.
 (pdftex.def)             Requested size: 597.50787pt x 298.77873pt.
 
-<Pictures/time_iterations.pdf, id=570, 790.955pt x 202.7575pt>
+Underfull \hbox (badness 10000) in paragraph at lines 506--509
+
+ []
+
+[16
+
+] <Pictures/time_iterations.pdf, id=582, 790.955pt x 202.7575pt>
 File: Pictures/time_iterations.pdf Graphic file (type pdf)
 
 <use Pictures/time_iterations.pdf>
-Package pdftex.def Info: Pictures/time_iterations.pdf used on input line 523.
+Package pdftex.def Info: Pictures/time_iterations.pdf used on input line 528.
 (pdftex.def)             Requested size: 405.45047pt x 103.93709pt.
+
+<Pictures/active_state.pdf, id=584, 322.20375pt x 392.8005pt>
+File: Pictures/active_state.pdf Graphic file (type pdf)
+
+<use Pictures/active_state.pdf>
+Package pdftex.def Info: Pictures/active_state.pdf used on input line 537.
+(pdftex.def)             Requested size: 256.07741pt x 312.19698pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[16
-
-] <Pictures/active_state.pdf, id=583, 322.20375pt x 392.8005pt>
-File: Pictures/active_state.pdf Graphic file (type pdf)
-
-<use Pictures/active_state.pdf>
-Package pdftex.def Info: Pictures/active_state.pdf used on input line 532.
-(pdftex.def)             Requested size: 256.07741pt x 312.19698pt.
- [17 <./Pictures/time_iterations.pdf> <./Pictures/active_state.pdf
-
-pdfTeX warning: /usr/bin/pdflatex (file ./Pictures/active_state.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
->]
+[17 <./Pictures/time_iterations.pdf>]
 LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 578.
-
-Overfull \hbox (29.21329pt too wide) in paragraph at lines 585--586
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 583.
+ [18 <./Pictures/active_state.pdf>]
+Overfull \hbox (29.21329pt too wide) in paragraph at lines 590--591
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (59.2136pt too wide) in paragraph at lines 591--592
+Overfull \hbox (59.2136pt too wide) in paragraph at lines 596--597
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[18] [19]
+[19]
 Chapter 4.
 File: Pictures/network2.pdf Graphic file (type pdf)
 <use Pictures/network2.pdf>
-Package pdftex.def Info: Pictures/network2.pdf used on input line 633.
+Package pdftex.def Info: Pictures/network2.pdf used on input line 638.
 (pdftex.def)             Requested size: 597.50787pt x 298.77873pt.
  [20
 
@@ -1986,7 +1991,7 @@ Package pdftex.def Info: Pictures/network2.pdf used on input line 633.
 Chapter 5.
 File: Pictures/network2.pdf Graphic file (type pdf)
 <use Pictures/network2.pdf>
-Package pdftex.def Info: Pictures/network2.pdf used on input line 684.
+Package pdftex.def Info: Pictures/network2.pdf used on input line 694.
 (pdftex.def)             Requested size: 597.50787pt x 298.77873pt.
  [22
 
@@ -1996,31 +2001,31 @@ Package pdftex.def Info: Pictures/network2.pdf used on input line 684.
 Chapter 6.
 File: Pictures/network2.pdf Graphic file (type pdf)
 <use Pictures/network2.pdf>
-Package pdftex.def Info: Pictures/network2.pdf used on input line 698.
+Package pdftex.def Info: Pictures/network2.pdf used on input line 708.
 (pdftex.def)             Requested size: 597.50787pt x 298.77873pt.
  [24
 
 ] [25] [26] [27]
 Chapter 7.
-<Pictures/network1.pdf, id=832, 569.055pt x 284.52798pt>
+<Pictures/network1.pdf, id=837, 569.055pt x 284.52798pt>
 File: Pictures/network1.pdf Graphic file (type pdf)
 
 <use Pictures/network1.pdf>
-Package pdftex.def Info: Pictures/network1.pdf used on input line 803.
+Package pdftex.def Info: Pictures/network1.pdf used on input line 814.
 (pdftex.def)             Requested size: 597.50787pt x 298.78056pt.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <10.95> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 806.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 817.
 
-<Pictures/applications.pdf, id=833, 602.25pt x 451.6875pt>
+<Pictures/applications.pdf, id=838, 602.25pt x 451.6875pt>
 File: Pictures/applications.pdf Graphic file (type pdf)
 
 <use Pictures/applications.pdf>
-Package pdftex.def Info: Pictures/applications.pdf used on input line 809.
+Package pdftex.def Info: Pictures/applications.pdf used on input line 820.
 (pdftex.def)             Requested size: 405.45047pt x 304.09708pt.
  [28
 
  <./Pictures/network1.pdf>] [29 <./Pictures/applications.pdf>] [30]
-Overfull \hbox (5.21304pt too wide) in paragraph at lines 890--891
+Overfull \hbox (5.21304pt too wide) in paragraph at lines 901--902
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -2030,22 +2035,22 @@ Overfull \hbox (5.21304pt too wide) in paragraph at lines 890--891
 Chapter 8.
 File: Pictures/network1.pdf Graphic file (type pdf)
 <use Pictures/network1.pdf>
-Package pdftex.def Info: Pictures/network1.pdf used on input line 973.
+Package pdftex.def Info: Pictures/network1.pdf used on input line 984.
 (pdftex.def)             Requested size: 597.50787pt x 298.78056pt.
  [35
 
 ]
-Overfull \hbox (53.65271pt too wide) in paragraph at lines 1024--1056
+Overfull \hbox (53.65271pt too wide) in paragraph at lines 1035--1067
  [][] 
  []
 
 
-Overfull \hbox (53.65271pt too wide) in paragraph at lines 1062--1086
+Overfull \hbox (53.65271pt too wide) in paragraph at lines 1073--1097
  [][] 
  []
 
 
-Overfull \hbox (53.65271pt too wide) in paragraph at lines 1092--1116
+Overfull \hbox (53.65271pt too wide) in paragraph at lines 1103--1127
  [][] 
  []
 
@@ -2139,23 +2144,23 @@ Overfull \hbox (1.20001pt too wide) in paragraph at lines 120--121
 \tf@ptc=\write7
 \openout7 = `main.ptc'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1130.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1130.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1141.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1141.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1130.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1130.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1141.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1141.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 35928 strings out of 493029
- 652112 string characters out of 6136233
- 1188307 words of memory out of 5000000
- 38287 multiletter control sequences out of 15000+600000
+ 35953 strings out of 493029
+ 652555 string characters out of 6136233
+ 1188798 words of memory out of 5000000
+ 38307 multiletter control sequences out of 15000+600000
  120841 words of font info for 282 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,13n,55p,10507b,3196s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 57i,13n,55p,10507b,3212s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/avantgar/uagd8a.pfb></usr/share/texlive/texmf-dist/fonts
@@ -2163,10 +2168,10 @@ f-dist/fonts/type1/urw/avantgar/uagd8a.pfb></usr/share/texlive/texmf-dist/fonts
 imes/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (40 pages, 1055620 bytes).
+Output written on main.pdf (40 pages, 1056172 bytes).
 PDF statistics:
- 1325 PDF objects out of 1440 (max. 8388607)
- 1048 compressed objects within 11 object streams
- 411 named destinations out of 1000 (max. 500000)
+ 1330 PDF objects out of 1440 (max. 8388607)
+ 1053 compressed objects within 11 object streams
+ 412 named destinations out of 1000 (max. 500000)
  62802 words of extra memory for PDF output out of 74296 (max. 10000000)
 

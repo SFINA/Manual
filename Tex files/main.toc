@@ -50,11 +50,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.3.4}Accessing the flow network and its values}{14}{subsection.2.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.4}Protopeer Toolkit (redo, maybe split in part here and appendix)}{15}{section.2.4}
-\defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {3}Agents}{16}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Simulation Agent}{16}{section.3.1}
+\contentsline {section}{\numberline {3.1}Simulation Agent}{17}{section.3.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{The Active State}{17}{section*.4}
 \defcounter {refsection}{0}\relax 
@@ -73,6 +71,8 @@
 \contentsline {section}{\numberline {4.1}Time and iteration}{20}{section.4.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.2}Process Flow of a basic Simulation }{21}{section.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.3}Protopeer Toolkit (redo, maybe split in part here and appendix)}{21}{section.4.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {5}Interdependent Network Simulations}{22}{chapter.5}
 \defcounter {refsection}{0}\relax 
