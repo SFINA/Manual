@@ -81,65 +81,69 @@
 \ttl@stoptoc {default@1}
 \ttl@starttoc {default@2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}New applications}{24}{chapter.6}
+\contentsline {chapter}{\numberline {6}Core functionality extension}{24}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}Application architecture}{25}{section.6.1}
+\contentsline {section}{\numberline {6.1}Backen Calculations: Domain Agent}{25}{section.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Implementing a new Application Agent}{25}{section.6.2}
+\contentsline {subsection}{\numberline {6.1.1}Overview of necessary adjustments}{25}{subsection.6.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.1}Example: PowerCascadeAgent{}}{26}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.1.2}FlowDomainAgent}{25}{subsection.6.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.2}Measurements}{26}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.1.3}FlowNetworkDataTypesInterface}{26}{subsection.6.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Core functionality extension}{29}{chapter.7}
+\contentsline {section}{\numberline {6.2}Time Stepping: Time Agent }{27}{section.6.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Approaches for a new \Backend {}}{29}{section.7.1}
+\contentsline {section}{\numberline {6.3}Interdependent Communication: Communication Agent }{27}{section.6.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Overview of necessary adjustments}{29}{section.7.2}
+\contentsline {chapter}{\numberline {7}New applications}{28}{chapter.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.3}FlowDomainAgent}{30}{section.7.3}
+\contentsline {section}{\numberline {7.1}Application architecture}{28}{section.7.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.4}FlowNetworkDataTypesInterface}{31}{section.7.4}
+\contentsline {section}{\numberline {7.2}Implementing a new Simulation Agent }{29}{section.7.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{\@mypartnumtocformat {III}{Appendix}}{32}{part.3}
+\contentsline {subsection}{\numberline {7.2.1}Example: PowerCascadeAgent{}}{30}{subsection.7.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.2.2}Measurements}{31}{subsection.7.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{\@mypartnumtocformat {III}{Appendix}}{34}{part.3}
 \ttl@stoptoc {default@2}
 \ttl@starttoc {default@3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {8}Appendix}{33}{chapter.8}
+\contentsline {chapter}{\numberline {8}Appendix}{35}{chapter.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8.1}Glossary}{33}{section.8.1}
+\contentsline {section}{\numberline {8.1}Glossary}{35}{section.8.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{flow network}{33}{section*.6}
+\contentsline {paragraph}{flow network}{35}{section*.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{node}{33}{section*.7}
+\contentsline {paragraph}{node}{35}{section*.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{link}{33}{section*.8}
+\contentsline {paragraph}{link}{35}{section*.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{topology}{33}{section*.9}
+\contentsline {paragraph}{topology}{35}{section*.9}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{flow}{33}{section*.10}
+\contentsline {paragraph}{flow}{35}{section*.10}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\domain {}}{33}{section*.11}
+\contentsline {paragraph}{\domain {}}{35}{section*.11}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{\backend {}}{33}{section*.12}
+\contentsline {paragraph}{\backend {}}{35}{section*.12}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{event}{33}{section*.13}
+\contentsline {paragraph}{event}{35}{section*.13}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{agent}{34}{section*.14}
+\contentsline {paragraph}{agent}{36}{section*.14}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{time step}{34}{section*.15}
+\contentsline {paragraph}{time step}{36}{section*.15}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{simulation time}{34}{section*.16}
+\contentsline {paragraph}{simulation time}{36}{section*.16}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{epoch}{34}{section*.17}
+\contentsline {paragraph}{epoch}{36}{section*.17}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{iteration}{34}{section*.18}
+\contentsline {paragraph}{iteration}{36}{section*.18}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8.2}Useful flow network methods}{34}{section.8.2}
+\contentsline {section}{\numberline {8.2}Useful flow network methods}{36}{section.8.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8.3}Useful nodes methods}{34}{section.8.3}
+\contentsline {section}{\numberline {8.3}Useful nodes methods}{36}{section.8.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8.4}Useful links methods}{34}{section.8.4}
+\contentsline {section}{\numberline {8.4}Useful links methods}{36}{section.8.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\leavevmode {\color {ocre}Index}}{36}{section*.19}
+\contentsline {chapter}{\leavevmode {\color {ocre}Index}}{38}{section*.19}
 \contentsfinish 

@@ -692,12 +692,118 @@ Working progress...
 \part{For developers}
 
 %----------------------------------------------------------------------------------------
+%	CHAPTER CORE FUNCTIONALITY
+%----------------------------------------------------------------------------------------
+
+\chapter{Core functionality extension}
+The way to go in order to extend the core functionality of SFINA is to replace agents with own implementations. 
+This can be either done through extending an existing version or to implement the correct agent interface.
+
+For adding new applications on top of the SFINA framework one has to extend the \MainAgent or implement its interface, which is described in chapter \ref{ch:new_applications}.
+
+
+In the following we will outline the main steps to implement own versions of the different SFINA (core) agents.
+
+\section{Backen Calculations: \DomainAgent}\index{\Backend{}}\index{\Backend{} !Interpss}\index{\Backend{} !Matpower}\index{\Backend{} !Interface}\label{sec:backend}
+A \Backend{} is a software module that implements algorithms for the calculation of the flow in the network for given parameters. Often simulation software already exist for various \domain{s}, for example MATPOWER or InterPSS to perform power flow analysis. Three ways to implement new \backend{s}:
+\begin{enumerate}
+	\item Implementing the flow calculation from scratch, using the SFINA data stored in the flow network, nodes and links. This is the most straight-forward way, and definitely the cleanest, resulting in a fully integrated \backend{}. Depending on the complexity however, this can be quite a big task.
+	\item Integrate an existing \backend{} which was written in Java. This was done for example for InterPSS. First the SFINA data has to be translated to the new \backend{s} specific format, then its power flow algorithm is called and finally the data is translated back to SFINA. It can be tedious to make sure the data is translated in the correct way, but potentially providing an easy way to integrate a new \backend{}.
+	\item Integrate an existing \backend{} written in another language. MATPOWER, which is written in Matlab, was integrated that way. The approach of 2. applies here as well, however on top an interface between Java and the other language has to be developed or integrated. In the Matlab case a package called matlabcontrol written by a third party was used to call Matlab and pass commands to it.
+\end{enumerate}
+
+\subsection{Overview of necessary adjustments}
+For a \backend{} to work the following classes have to be implemented, however if only a new \backend{} for an already implemented data structure is to be implemented the second and third steps can be omitted.
+\begin{enumerate}
+	\item An extention of the abstract class \textit{FlowDomainAgent}. This class takes care of the actual simulation. If a third-party \backend{} is used this class translates the SFINA data to the other format, calls it and translates it back. It is then used as a peerlet in the experiment class as described in section \ref{sec:Simulation_Measurements}.
+	\item An implementation of the interface \textit{FlowNetworkDataTypesInterface}. This class properly translates the strings from the input files for the loaders. Every flow value of nodes/links (see section \ref{sec:flow_net} for more information) is assigned to an Enum key, which should additionally be specified in a LinkState and NodeState Enum class. 
+	\item An implementation of the \textit{\BackendParameterLoader Interface}. This loads the \backendparameters{}, if there are any. This should be rather straightforward. For example in the case of power simulations this loads from the file whether it is an AC or DC simulation. 
+\end{enumerate}
+
+The first and second step are explained in more detail in the following sections.
+
+\subsection{FlowDomainAgent}
+This abstract class always has to be extended for a new \backend{}. It takes care of the actual flow computation in the network, given the network data. If a third-party \backend{} is used this class translates the SFINA data to the other format, calls it and translates it back. It is then used as a peerlet in the experiment class as described in section \ref{sec:Simulation_Measurements}.
+
+The main method that has to be implemented is 
+\begin{lstlisting}[frame=single]
+@Override
+public boolean flowAnalysis(FlowNetwork net){
+// flow simulation goes here    
+}
+\end{lstlisting}
+It does the calculation and returns true if it found a stable solution for the flow distribution in the network (i.e. converged) and false otherwise.
+
+Every node and link has two general fields capacity and flow, which provide an abstraction of the quantitiy flowing through the object and how much of this quantity flow it can withstand before failing. For every \domain{} a value of the node and link flow parameters have to be designated for this purpose, which is done by the method \textit{setFlowParameters}. The easiest is to look at an example, in this case for power flows:
+\begin{lstlisting}[frame=single]
+@Override
+public void setFlowParameters(FlowNetwork flowNetwork){
+flowNetwork.setLinkFlowType(PowerLinkState.POWER_FLOW_FROM_REAL);
+flowNetwork.setNodeFlowType(PowerNodeState.VOLTAGE_MAGNITUDE);
+flowNetwork.setLinkCapacityType(PowerLinkState.RATE_C);
+flowNetwork.setNodeCapacityType(PowerNodeState.VOLTAGE_MAX);
+}
+\end{lstlisting}
+
+Finally there are two methods to handle \backendparameters{}. A developer can decide if the newly implemented \backend{} needs some user input parameters to run properly. If this is the case a \BackendParameterLoader{} has to be implemented that loads these values into a HashMap and two methods that call this loader and extract the values from the HashMap, as in the following example for power simulations:
+\begin{lstlisting}[frame=single]
+@Override
+public void extractDomainParameters(){
+this.powerFlowType = 
+(PowerFlowType)getDomainParameters()
+.get(PowerBackendParameter.FLOW_TYPE);
+this.toleranceParameter = 
+(Double)getDomainParameters()
+.get(PowerBackendParameter.TOLERANCE_PARAMETER);
+}
+
+@Override
+public void loadDomainParameters(String backendParamLocation){
+PowerBackendParameterLoader backendParameterLoader = 
+new PowerBackendParameterLoader(
+this.getParameterColumnSeparator()
+);
+this.setDomainParameters(
+backendParameterLoader
+.loadBackendParameters(backendParamLocation)
+);
+}
+\end{lstlisting}
+
+\subsection{FlowNetworkDataTypesInterface}
+To load/write \domain{} specific data from/to files the loaders have to be able to "understand" them. This is the purpose of the FlowNetworkDataTypesInterface. It handles the translation chain 
+\begin{enumerate}
+	\item Input
+	\begin{enumerate}
+		\item In the input file the strings in the first line (header) to Enum type LinkState or NodeState variables. This is done by the method \textit{parseNode/LinkStateTypeFromString}.
+		\item For each of the following rows (each belonging to a node/link) translate the data strings to double/integer/string/etc variables. This is done by the method \textit{parseNode/LinkValuefromString}.
+	\end{enumerate}
+	\item Output, the above but in reverse
+	\begin{enumerate}
+		\item Enum type Link/NodeState $\rightarrow$ strings for the first line of the file. \\ Method \textit{castNode/LinkStateTypeToString}
+		\item double/integer/string/etc variables $\rightarrow$ strings, if necessary replacing them by the missing value string (-) if they don't apply to the data column. \\ Method \textit{castNode/LinkStateValueToString}
+	\end{enumerate}
+\end{enumerate}
+
+As an orientation the implementations for power simulations can be consulted in the PowerFlowNetworkDataTypes class. When implemented correctly this class should allow the data and event loaders to understand your data and load them into the nodes and links so you can use them in the for flow calculations in the new \backend().
+
+%--------------------------------------------- Section TIME AGENT 
+\section{Time Stepping: \TimeAgent }
+
+%--------------------------------------------- Section Communication Agent
+\section{Interdependent Communication: \CommunicationAgent }
+
+
+%----------------------------------------------------------------------------------------
 %	CHAPTER APPLICATIONS
 %----------------------------------------------------------------------------------------
 
 \chapterimage{network1.pdf} % Chapter heading image
 
 \chapter{New applications}
+\label{ch:new_applications}
+
+\textit{\textbf{Graphic Needs to be replaced at some point + implement BenchmarkSimulationAgent in a modular way - Use a decorater pattern to allow for runtime additon of benchmark functionality}}
 
 \begin{figure}[!ht]
 \centering\includegraphics[width=0.95\textwidth]{applications.pdf}
@@ -708,7 +814,7 @@ Working progress...
 \section{Application architecture}\label{sec:apps}
 SFINA is designed such that it is flexible and can be easily extended. These extensions can be the implementation of a new application as described in this section, more sophisticated measurements, and more. Currently implemented applications for showcasing the capabilities of the framework as well as for providing basic functionality, are an agent for benchmarking (i.e. making measurements), a model for cascading failures and a specific implementation of the latter for power grid simulations. New applications can be build on top of them in order to make use of their functionalities. If this is not of interest to the developer, totally new applications can be implemented on top of the SFINA core functionality. In any case, whether the SimulationAgent or one of the existing applications are used for the basis of new applications, the capability of Java to extend classes and override methods is used, which will be explained in more detail below. In figure \ref{fig:apps} the current applications are shown, as well as how possible extensions could be realized.
 
-\section{Implementing a new Application Agent}\index{Agent}
+\section{Implementing a new \MainAgent}\index{Agent}
 Let’s have a look on how extending one of the existing agent works, taking the example of the \BenchmarkAgent{} Its beginning looks as follows:
 \begin{lstlisting}[frame=single]
 public class BenchmarkSimulationAgent extends SimulationAgent{
@@ -856,94 +962,7 @@ To summarize one has to do the following steps to implement additional measureme
 \end{enumerate}
 As an example you can look at Power\CascadeAgent{} in the Cascade repository for such an example.
 
-%----------------------------------------------------------------------------------------
-%	CHAPTER CORE FUNCTIONALITY
-%----------------------------------------------------------------------------------------
 
-\chapter{Core functionality extension}
-
-\section{Approaches for a new \Backend{}}\index{\Backend{}}\index{\Backend{} !Interpss}\index{\Backend{} !Matpower}\index{\Backend{} !Interface}\label{sec:backend}
-A \Backend{} is a software module that implements algorithms for the calculation of the flow in the network for given parameters. Often simulation software already exist for various \domain{s}, for example MATPOWER or InterPSS to perform power flow analysis. Three ways to implement new \backend{s}:
-\begin{enumerate}
-	\item Implementing the flow calculation from scratch, using the SFINA data stored in the flow network, nodes and links. This is the most straight-forward way, and definitely the cleanest, resulting in a fully integrated \backend{}. Depending on the complexity however, this can be quite a big task.
-	\item Integrate an existing \backend{} which was written in Java. This was done for example for InterPSS. First the SFINA data has to be translated to the new \backend{s} specific format, then its power flow algorithm is called and finally the data is translated back to SFINA. It can be tedious to make sure the data is translated in the correct way, but potentially providing an easy way to integrate a new \backend{}.
-	\item Integrate an existing \backend{} written in another language. MATPOWER, which is written in Matlab, was integrated that way. The approach of 2. applies here as well, however on top an interface between Java and the other language has to be developed or integrated. In the Matlab case a package called matlabcontrol written by a third party was used to call Matlab and pass commands to it.
-\end{enumerate}
-
-\section{Overview of necessary adjustments}
-For a \backend{} to work the following classes have to be implemented, however if only a new \backend{} for an already implemented data structure is to be implemented the second and third steps can be omitted.
-\begin{enumerate}
-	\item An extention of the abstract class \textit{FlowDomainAgent}. This class takes care of the actual simulation. If a third-party \backend{} is used this class translates the SFINA data to the other format, calls it and translates it back. It is then used as a peerlet in the experiment class as described in section \ref{sec:Simulation_Measurements}.
-	\item An implementation of the interface \textit{FlowNetworkDataTypesInterface}. This class properly translates the strings from the input files for the loaders. Every flow value of nodes/links (see section \ref{sec:flow_net} for more information) is assigned to an Enum key, which should additionally be specified in a LinkState and NodeState Enum class. 
-	\item An implementation of the \textit{\BackendParameterLoader Interface}. This loads the \backendparameters{}, if there are any. This should be rather straightforward. For example in the case of power simulations this loads from the file whether it is an AC or DC simulation. 
-\end{enumerate}
-
-The first and second step are explained in more detail in the following sections.
-
-\section{FlowDomainAgent}
-This abstract class always has to be extended for a new \backend{}. It takes care of the actual flow computation in the network, given the network data. If a third-party \backend{} is used this class translates the SFINA data to the other format, calls it and translates it back. It is then used as a peerlet in the experiment class as described in section \ref{sec:Simulation_Measurements}.
-
-The main method that has to be implemented is 
-\begin{lstlisting}[frame=single]
-@Override
-public boolean flowAnalysis(FlowNetwork net){
-    // flow simulation goes here    
-}
-\end{lstlisting}
-It does the calculation and returns true if it found a stable solution for the flow distribution in the network (i.e. converged) and false otherwise.
-
-Every node and link has two general fields capacity and flow, which provide an abstraction of the quantitiy flowing through the object and how much of this quantity flow it can withstand before failing. For every \domain{} a value of the node and link flow parameters have to be designated for this purpose, which is done by the method \textit{setFlowParameters}. The easiest is to look at an example, in this case for power flows:
-\begin{lstlisting}[frame=single]
-@Override
-public void setFlowParameters(FlowNetwork flowNetwork){
-    flowNetwork.setLinkFlowType(PowerLinkState.POWER_FLOW_FROM_REAL);
-    flowNetwork.setNodeFlowType(PowerNodeState.VOLTAGE_MAGNITUDE);
-    flowNetwork.setLinkCapacityType(PowerLinkState.RATE_C);
-    flowNetwork.setNodeCapacityType(PowerNodeState.VOLTAGE_MAX);
-}
-\end{lstlisting}
-
-Finally there are two methods to handle \backendparameters{}. A developer can decide if the newly implemented \backend{} needs some user input parameters to run properly. If this is the case a \BackendParameterLoader{} has to be implemented that loads these values into a HashMap and two methods that call this loader and extract the values from the HashMap, as in the following example for power simulations:
-\begin{lstlisting}[frame=single]
-@Override
-public void extractDomainParameters(){
-    this.powerFlowType = 
-        (PowerFlowType)getDomainParameters()
-        .get(PowerBackendParameter.FLOW_TYPE);
-    this.toleranceParameter = 
-        (Double)getDomainParameters()
-        .get(PowerBackendParameter.TOLERANCE_PARAMETER);
-}
-    
-@Override
-public void loadDomainParameters(String backendParamLocation){
-    PowerBackendParameterLoader backendParameterLoader = 
-        new PowerBackendParameterLoader(
-        this.getParameterColumnSeparator()
-        );
-    this.setDomainParameters(
-        backendParameterLoader
-        .loadBackendParameters(backendParamLocation)
-    );
-}
-\end{lstlisting}
-
-\section{FlowNetworkDataTypesInterface}
-To load/write \domain{} specific data from/to files the loaders have to be able to "understand" them. This is the purpose of the FlowNetworkDataTypesInterface. It handles the translation chain 
-\begin{enumerate}
-	\item Input
-	\begin{enumerate}
-		\item In the input file the strings in the first line (header) to Enum type LinkState or NodeState variables. This is done by the method \textit{parseNode/LinkStateTypeFromString}.
-		\item For each of the following rows (each belonging to a node/link) translate the data strings to double/integer/string/etc variables. This is done by the method \textit{parseNode/LinkValuefromString}.
-	\end{enumerate}
-	\item Output, the above but in reverse
-	\begin{enumerate}
-		\item Enum type Link/NodeState $\rightarrow$ strings for the first line of the file. \\ Method \textit{castNode/LinkStateTypeToString}
-		\item double/integer/string/etc variables $\rightarrow$ strings, if necessary replacing them by the missing value string (-) if they don't apply to the data column. \\ Method \textit{castNode/LinkStateValueToString}
-	\end{enumerate}
-\end{enumerate}
-
-As an orientation the implementations for power simulations can be consulted in the PowerFlowNetworkDataTypes class. When implemented correctly this class should allow the data and event loaders to understand your data and load them into the nodes and links so you can use them in the for flow calculations in the new \backend().
 
 %----------------------------------------------------------------------------------------
 %	PART APPENDIX
