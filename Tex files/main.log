@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.12)  27 APR 2017 13:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.12)  27 APR 2017 15:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1875,7 +1875,7 @@ File: Pictures/network2.pdf Graphic file (type pdf)
 Package pdftex.def Info: Pictures/network2.pdf used on input line 277.
 (pdftex.def)             Requested size: 597.50787pt x 298.77873pt.
 
-<Pictures/file_system.pdf, id=364, 602.25pt x 451.6875pt>
+<Pictures/file_system.pdf, id=374, 602.25pt x 451.6875pt>
 File: Pictures/file_system.pdf Graphic file (type pdf)
 
 <use Pictures/file_system.pdf>
@@ -1898,7 +1898,7 @@ LaTeX Font Info:    Font shape `T1/pag/bx/n' in size <10> not available
 LaTeX Font Info:    Font shape `T1/pag/b/n' in size <10> not available
 (Font)              Font shape `T1/pag/db/n' tried instead on input line 331.
 
-<Pictures/input_files.pdf, id=397, 648.4225pt x 159.59625pt>
+<Pictures/input_files.pdf, id=407, 648.4225pt x 159.59625pt>
 File: Pictures/input_files.pdf Graphic file (type pdf)
 
 <use Pictures/input_files.pdf>
@@ -1908,7 +1908,7 @@ Package pdftex.def Info: Pictures/input_files.pdf used on input line 334.
 Underfull \vbox (badness 2653) has occurred while \output is active []
 
  [11 <./Pictures/input_files.pdf>] [12]
-<Pictures/flow_network.pdf, id=439, 525.965pt x 337.26pt>
+<Pictures/flow_network.pdf, id=449, 525.965pt x 337.26pt>
 File: Pictures/flow_network.pdf Graphic file (type pdf)
 
 <use Pictures/flow_network.pdf>
@@ -1949,14 +1949,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 506--509
 
 [16
 
-] <Pictures/time_iterations.pdf, id=582, 790.955pt x 202.7575pt>
+] <Pictures/time_iterations.pdf, id=592, 790.955pt x 202.7575pt>
 File: Pictures/time_iterations.pdf Graphic file (type pdf)
 
 <use Pictures/time_iterations.pdf>
 Package pdftex.def Info: Pictures/time_iterations.pdf used on input line 528.
 (pdftex.def)             Requested size: 405.45047pt x 103.93709pt.
 
-<Pictures/active_state.pdf, id=584, 322.20375pt x 392.8005pt>
+<Pictures/active_state.pdf, id=594, 322.20375pt x 392.8005pt>
 File: Pictures/active_state.pdf Graphic file (type pdf)
 
 <use Pictures/active_state.pdf>
@@ -1995,66 +1995,66 @@ Package pdftex.def Info: Pictures/network2.pdf used on input line 694.
 (pdftex.def)             Requested size: 597.50787pt x 298.77873pt.
  [22
 
-] (./main.ptc) [23
+] [23] [24] (./main.ptc) [25
 
 ]
 Chapter 6.
 File: Pictures/network2.pdf Graphic file (type pdf)
 <use Pictures/network2.pdf>
-Package pdftex.def Info: Pictures/network2.pdf used on input line 708.
+Package pdftex.def Info: Pictures/network2.pdf used on input line 771.
 (pdftex.def)             Requested size: 597.50787pt x 298.77873pt.
- [24
+ [26
 
-] [25] [26] [27]
+] [27] [28] [29]
 Chapter 7.
-<Pictures/network1.pdf, id=837, 569.055pt x 284.52798pt>
+<Pictures/network1.pdf, id=905, 569.055pt x 284.52798pt>
 File: Pictures/network1.pdf Graphic file (type pdf)
 
 <use Pictures/network1.pdf>
-Package pdftex.def Info: Pictures/network1.pdf used on input line 814.
+Package pdftex.def Info: Pictures/network1.pdf used on input line 877.
 (pdftex.def)             Requested size: 597.50787pt x 298.78056pt.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <10.95> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 817.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 880.
 
-<Pictures/applications.pdf, id=838, 602.25pt x 451.6875pt>
+<Pictures/applications.pdf, id=906, 602.25pt x 451.6875pt>
 File: Pictures/applications.pdf Graphic file (type pdf)
 
 <use Pictures/applications.pdf>
-Package pdftex.def Info: Pictures/applications.pdf used on input line 820.
+Package pdftex.def Info: Pictures/applications.pdf used on input line 883.
 (pdftex.def)             Requested size: 405.45047pt x 304.09708pt.
- [28
+ [30
 
- <./Pictures/network1.pdf>] [29 <./Pictures/applications.pdf>] [30]
-Overfull \hbox (5.21304pt too wide) in paragraph at lines 901--902
+ <./Pictures/network1.pdf>] [31 <./Pictures/applications.pdf>] [32]
+Overfull \hbox (5.21304pt too wide) in paragraph at lines 964--965
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[31] [32] [33] (./main.ptc) [34
+[33] [34] [35] (./main.ptc) [36
 
 ]
 Chapter 8.
 File: Pictures/network1.pdf Graphic file (type pdf)
 <use Pictures/network1.pdf>
-Package pdftex.def Info: Pictures/network1.pdf used on input line 984.
+Package pdftex.def Info: Pictures/network1.pdf used on input line 1047.
 (pdftex.def)             Requested size: 597.50787pt x 298.78056pt.
- [35
+ [37
 
 ]
-Overfull \hbox (53.65271pt too wide) in paragraph at lines 1035--1067
+Overfull \hbox (53.65271pt too wide) in paragraph at lines 1098--1130
  [][] 
  []
 
 
-Overfull \hbox (53.65271pt too wide) in paragraph at lines 1073--1097
+Overfull \hbox (53.65271pt too wide) in paragraph at lines 1136--1160
  [][] 
  []
 
 
-Overfull \hbox (53.65271pt too wide) in paragraph at lines 1103--1127
+Overfull \hbox (53.65271pt too wide) in paragraph at lines 1166--1190
  [][] 
  []
 
-[36] [37] (./main.ind [38
+[38] [39] (./main.ind [40
 
 ]
 File: Pictures/network1.pdf Graphic file (type pdf)
@@ -2106,7 +2106,7 @@ Overfull \hbox (1.20001pt too wide) in paragraph at lines 80--81
 [][] 
  []
 
-[39
+[41
 
 ]
 Overfull \hbox (1.20001pt too wide) in paragraph at lines 88--89
@@ -2138,26 +2138,26 @@ Overfull \hbox (1.20001pt too wide) in paragraph at lines 120--121
 [][] 
  []
 
-[40
+[42
 
 ])
 \tf@ptc=\write7
 \openout7 = `main.ptc'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1141.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1141.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1204.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1204.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1141.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1141.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1204.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1204.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 35953 strings out of 493029
- 652555 string characters out of 6136233
- 1188798 words of memory out of 5000000
- 38307 multiletter control sequences out of 15000+600000
+ 36013 strings out of 493029
+ 653523 string characters out of 6136233
+ 1188800 words of memory out of 5000000
+ 38314 multiletter control sequences out of 15000+600000
  120841 words of font info for 282 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,13n,55p,10507b,3212s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2168,10 +2168,10 @@ f-dist/fonts/type1/urw/avantgar/uagd8a.pfb></usr/share/texlive/texmf-dist/fonts
 imes/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (40 pages, 1056172 bytes).
+Output written on main.pdf (42 pages, 1062669 bytes).
 PDF statistics:
- 1330 PDF objects out of 1440 (max. 8388607)
- 1053 compressed objects within 11 object streams
- 412 named destinations out of 1000 (max. 500000)
- 62802 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 1415 PDF objects out of 1440 (max. 8388607)
+ 1131 compressed objects within 12 object streams
+ 465 named destinations out of 1000 (max. 500000)
+ 62818 words of extra memory for PDF output out of 74296 (max. 10000000)
 

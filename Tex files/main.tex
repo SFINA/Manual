@@ -48,8 +48,8 @@
 \newcommand{\MainAgent}{Simulation Agent }
 \newcommand{\TimeAgent}{Time Agent }
 \newcommand{\CommunicationAgent}{Communication Agent }
-\newcommand{\DomainAgent}{Domain Agent} % e.g. InterpssFlowDomainAgent
-\newcommand{\NegotiatorAgent}{Negotiator Agent}
+\newcommand{\DomainAgent}{Domain Agent } % e.g. InterpssFlowDomainAgent
+\newcommand{\NegotiatorAgent}{Negotiator Agent }
 \newcommand{\InterpssDomainAgent}{InterpssBackend}
 \newcommand{\MatpowerDomainAgent}{MatpowerBackend}
 \newcommand{\BenchmarkAgent}{BenchmarkSimulationAgent}
@@ -692,6 +692,69 @@ SFINA makes use of the Protopeer Toolkit which was developed at EPFL university 
 
 %----------------------------------------------------------------------------------------
 \chapter{Interdependent Network Simulations}\index{interdependent}\label{sec:interdep}
+In the following we will show how to set up a basic interdependent network simulation and explain the core ingredient in detail, namely the \CommunicationAgent.
+\section{The \CommunicationAgent}
+
+\section{Simulation of an interdependent experiment}
+Equipped with the knowledge of the setup of a single network experiment (see section TBD) and the functioning of the \CommunicationAgent it will be easy to understand the setup of an interdependent network experiment. 
+It namely boils down to the addition/ adjustment of the bold parts in the following experiment file.
+Instead of a \TimeAgent a \CommunicationAgent and a \NegotiatorAgent have to be added to the experiment file and the number of networks has to be specified:
+
+\begin{lstlisting}[frame=single] 
+public class TestCommunicationAgent_communicationTimeStepping
+ extends SimulatedExperiment{
+	
+	private static final Logger logger =
+	 Logger.getLogger(
+	 TestCommunicationAgent_communicationTimeStepping.class);
+	
+	
+	private final static String expSeqNum="01";
+	private static String experimentID="experiment-"+expSeqNum;
+	
+	//Simulation Parameters
+	private final static int bootstrapTime=2000;
+	private final static int runTime=1000;
+	private final static int runDuration=6;
+\textbf{	private final static int N=3;}
+	
+	public static void main(String[] args) {
+		Experiment.initEnvironment();
+		TestCommunicationAgent_communicationTimeStepping test = 
+		new TestCommunicationAgent_communicationTimeStepping();
+		test.init();
+		
+		PeerFactory peerFactory=new PeerFactory() {
+			public Peer createPeer(int peerIndex, 
+			Experiment experiment) {
+				Peer newPeer = new Peer(peerIndex);
+				newPeer.addPeerlet(new SimulationAgent(
+				experimentID));
+				//NECESSARY HELPER AGENTS
+			\textbf{	newPeer.addPeerlet(
+			new InterdependentCommunicationAgent(
+			Time.inMilliseconds(bootstrapTime),
+				Time.inMilliseconds(runTime),N));}
+				newPeer.addPeerlet(
+				new InterpssFlowDomainAgent());
+				newPeer.addPeerlet(
+				new PowerEventNegotiatorAgent());
+				return newPeer;
+			}
+		};
+		test.initPeers(0,N,peerFactory);
+		test.startPeers(0,N);
+		
+		//run the simulation
+		test.runSimulation(Time.inSeconds(runDuration));
+		
+	}
+\end{lstlisting}
+
+In addition to the small changes, the user needs to provide the usual topology and flow information in the same way as he or she did in the singe network case.
+
+
+
 Working progress...
 %----------------------------------------------------------------------------------------
 
@@ -715,7 +778,7 @@ For adding new applications on top of the SFINA framework one has to extend the 
 
 In the following we will outline the main steps to implement own versions of the different SFINA (core) agents.
 
-\section{Backen Calculations: \DomainAgent}\index{\Backend{}}\index{\Backend{} !Interpss}\index{\Backend{} !Matpower}\index{\Backend{} !Interface}\label{sec:backend}
+\section{Backend Calculation: \DomainAgent}\index{\Backend{}}\index{\Backend{} !Interpss}\index{\Backend{} !Matpower}\index{\Backend{} !Interface}\label{sec:backend}
 A \Backend{} is a software module that implements algorithms for the calculation of the flow in the network for given parameters. Often simulation software already exist for various \domain{s}, for example MATPOWER or InterPSS to perform power flow analysis. Three ways to implement new \backend{s}:
 \begin{enumerate}
 	\item Implementing the flow calculation from scratch, using the SFINA data stored in the flow network, nodes and links. This is the most straight-forward way, and definitely the cleanest, resulting in a fully integrated \backend{}. Depending on the complexity however, this can be quite a big task.
