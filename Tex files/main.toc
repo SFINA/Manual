@@ -76,7 +76,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {5}Interdependent Network Simulations}{22}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}The Communication Agent }{23}{section.5.1}
+\contentsline {section}{\numberline {5.1}The Communication Agent }{22}{section.5.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5.2}Simulation of an interdependent experiment}{23}{section.5.2}
 \defcounter {refsection}{0}\relax 
