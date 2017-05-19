@@ -49,105 +49,111 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.3.3}Measurements}{10}{subsection.1.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}Architecture}{11}{chapter.2}
+\contentsline {section}{\numberline {1.4}Existing Applications}{10}{section.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}File System}{11}{section.2.1}
+\contentsline {subsection}{\numberline {1.4.1}Cascading Simulations in Power Grids}{10}{subsection.1.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.1}Location of the files}{11}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {1.4.2}Disaster spreading in complex networks}{11}{subsection.1.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.2}Configuration files}{11}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {1.4.3}Smart transformers for mitigation of cascading failures}{11}{subsection.1.4.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.3}Network data}{13}{subsection.2.1.3}
+\contentsline {chapter}{\numberline {2}Architecture}{12}{chapter.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Topological data}{13}{section*.15}
+\contentsline {section}{\numberline {2.1}File System}{12}{section.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Flow data}{13}{section*.16}
+\contentsline {subsection}{\numberline {2.1.1}Location of the files}{12}{subsection.2.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.4}Manually loading network data}{14}{subsection.2.1.4}
+\contentsline {subsection}{\numberline {2.1.2}Configuration files}{13}{subsection.2.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.5}Changing the file system structure}{14}{subsection.2.1.5}
+\contentsline {subsection}{\numberline {2.1.3}Network data}{14}{subsection.2.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Events}{14}{section.2.2}
+\contentsline {paragraph}{Topological data}{14}{section*.15}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.1}Using events.txt}{14}{subsection.2.2.1}
+\contentsline {paragraph}{Flow data}{14}{section*.16}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.2}Using events in an application}{15}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.1.4}Manually loading network data}{15}{subsection.2.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.3}Flow Network}{15}{section.2.3}
+\contentsline {subsection}{\numberline {2.1.5}Changing the file system structure}{15}{subsection.2.1.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.1}Activation status and connectivity}{15}{subsection.2.3.1}
+\contentsline {section}{\numberline {2.2}Events}{15}{section.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.2}Metrics}{16}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.2.1}Using events.txt}{16}{subsection.2.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.3}Flow and capacity}{16}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.2.2}Using events in an application}{16}{subsection.2.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.4}Accessing the flow network and its values}{16}{subsection.2.3.4}
+\contentsline {section}{\numberline {2.3}Flow Network}{16}{section.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.4}Time and iteration}{17}{section.2.4}
+\contentsline {subsection}{\numberline {2.3.1}Activation status and connectivity}{16}{subsection.2.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.5}Process flow of a basic simulation}{17}{section.2.5}
+\contentsline {subsection}{\numberline {2.3.2}Metrics}{17}{subsection.2.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.6}Protopeer Toolkit (redo, maybe split in part here and appendix)}{18}{section.2.6}
+\contentsline {subsection}{\numberline {2.3.3}Flow and capacity}{17}{subsection.2.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Agents}{19}{chapter.3}
+\contentsline {subsection}{\numberline {2.3.4}Accessing the flow network and its values}{17}{subsection.2.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Simulation Agent}{19}{section.3.1}
+\contentsline {section}{\numberline {2.4}Time and iteration}{18}{section.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{The Active State}{20}{section*.17}
+\contentsline {section}{\numberline {2.5}Process flow of a basic simulation}{18}{section.2.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Time Agent}{21}{section.3.2}
+\contentsline {section}{\numberline {2.6}Protopeer Toolkit (redo, maybe split in part here and appendix)}{19}{section.2.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Communication Agent}{22}{section.3.3}
+\contentsline {chapter}{\numberline {3}Agents}{20}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Domain Agent}{22}{section.3.4}
+\contentsline {section}{\numberline {3.1}Simulation Agent}{21}{section.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.5}Negotiator Agent}{22}{section.3.5}
+\contentsline {subsubsection}{The Active State}{21}{section*.17}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Interdependent Network Simulations}{23}{chapter.4}
+\contentsline {section}{\numberline {3.2}Time Agent}{22}{section.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}The Communication Agent}{23}{section.4.1}
+\contentsline {subsection}{\numberline {3.2.1}Communication Agent}{23}{subsection.3.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Simulation of an interdependent experiment}{23}{section.4.2}
+\contentsline {section}{\numberline {3.3}Domain Agent}{23}{section.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{\@mypartnumtocformat {II}{For developers}}{25}{part.2}
+\contentsline {section}{\numberline {3.4}Negotiator Agent}{23}{section.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Interdependent Network Simulations}{24}{chapter.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}The Communication Agent}{24}{section.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Simulation of an interdependent experiment}{25}{section.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{\@mypartnumtocformat {II}{For developers}}{27}{part.2}
 \ttl@stoptoc {default@1}
 \ttl@starttoc {default@2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Core functionality extension}{26}{chapter.5}
+\contentsline {chapter}{\numberline {5}Core functionality extension}{28}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Backend Calculation: Domain Agent}{27}{section.5.1}
+\contentsline {section}{\numberline {5.1}Backend Calculation: Domain Agent}{29}{section.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.1}Overview of necessary adjustments}{27}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.1}Overview of necessary adjustments}{29}{subsection.5.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.2}FlowDomainAgent}{27}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.2}FlowDomainAgent}{29}{subsection.5.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.3}FlowNetworkDataTypesInterface}{28}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.3}FlowNetworkDataTypesInterface}{30}{subsection.5.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Time Stepping: Time Agent}{29}{section.5.2}
+\contentsline {section}{\numberline {5.2}Time Stepping: Time Agent}{31}{section.5.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Interdependent Communication: Communication Agent}{29}{section.5.3}
+\contentsline {section}{\numberline {5.3}Interdependent Communication: Communication Agent{}}{31}{section.5.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}New applications}{30}{chapter.6}
+\contentsline {chapter}{\numberline {6}New applications}{32}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}Application architecture}{30}{section.6.1}
+\contentsline {section}{\numberline {6.1}Application architecture}{32}{section.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Implementing a new Simulation Agent}{31}{section.6.2}
+\contentsline {section}{\numberline {6.2}Implementing a new Simulation Agent}{33}{section.6.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.1}Example: PowerCascadeAgent{}}{32}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.1}Measurements}{34}{subsection.6.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2.2}Measurements}{33}{subsection.6.2.2}
-\defcounter {refsection}{0}\relax 
-\contentsline {part}{\@mypartnumtocformat {III}{Appendix}}{36}{part.3}
+\contentsline {part}{\@mypartnumtocformat {III}{Appendix}}{37}{part.3}
 \ttl@stoptoc {default@2}
 \ttl@starttoc {default@3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Appendix}{37}{chapter.7}
+\contentsline {chapter}{\numberline {7}Appendix}{38}{chapter.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Useful flow network methods}{37}{section.7.1}
+\contentsline {section}{\numberline {7.1}Useful flow network methods}{38}{section.7.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Useful nodes methods}{37}{section.7.2}
+\contentsline {section}{\numberline {7.2}Useful nodes methods}{38}{section.7.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.3}Useful links methods}{37}{section.7.3}
+\contentsline {section}{\numberline {7.3}Useful links methods}{38}{section.7.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\leavevmode {\color {ocre}Index}}{39}{section*.18}
+\contentsline {chapter}{\leavevmode {\color {ocre}Index}}{40}{section*.18}
 \contentsfinish 

@@ -47,9 +47,11 @@
 \newcommand{\mainagent}{simulation agent}
 \newcommand{\MainAgent}{Simulation Agent}
 \newcommand{\TimeAgent}{Time Agent}
-\newcommand{\SimpleTimeSteppingAgent}{SimpleTimeSteppingAgent}
+\newcommand{\TimeSteppingAgent}{TimeSteppingAgent}
 \newcommand{\SimpleCommunicationAgent}{SimpleCommunicationAgent}
 \newcommand{\CommunicationAgent}{Communication Agent}
+\newcommand{\InterdependentCommunicationAgent}{InterdependentCommunicationAgent}
+\newcommand{\TokenCommunicationAgent}{TokenCommunicationAgent}
 \newcommand{\DomainAgent}{Domain Agent} % e.g. InterpssFlowDomainAgent
 \newcommand{\NegotiatorAgent}{Negotiator Agent}
 \newcommand{\InterpssDomainAgent}{InterpssBackend}
@@ -258,10 +260,12 @@ public class testExperiment extends SimulatedExperiment{
     // time steps including bootstrap time
     private final static int runDuration=10;
 
+    // number of networks
+    private final static int N=1;
+	    
     // other simulation Parameters
     private final static int bootstrapTime=2000;
     private final static int runTime=1000;
-    private final static int N=1;
     
     public static void main(String[] args) {
         Experiment.initEnvironment();
@@ -276,7 +280,7 @@ public class testExperiment extends SimulatedExperiment{
               // add the simulation agent
               newPeer.addPeerlet(new PowerCascadeAgent(experimentID));
               // add the agent managing the simulation steps
-              newPeer.addPeerlet(new SimpleTimeSteppingAgent(
+              newPeer.addPeerlet(new TimeSteppingAgent(
                   Time.inMilliseconds(bootstrapTime),
                   Time.inMilliseconds(runTime)));
               // add the backend, 
@@ -301,7 +305,7 @@ First notice, that our testExperiment class extends SimulatedExperiment, which i
 Different agents, encapsulating separate functionality, have to be added. For more details see section \ref{sec:agents}. Different configurations are possible, however at least three agents are necessary, one from each of the following categories:
 \begin{enumerate}
 	\item A \MainAgent{}, which is extended to different functionality, for example \BenchmarkAgent{} for measurements or the Power\CascadeAgent{} for running cascade simulations in power networks.
-	\item \TimeAgent, for a simulation on one single network this is the \SimpleTimeSteppingAgent{} as in the above example. For interdependent simulations between multiple networks the \SimpleCommunicationAgent{} should be added, as explained in more detail in section \ref{sec:agents}.
+	\item \TimeAgent, for a simulation on one single network this is the \TimeSteppingAgent{} as in the above example. For interdependent simulations between multiple networks the \SimpleCommunicationAgent{} should be added, as explained in more detail in section \ref{sec:agents}.
 	\item A \DomainAgent, for example \InterpssDomainAgent{} or \MatpowerDomainAgent{} (requiring a Matlab installation) in the case of a power network simulation.
 \end{enumerate}
 
@@ -313,12 +317,27 @@ All the measurement results are saved to a binary file in peerlets-log/experimen
 To see what is going on during the simulation, logging is useful. For this first it is necessary to make sure in conf/log4j.properties the line “log4j.rootLogger=info, I, stdout” isn’t commented out. This will show information during the simulation and also the measurement output in the console and in the file log/info.log. To get a finer grained output, uncomment “log4j.rootLogger=debug, D, stdout” in the same .properties file.
 
 
+\section{Existing Applications}\label{sec:existing_apps}
+
+\subsection{Cascading Simulations in Power Grids}\index{Agent!Power\CascadeAgent{}}
+This is an example of a more sophisticated application. As can be seen in figure \ref{fig:apps} there are two levels:
+\begin{enumerate}
+	\item Cascade Agent: Implementing a general cascade algorithm with a method that checks the links for overloads (i.e. the flow in the link exceeding its capacity). It implements (overrides) the runFlowAnalysis() method of the SimulationAgent, but also introduces a new method, namely flowConvergenceStrategy() which is an intermediary step before calling the \backend{} to calculate the power flow in the network. This allows a very flexible implementation of different (\domain{} dependent) necessary adjustments. This is exactly what is implemented by the Power Cascade Agent, which brings us to the next point.
+	\item The Power Cascade Agent mainly implements flowConvergenceStrategy() from the Cascade Agent. It first checks if the current island just consists of one isolated node, returning directly non-convergence (i.e. blackout) in this case. Then it checks if there is a generator present in the island, because without power supply the island is also blacked out. Furthermore it tries to improve convergence, i.e. finding a stable solution for the power flowing in the network, by adjusting load and generation. Finally the Power Cascade Agent implements some more measurements, for example the number of islands and isolated nodes and the power demand which cannot be served (load loss).
+\end{enumerate}
+
+\subsection{Disaster spreading in complex networks}
+to be completed
+
+\subsection{Smart transformers for mitigation of cascading failures}
+to be completed
 
 %----------------------------------------------------------------------------------------
 %	CHAPTER ARCHITECTURE
 %----------------------------------------------------------------------------------------
 
 \chapter{Architecture}
+\label{ch:architecture}
 
 For running experiments which are already implemented it is only necessary to understand the file system and the concept of events. For a deeper understanding and to implement own applications, the information about the flow network, the different agents and Protopeer will come in handy. 
 
@@ -470,8 +489,9 @@ Event event = new Event(
 	"20",
 	LinkState.STATUS,
 	false);
-getEvents().add(event);
+queueEvent(event);
 \end{lstlisting}
+The last command schedules the events for execution at their defined time step.
 %------------------------------------------------
 
 \section{Flow Network}\index{Flow Network}\label{sec:flow_net}
@@ -553,7 +573,7 @@ During each time step several simulation iterations can be performed, depending 
 \section{Process flow of a basic simulation}
 \textbf{- Best would be to provide a graphic.}
 
-In the following we present the general process flow of a simulation. This is true for the interdependent and non-interdependent case.
+In the following we present the general process flow of a simulation. This is applies to the interdependent and non-interdependent case.
 \begin{enumerate}
 	\item Initialization:
 	\begin{itemize}
@@ -563,28 +583,28 @@ In the following we present the general process flow of a simulation. This is tr
 	\item Start:
 	\begin{itemize}
 		\item Peers call \textit{start()} on all their Agents.
-		\item \textit{start()} should only be implemented in the \TimeAgent
-		\item \TimeAgent calls \textit{runBootstrapping()} on the \MainAgent
+		\item \textit{start()} should only be implemented in the \TimeAgent{}
+		\item \TimeAgent{} calls \textit{runBootstrapping()} on the \MainAgent{}
 	\end{itemize}
 	\item Bootstrap:
 	\begin{itemize}
 		\item \MainAgent reads necessary parameters from input files, schedules measurements etc.
-		\item when finished, \MainAgent calls \textit{agentFinishedBootstrap()} on \TimeAgent
+		\item when finished, \MainAgent{} calls \textit{agentFinishedBootstrap()} on \TimeAgent{}
 	\end{itemize}
 	\item Start simulation/ Progressing to next time step
 	\begin{itemize}
-		\item \TimeAgent calls \textit{progressToNextTimeStep()} on \MainAgent
-		\item \MainAgent initializes the first time step.
-		\item Afterwards \MainAgent calls \textit{agentFinishedActiveState()} on \TimeAgent
-		\item in turn \TimeAgent progresses \MainAgent to next iteration. In order for this to function, \MainAgent has to signal, that it did not converge yet.
+		\item \TimeAgent{} calls \textit{progressToNextTimeStep()} on \MainAgent
+		\item \MainAgent{} initializes the first time step.
+		\item Afterwards \MainAgent{} calls \textit{agentFinishedActiveState()} on \TimeAgent{}
+		\item Then \TimeAgent{} progresses \MainAgent{} to next iteration. In order for this to function, \MainAgent{} has to signal, that it did not converge yet.
 	\end{itemize}
 	\item Progess of Simulation
 	\begin{itemize}
-		\item From now on, after each simulation iteration \MainAgent calls \textit{agentFinishedActiveState()} on \TimeAgent. \TimeAgent then decides to 
+		\item From now on, after each simulation iteration \MainAgent{} calls \textit{agentFinishedActiveState()} on \TimeAgent{}. \TimeAgent{} then decides to 
 		\begin{enumerate}[label=(\alph*)]
-			\item either perform another simulation iteration through calling \textit{progressToNextIteration()} on \MainAgent
-			\item or to skip the next iteration (makes sense for interdependent case) through calling \textit{skipNextIteration()} on \MainAgent
-			\item or to progress \MainAgent to the next time step through calling \textit{progressToNextTimeStep()}, hence return to the 4. step.
+			\item either perform another simulation iteration through calling \textit{progressToNextIteration()} on \MainAgent{}
+			\item or to skip the next iteration (makes sense for interdependent case to synchronise different networks) through calling \textit{skipNextIteration()} on \MainAgent{}
+			\item or to progress \MainAgent{} to the next time step through calling \textit{progressToNextTimeStep()}, hence return to the 4th step.
 		\end{enumerate}  
 	\end{itemize}
 \end{enumerate}
@@ -669,7 +689,7 @@ The callBackend() method executes the \backend{}, which is automatically selecte
 
 %------------------------------------------------
 \section{\TimeAgent}\index{Agent!\TimeAgent}\label{sec:time_agent}
-Organizes the time steps of the simulation, calls \MainAgent when it should simulate the network and gets in turn notified by the \MainAgent when it finished its iteration. 
+Organizes the time steps of the simulation, calls \MainAgent{} when it should simulate the network and gets in turn notified by the \MainAgent{} when it finished its iteration. 
 Has to implement the following interface in order to function within the SFINA framework:
 
 \begin{lstlisting}[frame=single] 
@@ -702,16 +722,16 @@ public int getSimulationTime();
 
 The following default implementation exist:
 	\begin{enumerate}
-		\item TimeSteppingAgent: Simulates a single network, advances \MainAgent directly when its ready.
+		\item \TimeSteppingAgent{}: Simulates a single network, advances \MainAgent{} directly when its ready.
 	\end{enumerate}
 	
 %------------------------------------------------
-\section{\CommunicationAgent}\index{Communication Agent! \CommunicationAgent}\label{sec:communication_agent}	
-Abstract class which extends SimpleTimeSteppingAgent. Thus it has the same core responsibility as \TimeAgent.
-In addition \CommunicationAgent handles the communication between interdependent networks and is responsible for the order of execution of Simulation iterations. The following two extensions exist:
+\subsection{\CommunicationAgent}\index{Communication Agent! \CommunicationAgent}\label{sec:communication_agent}	
+Abstract class which extends \TimeSteppingAgent{}. Thus it has the same core responsibility as \TimeAgent.
+In addition \CommunicationAgent{} handles the communication between interdependent networks and is responsible for the order of execution of Simulation iterations. The following two extensions exist:
 \begin{enumerate}
-	\item InterdependentCommunicationAgent: Allows for multiple networks to be connected, thus manages their synchronization and exchange of information. The execution logic is of a parallel nature: Each iteration of all networks happens in parallel, after which the networks update each other. 
-	\item TokenCommunicationAgent: Organizes interdependent networks, but executes them in a sequential rather than parallel order. Hence i.e. iteration 1 of network 1 happens before iteration 1 of network 2.
+	\item \InterdependentCommunicationAgent{}: Allows for multiple networks to be connected, thus manages their synchronization and exchange of information. The execution logic is of a parallel nature: Each iteration of all networks happens in parallel, after which the networks update each other. 
+	\item \TokenCommunicationAgent{}: Organizes interdependent networks, but executes them in a sequential rather than parallel order. Hence i.e. iteration 1 of network 1 happens before iteration 1 of network 2.
 \end{enumerate}
 
 For more information on interdependent network simulations, see section \ref{sec:interdep}.
@@ -732,14 +752,14 @@ Responsible to resolve event conflicts in interdependent network simulations.
 %----------------------------------------------------------------------------------------
 
 \chapter{Interdependent Network Simulations}\index{interdependent}\label{sec:interdep}
-In the following we will show how to set up a basic interdependent network simulation and explain the core ingredient in detail, namely the \CommunicationAgent.
+In the following we will show how to set up a basic interdependent network simulation and explain the core ingredient in detail, namely the \CommunicationAgent{}.
 \section{The \CommunicationAgent}
 Working progress...
 
 \section{Simulation of an interdependent experiment}
-Equipped with the knowledge of the setup of a single network experiment (see section TBD) and the functioning of the \CommunicationAgent it will be easy to understand the setup of an interdependent network experiment. 
+Equipped with the knowledge of the setup of a single network experiment (see section TBD) and the functioning of the \CommunicationAgent{} it will be easy to understand the setup of an interdependent network experiment. 
 It namely boils down to the addition/ adjustment of the bold parts in the following experiment file.
-Instead of a \TimeAgent a \CommunicationAgent and a \NegotiatorAgent have to be added to the experiment file and the number of networks has to be specified:
+Instead of a \TimeAgent a \CommunicationAgent{} and a \NegotiatorAgent have to be added to the experiment file and the number of networks has to be specified:
 
 \begin{lstlisting}[frame=single] 
 public class TestCommunicationAgent_communicationTimeStepping
@@ -864,24 +884,24 @@ Finally there are two methods to handle \backendparameters{}. A developer can de
 \begin{lstlisting}[frame=single]
 @Override
 public void extractDomainParameters(){
-this.powerFlowType = 
-(PowerFlowType)getDomainParameters()
-.get(PowerBackendParameter.FLOW_TYPE);
-this.toleranceParameter = 
-(Double)getDomainParameters()
-.get(PowerBackendParameter.TOLERANCE_PARAMETER);
+    this.powerFlowType = 
+        (PowerFlowType)getDomainParameters()
+        .get(PowerBackendParameter.FLOW_TYPE);
+    this.toleranceParameter = 
+        (Double)getDomainParameters()
+        .get(PowerBackendParameter.TOLERANCE_PARAMETER);
 }
 
 @Override
 public void loadDomainParameters(String backendParamLocation){
-PowerBackendParameterLoader backendParameterLoader = 
-new PowerBackendParameterLoader(
-this.getParameterColumnSeparator()
-);
-this.setDomainParameters(
-backendParameterLoader
-.loadBackendParameters(backendParamLocation)
-);
+    PowerBackendParameterLoader backendParameterLoader = 
+        new PowerBackendParameterLoader(
+        this.getParameterColumnSeparator()
+    );
+    this.setDomainParameters(
+        backendParameterLoader
+        .loadBackendParameters(backendParamLocation)
+    );
 }
 \end{lstlisting}
 
@@ -906,7 +926,7 @@ As an orientation the implementations for power simulations can be consulted in 
 \section{Time Stepping: \TimeAgent }
 
 %--------------------------------------------- Section Communication Agent
-\section{Interdependent Communication: \CommunicationAgent }
+\section{Interdependent Communication: \CommunicationAgent{}}
 
 
 %----------------------------------------------------------------------------------------
@@ -983,13 +1003,6 @@ The \MainAgent{} is the core of every simulation which is not supposed to be cha
 \end{enumerate}
 
 To be precise, these are the only methods of the \MainAgent{} that should be overridden when implementing applications. If your specific application doesn’t seem to fit in this structure, then you maybe didn’t try enough to simplify it, or the current implementation of the \MainAgent{} is not as general as it can be. If this is the case, then you’re welcome to adjust it to your needs and we would be happy to hear about your suggestions and incorporate the changes ourselves.
-
-\subsection{Example: Power\CascadeAgent{}}\index{Agent!Power\CascadeAgent{}}
-This is an example of a more sophisticated application. As can be seen in figure \ref{fig:apps} there are two levels:
-\begin{enumerate}
-	\item Cascade Agent: Implementing a general cascade algorithm with a method that checks the links for overloads (i.e. the flow in the link exceeding its capacity). It implements (overrides) the runFlowAnalysis() method of the SimulationAgent, but also introduces a new method, namely flowConvergenceStrategy() which is an intermediary step before calling the \backend{} to calculate the power flow in the network. This allows a very flexible implementation of different (\domain{} dependent) necessary adjustments. This is exactly what is implemented by the Power Cascade Agent, which brings us to the next point.
-	\item The Power Cascade Agent mainly implements flowConvergenceStrategy() from the Cascade Agent. It first checks if the current island just consists of one isolated node, returning directly non-convergence (i.e. blackout) in this case. Then it checks if there is a generator present in the island, because without power supply the island is also blacked out. Furthermore it tries to improve convergence, i.e. finding a stable solution for the power flowing in the network, by adjusting load and generation. Finally the Power Cascade Agent implements some more measurements, for example the number of islands and isolated nodes and the power demand which cannot be served (load loss).
-\end{enumerate}
 
 \subsection{Measurements}\index{Measurements}
 In the last chapter we touched on the topic of measurements already by looking at how the \BenchmarkAgent{} is implemented. Here we will explore in more detail how one could implement new measurements, either replacing or by reusing the existing ones. 
@@ -1076,8 +1089,6 @@ To summarize one has to do the following steps to implement additional measureme
 	\item In \BenchmarkLogReplayer{} in the methods calculateIterationResults(...) and/or calculateEpochResults(...) add a line to retrieve and compute your measurement and add it to the logger.info(String.format(...)) line and/or add another FileWriter to write it to a file for further processing like the other values.
 \end{enumerate}
 As an example you can look at Power\CascadeAgent{} in the Cascade repository for such an example.
-
-
 
 %----------------------------------------------------------------------------------------
 %	PART APPENDIX
