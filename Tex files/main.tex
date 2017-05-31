@@ -221,7 +221,16 @@ If you want to extend the core functionality to your needs, namely adding new \d
 
 \section{Simulations and measurements}
 \subsection{The graphical user interface}\index{GUI}\index{GUI}
-To be completed (Dinesh).
+Each SimulatedExperiment e.g. PowerFlowAgent.java needs to implement the Runnable Interface and the method run(). The GUI class contains the SimulatedExperiment class. To create new GUI for a new experiment, users can simply instantiate GUI class by passing the SimulatedExperiment class as a parameter to constructor of GUI. 
+
+\paragraph{Network Visualization} SFINANetworkGenerator is implemented as a separate library and incorporated into the GUI to create new networks of edit existing networks. So, to use the GUI, users need to include compiled SFINANetworkGenerator and obviously other usual libraries of SFINA Framework. SFINANetworkGenerator makes use of Jung Graph Library and its examples to create or edit existing networks.
+
+\paragraph{Create new network} To create new network from scratch, users need to specify node and link fields in the beginning as shown in images createNetworkFromScratch.png and specifyNodeAndLinkFieldsForNetworkCreationFromScratch.png. To do this, users need to click on Menu->Edit->Create Network.
+Existing networks can be loaded and edited within the GUI. Menu->Edit->Edit Network
+ 
+\paragraph{Running an experiment with the GUI} Users can modify the configurations for current experiment class by clicking in Menu->Experiment->Configurations. The configurations will be saved to file and used while running the experiment.
+To run a specific experiment, users can either click on Menu->Experiment->Run or  Right Click on the experiment directory seen at the folder tree on side panel and click on Run Experiment pop up menu item. Users can double click on text files on folder tree on side panel to view the information in experiment files. The log of experiment is displayed in “Debug” panel.
+
 
 \subsection{Manual setup}\index{Measurements}\index{Files}\index{Application}\label{sec:Simulation_Measurements}
 If the application one wants to use is already implemented and the goal is to only execute it with own parameters and input data, this section explains how to do so. In this case the algorithm and the types of performed measurements cannot be changed. But still several things can be adjusted in order to run different experiments: The name of the experiment, for how many time steps to run the simulation, the \backend{} to use, any event to be executed at any time and when to reload a network from files or when not to do so. In order to run a simulation, one should follow these steps: 
@@ -568,6 +577,26 @@ During each time step several simulation iterations can be performed, depending 
 \end{figure}
 
 
+%------------------------------------------------
+\section{Protopeer Toolkit (redo, maybe split in part here and appendix)}\index{Protopeer}\label{subsec:protopeer}
+SFINA makes use of the Protopeer Toolkit which was developed at EPFL university Lausanne to provide a framework for peer to peer distributed experiments (\href{http://infoscience.epfl.ch/record/128659/files/protopeer_demo.pdf}{paper}). It provides useful basic functionality like time based events and measurement methods. Another important concept is peers and peerlets, which allow a fully decentralized deployment. A peer is an independent simulation instance, which can communicate over the network with other peers. Every peer can contain several peerlets, which allow to further split up a peer in seperate simulations. % Currently experiments conducted with SFINA initialize just one peer with one peerlet. However this potentially allows for a very flexible use of the SFINA framework in the future.
+%------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------------------
+\chapter{Agents}\index{agent, peerlet}\label{sec:agents}
+%----------------------------------------------------------------------------------------
+The SFINA framework utilizes the protopeer library, which allows through its concepts of peers and peerlets to encapsulate different functionality separatetely. See section \ref{subsec:protopeer} for an introduction to protopeer. Each simulation is configured as a peer (see chapter \ref{ch:introduction} for an example). When creating an experiment, different agents, which implement the Peerlet interface and encapsulate separate functionality, have to be added to the peer. For example when running an experiment with interdependent networks, one can simply configure a different peer for each network. In this case one needs to add a \CommunicationAgent{} and \NegotiatorAgent{} instead of the \TimeAgent{} to the peer.\\
+The following agents have to be added to the peer as peerlets when setting up an experiment (see section \ref{sec:Simulation_Measurements}) In brackets we note in which setup (single/ interdependent network) the agent \textbf{must} be added:
+\begin{enumerate}
+	\item \MainAgent \tabto{4cm} (both)
+	\item \DomainAgent \tabto{4cm} (both)
+	\item \TimeAgent \tabto{4cm} (single network)
+	\item \CommunicationAgent  \tabto{4cm} (interdependent)
+	\item \NegotiatorAgent \tabto{4cm} (interdependent)
+\end{enumerate}
+The different agents allow a SFINA experiment to be set up in a modular way. Hence one can easily extend core functionalities of SFINA (see chapter \ref{ch:core_functionality_extension}) or build new applications on top of the framework (see chapter \ref{ch:new_applications}) through replacing some of the agents. The different agents are explained in more detail in the following.
 
 %----------------------------------------------------------------------------------------
 \section{Process flow of a basic simulation}
@@ -609,34 +638,6 @@ In the following we present the general process flow of a simulation. This is ap
 	\end{itemize}
 \end{enumerate}
 
-%------------------------------------------------
-\section{Protopeer Toolkit (redo, maybe split in part here and appendix)}\index{Protopeer}\label{subsec:protopeer}
-SFINA makes use of the Protopeer Toolkit which was developed at EPFL university Lausanne to provide a framework for peer to peer distributed experiments (\href{http://infoscience.epfl.ch/record/128659/files/protopeer_demo.pdf}{paper}). It provides useful basic functionality like time based events and measurement methods. Another important concept is peers and peerlets, which allow a fully decentralized deployment. A peer is an independent simulation instance, which can communicate over the network with other peers. Every peer can contain several peerlets, which allow to further split up a peer in seperate simulations. % Currently experiments conducted with SFINA initialize just one peer with one peerlet. However this potentially allows for a very flexible use of the SFINA framework in the future.
-%------------------------------------------------
-
-
-
-%----------------------------------------------------------------------------------------
-\chapter{Agents}\index{agent, peerlet}\label{sec:agents}
-%----------------------------------------------------------------------------------------
-The SFINA framework utilizes the protopeer library, which allows through its concepts of peers and peerlets to encapsulate different functionality separatetely. See section \ref{subsec:protopeer} for an introduction to protopeer.
-Each simulation is configured as a peer (see chapter \ref{ch:introduction} for an example). When creating an experiment, different agents, which implement Peerlet interface and encapsulate separate functionality, have to be added to the peer. 
-
-In case of running an experiment with interdependent networks, one can simply configure a different peer for each network. In this case one needs to add a \CommunicationAgent{} and \NegotiatorAgent{} instead of the \TimeAgent{} to the peer.
-
-The following agents have to be added to the peer as peerlets when setting up an experiment (see section \ref{sec:Simulation_Measurements}) In brackets we note in which setup (single/ interdependent network) the agent \textbf{must} be added:
- \\
-\begin{enumerate}
-	\item \MainAgent \tabto{4cm} (both)
-	\item \DomainAgent \tabto{4cm} (both)
-	\item \TimeAgent \tabto{4cm} (single network)
-	\item \CommunicationAgent  \tabto{4cm} (interdependent)
-	\item \NegotiatorAgent \tabto{4cm} (interdependent)
-\end{enumerate}
-
-The different agents allow a SFINA experiment to be set up in a modular way. Hence one can easily extend core functionalities of SFINA (see chapter \ref{ch:core_functionality_extension}) or build new applications on top of the framework (see chapter \ref{ch:new_applications}) through replacing some of the agents.
-
-The different agents are explained in more detail in the following.
 
 \section{Simulation Agent}\index{Agent!Simulation Agent}\label{sec:simu_agent}
 At the heart of any simulation is the simulation agent. Applications extend it and can therefore make use of its functionality (see section on adding applications for more detail). The \mainagent{} takes care of performing several tasks which are necessary for any simulation. These include loading and performing output, executing events and calling key methods at every time step. The time evolution of the simulation agent is illustrated by figure \ref{fig:time_iter}. Itself, it provides only barebone functionality and is extended for enabling more complex simulations, for example the
@@ -646,7 +647,7 @@ At the heart of any simulation is the simulation agent. Applications extend it a
 	\end{enumerate}
 
 \subsubsection{The Active State}\index{Active State}\index{Events}
-The runActiveState() method is the main runtime of the \MainAgent{} (\textbf{compare to passive state?}). After bootstraping, during which the experiment is initialized by loading the configuration files from the experiment folder, the main simulation is orchestrated by the this method. It is executed at every time step automatically and initiates the above mentioned tasks, as depicted in detail in figure \ref{fig:active_state}.
+The runActiveState() method is the main runtime of the \MainAgent{}. After bootstraping, during which the experiment is initialized by loading the configuration files from the experiment folder, the main simulation is orchestrated by the this method. It is executed at every time step automatically and initiates the above mentioned tasks, as depicted in detail in figure \ref{fig:active_state}.
 
 \begin{figure}[!h]
 \centering\includegraphics[width=0.6\textwidth]{active_state.pdf}
