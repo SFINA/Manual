@@ -2,124 +2,123 @@
 \nopagebreak
 \tikz\node at (0pt,0pt) [draw=none,fill=ocre!50,line width=1pt,inner sep=5pt]{\parbox{\linewidth-2\fboxsep-2\fboxrule-2pt}{\centering\large\sffamily\bfseries\textcolor{white}{Symbols}}};\vspace*{0.2cm}\nopagebreak
 
-  \item \Backend{}\dotfill \hyperpage{9}, \hyperpage{24}
+  \item \Backend{}\dotfill \hyperpage{13}, \hyperpage{29}
   \item \Backend{} 
-    \subitem Interface\dotfill \hyperpage{24}
-    \subitem Interpss\dotfill \hyperpage{24}
-    \subitem Matpower\dotfill \hyperpage{24}
-  \item \backend{}\dotfill \hyperpage{28}
-  \item \domain{}\dotfill \hyperpage{28}
+    \subitem Interface\dotfill \hyperpage{29}
+    \subitem Interpss\dotfill \hyperpage{29}
+    \subitem Matpower\dotfill \hyperpage{29}
+  \item \backend{}\dotfill \hyperpage{8}
+  \item \domain{}\dotfill \hyperpage{8}
 
   \indexspace
 \nopagebreak
 \tikz\node at (0pt,0pt) [draw=none,fill=ocre!50,line width=1pt,inner sep=5pt]{\parbox{\linewidth-2\fboxsep-2\fboxrule-2pt}{\centering\large\sffamily\bfseries\textcolor{white}{A}}};\vspace*{0.2cm}\nopagebreak
 
-  \item Activated\dotfill \hyperpage{13}
-  \item Active State\dotfill \hyperpage{16}
-  \item Agent\dotfill \hyperpage{20}, \hyperpage{29}
-    \subitem \DomainAgent\dotfill \hyperpage{17}
-    \subitem \TimeAgent\dotfill \hyperpage{17}
-    \subitem Power\CascadeAgent{}\dotfill \hyperpage{21}
-    \subitem Simulation Agent\dotfill \hyperpage{15}
-  \item agent, peerlet\dotfill \hyperpage{15}
-  \item Application\dotfill \hyperpage{6}
+  \item Activated\dotfill \hyperpage{17}
+  \item Active State\dotfill \hyperpage{21}
+  \item Agent\dotfill \hyperpage{8}, \hyperpage{33}
+    \subitem \DomainAgent\dotfill \hyperpage{24}
+    \subitem \NegotiatorAgent\dotfill \hyperpage{24}
+    \subitem \TimeAgent\dotfill \hyperpage{23}
+    \subitem Power\CascadeAgent{}\dotfill \hyperpage{12}
+    \subitem Simulation Agent\dotfill \hyperpage{21}
+  \item agent, peerlet\dotfill \hyperpage{20}
+  \item Application\dotfill \hyperpage{10}
 
   \indexspace
 \nopagebreak
 \tikz\node at (0pt,0pt) [draw=none,fill=ocre!50,line width=1pt,inner sep=5pt]{\parbox{\linewidth-2\fboxsep-2\fboxrule-2pt}{\centering\large\sffamily\bfseries\textcolor{white}{C}}};\vspace*{0.2cm}\nopagebreak
 
-  \item Capacity\dotfill \hyperpage{14}
-  \item Connected\dotfill \hyperpage{13}
+  \item Capacity\dotfill \hyperpage{18}
+  \item Communication Agent
+    \subitem  \CommunicationAgent\dotfill \hyperpage{23}
+  \item Connected\dotfill \hyperpage{17}
 
   \indexspace
 \nopagebreak
 \tikz\node at (0pt,0pt) [draw=none,fill=ocre!50,line width=1pt,inner sep=5pt]{\parbox{\linewidth-2\fboxsep-2\fboxrule-2pt}{\centering\large\sffamily\bfseries\textcolor{white}{D}}};\vspace*{0.2cm}\nopagebreak
 
-  \item Domain\dotfill \hyperpage{9}
+  \item Domain\dotfill \hyperpage{13}
 
   \indexspace
 \nopagebreak
 \tikz\node at (0pt,0pt) [draw=none,fill=ocre!50,line width=1pt,inner sep=5pt]{\parbox{\linewidth-2\fboxsep-2\fboxrule-2pt}{\centering\large\sffamily\bfseries\textcolor{white}{E}}};\vspace*{0.2cm}\nopagebreak
 
-  \item Epoch\dotfill \hyperpage{29}
-  \item Event\dotfill \hyperpage{29}
-  \item Events\dotfill \hyperpage{9}, \hyperpage{12}, \hyperpage{16}
+  \item Event\dotfill \hyperpage{8}
+  \item Events\dotfill \hyperpage{13}, \hyperpage{16}, \hyperpage{21}
 
   \indexspace
 \nopagebreak
 \tikz\node at (0pt,0pt) [draw=none,fill=ocre!50,line width=1pt,inner sep=5pt]{\parbox{\linewidth-2\fboxsep-2\fboxrule-2pt}{\centering\large\sffamily\bfseries\textcolor{white}{F}}};\vspace*{0.2cm}\nopagebreak
 
-  \item Files\dotfill \hyperpage{6}, \hyperpage{9}
-    \subitem Configuration files\dotfill \hyperpage{9}
-    \subitem Loading\dotfill \hyperpage{12}
-    \subitem Location\dotfill \hyperpage{9}
-    \subitem Network data\dotfill \hyperpage{11}
-  \item Flow\dotfill \hyperpage{11}, \hyperpage{14}, \hyperpage{28}
-  \item Flow Network\dotfill \hyperpage{13, 14}, \hyperpage{28, 29}
+  \item Files\dotfill \hyperpage{10}, \hyperpage{13}
+    \subitem Configuration files\dotfill \hyperpage{13}
+    \subitem Loading\dotfill \hyperpage{16}
+    \subitem Location\dotfill \hyperpage{13}
+    \subitem Network data\dotfill \hyperpage{15}
+  \item Flow\dotfill \hyperpage{8}, \hyperpage{15}, \hyperpage{18}
+  \item Flow Network\dotfill \hyperpage{7}, \hyperpage{17, 18}, 
+		\hyperpage{38}
 
   \indexspace
 \nopagebreak
 \tikz\node at (0pt,0pt) [draw=none,fill=ocre!50,line width=1pt,inner sep=5pt]{\parbox{\linewidth-2\fboxsep-2\fboxrule-2pt}{\centering\large\sffamily\bfseries\textcolor{white}{G}}};\vspace*{0.2cm}\nopagebreak
 
-  \item GUI\dotfill \hyperpage{6}
+  \item GUI\dotfill \hyperpage{9}
 
   \indexspace
 \nopagebreak
 \tikz\node at (0pt,0pt) [draw=none,fill=ocre!50,line width=1pt,inner sep=5pt]{\parbox{\linewidth-2\fboxsep-2\fboxrule-2pt}{\centering\large\sffamily\bfseries\textcolor{white}{I}}};\vspace*{0.2cm}\nopagebreak
 
-  \item Install\dotfill \hyperpage{5}
-    \subitem From compiled code\dotfill \hyperpage{5}
-    \subitem From source\dotfill \hyperpage{6}
-  \item interdependent\dotfill \hyperpage{17}
-  \item Islands\dotfill \hyperpage{13}
-  \item Iteration\dotfill \hyperpage{29}
-  \item Iterations\dotfill \hyperpage{17}
+  \item Install\dotfill \hyperpage{9}
+    \subitem From compiled code\dotfill \hyperpage{9}
+    \subitem From source\dotfill \hyperpage{9}
+  \item interdependent\dotfill \hyperpage{25}
+  \item Islands\dotfill \hyperpage{17}
+  \item Iteration\dotfill \hyperpage{8}
+  \item Iterations\dotfill \hyperpage{19}
 
   \indexspace
 \nopagebreak
 \tikz\node at (0pt,0pt) [draw=none,fill=ocre!50,line width=1pt,inner sep=5pt]{\parbox{\linewidth-2\fboxsep-2\fboxrule-2pt}{\centering\large\sffamily\bfseries\textcolor{white}{L}}};\vspace*{0.2cm}\nopagebreak
 
-  \item Link\dotfill \hyperpage{28}
-  \item Links\dotfill \hyperpage{29}
-  \item Loading\dotfill \hyperpage{12}
+  \item Link\dotfill \hyperpage{8}
+  \item Links\dotfill \hyperpage{38}
+  \item Loading\dotfill \hyperpage{16}
 
   \indexspace
 \nopagebreak
 \tikz\node at (0pt,0pt) [draw=none,fill=ocre!50,line width=1pt,inner sep=5pt]{\parbox{\linewidth-2\fboxsep-2\fboxrule-2pt}{\centering\large\sffamily\bfseries\textcolor{white}{M}}};\vspace*{0.2cm}\nopagebreak
 
-  \item Measurements\dotfill \hyperpage{6}, \hyperpage{21}
-  \item Metrics\dotfill \hyperpage{14}
+  \item Measurements\dotfill \hyperpage{10}, \hyperpage{34}
+  \item measurements\dotfill \hyperpage{8}
+  \item Metrics\dotfill \hyperpage{18}
 
   \indexspace
 \nopagebreak
 \tikz\node at (0pt,0pt) [draw=none,fill=ocre!50,line width=1pt,inner sep=5pt]{\parbox{\linewidth-2\fboxsep-2\fboxrule-2pt}{\centering\large\sffamily\bfseries\textcolor{white}{N}}};\vspace*{0.2cm}\nopagebreak
 
-  \item Node\dotfill \hyperpage{28}
-  \item Nodes\dotfill \hyperpage{29}
-
-  \indexspace
-\nopagebreak
-\tikz\node at (0pt,0pt) [draw=none,fill=ocre!50,line width=1pt,inner sep=5pt]{\parbox{\linewidth-2\fboxsep-2\fboxrule-2pt}{\centering\large\sffamily\bfseries\textcolor{white}{O}}};\vspace*{0.2cm}\nopagebreak
-
-  \item Output\dotfill \hyperpage{17}
+  \item Node\dotfill \hyperpage{7}
+  \item Nodes\dotfill \hyperpage{38}
 
   \indexspace
 \nopagebreak
 \tikz\node at (0pt,0pt) [draw=none,fill=ocre!50,line width=1pt,inner sep=5pt]{\parbox{\linewidth-2\fboxsep-2\fboxrule-2pt}{\centering\large\sffamily\bfseries\textcolor{white}{P}}};\vspace*{0.2cm}\nopagebreak
 
-  \item Protopeer\dotfill \hyperpage{17}
+  \item Protopeer\dotfill \hyperpage{19}
 
   \indexspace
 \nopagebreak
 \tikz\node at (0pt,0pt) [draw=none,fill=ocre!50,line width=1pt,inner sep=5pt]{\parbox{\linewidth-2\fboxsep-2\fboxrule-2pt}{\centering\large\sffamily\bfseries\textcolor{white}{S}}};\vspace*{0.2cm}\nopagebreak
 
-  \item simulation time\dotfill \hyperpage{29}
+  \item Simulation Time\dotfill \hyperpage{8}
 
   \indexspace
 \nopagebreak
 \tikz\node at (0pt,0pt) [draw=none,fill=ocre!50,line width=1pt,inner sep=5pt]{\parbox{\linewidth-2\fboxsep-2\fboxrule-2pt}{\centering\large\sffamily\bfseries\textcolor{white}{T}}};\vspace*{0.2cm}\nopagebreak
 
-  \item Time\dotfill \hyperpage{29}
-  \item Topology\dotfill \hyperpage{11}, \hyperpage{28}
+  \item Time\dotfill \hyperpage{8}
+  \item time\dotfill \hyperpage{19}
+  \item Topology\dotfill \hyperpage{8}, \hyperpage{15}
 
 \end{theindex}

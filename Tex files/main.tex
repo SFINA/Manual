@@ -121,6 +121,9 @@
 
 \tableofcontents % Print the table of contents itself
 
+% showing todo marks in text -> remove later
+\listoftodos
+
 \clearpage % Forces the first chapter to start on an odd page so it's on the right
 
 \pagestyle{fancy} % Print headers again
@@ -181,17 +184,14 @@ A change in the flow network, or its nodes/links respectively.
 \paragraph{agent}\index{Agent}
 Implementation of SFINA functionality and its applications.
 
-\paragraph{time step}\index{Time}
-Implementation of SFINA functionality and its applications.
-
-\paragraph{simulation time}\index{simulation time}
-...
-
-\paragraph{epoch}\index{Epoch}
-...
+\paragraph{time step}\index{Time}\index{Simulation Time}
+Discrete time steps of the simulation, which has to be a predefined number, i.e. cannot be determined during runtime. At the beginning of a time step input data is loaded if it is provided. At the end of each time step the measurement data generated in this time step is written to a log file for later processing. A time step can contain a dynamic number of sub-simulation-steps called iterations. Synonyms: Epoch, Simulation Time.
 
 \paragraph{iteration}\index{Iteration}
-...
+Divides the time step into smaller entities, encapsulating the smallest possible simulation steps being measured. At the beginning of each iteration events in the queue for the current time step are executed. At the end of each iteration measurement metrics are saved and the network data at the current state is written to the output files. The number of iterations is determined during runtime: If there are pending events scheduled for the current time step (e.g. generated during the current iteration), then another iteration is triggered.
+
+\paragraph{measurements}\index{measurements}
+The functionality to save measurement data to a log file for later processing. Measurements are implemented in the \BenchmarkAgent{} in the Flow Monitor repository and save several important metrics for each iteration and time step. At the end of each time step, they are written to a log file in the peerlets-log directory. This log file can be loaded after the simulation for further calculations and processing. This is implemented in the BenchmarkLogReplayer class in the Flow Monitor repository, which complements the \BenchmarkAgent{}.
 
 
 \section{Install and setup}\index{Install}
@@ -220,17 +220,40 @@ If you want to extend the core functionality to your needs, namely adding new \d
 \end{enumerate}
 
 \section{Simulations and measurements}
-\subsection{The graphical user interface}\index{GUI}\index{GUI}
-Each SimulatedExperiment e.g. PowerFlowAgent.java needs to implement the Runnable Interface and the method run(). The GUI class contains the SimulatedExperiment class. To create new GUI for a new experiment, users can simply instantiate GUI class by passing the SimulatedExperiment class as a parameter to constructor of GUI. 
+\subsection{The graphical user interface}\label{sec:GUI}\index{GUI}
+SFINA GUI \ref{fig:GUI} offers users easy to use platform to run pre-existing experiment classes, select and run different networks for specific experiment classes, edit existing networks or create new networks, edit events or backend parameters. 
 
-\paragraph{Network Visualization} SFINANetworkGenerator is implemented as a separate library and incorporated into the GUI to create new networks of edit existing networks. So, to use the GUI, users need to include compiled SFINANetworkGenerator and obviously other usual libraries of SFINA Framework. SFINANetworkGenerator makes use of Jung Graph Library and its examples to create or edit existing networks.
+\paragraph{Running an experiment with the GUI} To use the GUI for a new experiment class (e.g. experiment.java), one needs to instantiate the GUI class and pass the experiment class to the constructor:
+\begin{lstlisting}[frame=single] 
+experiment exp;
+GUI(exp);
+GUI.run();
+\end{lstlisting}
 
-\paragraph{Create new network} To create new network from scratch, users need to specify node and link fields in the beginning as shown in images createNetworkFromScratch.png and specifyNodeAndLinkFieldsForNetworkCreationFromScratch.png. To do this, users need to click on Menu->Edit->Create Network.
-Existing networks can be loaded and edited within the GUI. Menu->Edit->Edit Network
- 
-\paragraph{Running an experiment with the GUI} Users can modify the configurations for current experiment class by clicking in Menu->Experiment->Configurations. The configurations will be saved to file and used while running the experiment.
-To run a specific experiment, users can either click on Menu->Experiment->Run or  Right Click on the experiment directory seen at the folder tree on side panel and click on Run Experiment pop up menu item. Users can double click on text files on folder tree on side panel to view the information in experiment files. The log of experiment is displayed in “Debug” panel.
+When running the GUI class, the network/experiment files existing in the experiments/ folder of the root directory will show up on the side panel. When clicking on \textit{Experiment} -> \textit{Run}, directly, the default (if any) network/experiment files will be used. One can right click on specific folders on the side panel and click \textit{Run} to run the experiment class with specific experiment/network files. Before running the experiment, one can also add events, edit backend parameters etc.
 
+\paragraph{Create new network} To create new network from scratch, users need to specify node and link fields in the beginning as shown in images \ref{fig:GUIcreate1} and \ref{fig:GUIcreate2}. To do this, users need to click on \textit{Menu} -> \textit{Edit} -> \textit{Create Network}. It will be saved in the user specified location and will show in side panel after being saved. \\
+Existing networks can be loaded and edited within the GUI: \textit{Menu} -> \textit{Edit} -> \textit{Edit Network}.
+
+\paragraph{Network Visualization} SFINANetworkGenerator is implemented as a separate library and incorporated into the GUI to visualize new networks or edit existing networks. So, to use the GUI, one needs to include the compiled SFINANetworkGenerator and obviously other usual libraries of SFINA Framework. SFINANetworkGenerator makes use of Jung Graph Library and its examples to create or edit existing networks.
+
+\begin{figure}[h]
+\centering
+\begin{subfigure}[t]{0.9\columnwidth}
+	\includegraphics[width=\columnwidth]{GUI/differentFeaturesOfTheGUIVisibleAtOnce.png}
+	\caption{}\label{fig:GUI}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.45\columnwidth}
+	\includegraphics[width=\columnwidth]{GUI/createNetworkFromScratch.png}
+	\caption{}\label{fig:GUIcreate1}
+\end{subfigure}
+\begin{subfigure}[t]{0.45\columnwidth}
+	\includegraphics[width=\columnwidth]{GUI/specifyNodeAndLinkFieldsForNetworkCreationFromScratch.png}
+	\caption{}\label{fig:GUIcreate2}
+\end{subfigure}
+\caption{The graphical user interface (a) and how to use it to create a new network (b,c).}
+\end{figure}
 
 \subsection{Manual setup}\index{Measurements}\index{Files}\index{Application}\label{sec:Simulation_Measurements}
 If the application one wants to use is already implemented and the goal is to only execute it with own parameters and input data, this section explains how to do so. In this case the algorithm and the types of performed measurements cannot be changed. But still several things can be adjusted in order to run different experiments: The name of the experiment, for how many time steps to run the simulation, the \backend{} to use, any event to be executed at any time and when to reload a network from files or when not to do so. In order to run a simulation, one should follow these steps: 
@@ -335,11 +358,12 @@ This is an example of a more sophisticated application. As can be seen in figure
 	\item The Power Cascade Agent mainly implements flowConvergenceStrategy() from the Cascade Agent. It first checks if the current island just consists of one isolated node, returning directly non-convergence (i.e. blackout) in this case. Then it checks if there is a generator present in the island, because without power supply the island is also blacked out. Furthermore it tries to improve convergence, i.e. finding a stable solution for the power flowing in the network, by adjusting load and generation. Finally the Power Cascade Agent implements some more measurements, for example the number of islands and isolated nodes and the power demand which cannot be served (load loss).
 \end{enumerate}
 
-\subsection{Disaster spreading in complex networks}
-to be completed
-
 \subsection{Smart transformers for mitigation of cascading failures}
-to be completed
+For preventing cascading failures in power grids smart transformers can be used \todo{paper reference smart trafo}. This is implemented in the PowerMitigationAgent which extends the PowerCascadeAgent and introduces these smart transformers into the network. It overrides mitigateOverload() method defined in PowerCascadeAgent (see above), where it adds the sensitivity factors of each transformer, initial flow of each link (in percent) and initial angle to some links, which are defined to be transformers by the input files. The optimization problems presented in above mentioned paper are modeled and solved with the Gurobi Java API and Gurobi 6.5.2, respectively. 
+
+\subsection{Disaster spreading in complex networks}
+\todo{disaster spread description missing}
+
 
 %----------------------------------------------------------------------------------------
 %	CHAPTER ARCHITECTURE
@@ -579,7 +603,7 @@ During each time step several simulation iterations can be performed, depending 
 
 %------------------------------------------------
 \section{Protopeer Toolkit (redo, maybe split in part here and appendix)}\index{Protopeer}\label{subsec:protopeer}
-SFINA makes use of the Protopeer Toolkit which was developed at EPFL university Lausanne to provide a framework for peer to peer distributed experiments (\href{http://infoscience.epfl.ch/record/128659/files/protopeer_demo.pdf}{paper}). It provides useful basic functionality like time based events and measurement methods. Another important concept is peers and peerlets, which allow a fully decentralized deployment. A peer is an independent simulation instance, which can communicate over the network with other peers. Every peer can contain several peerlets, which allow to further split up a peer in seperate simulations. % Currently experiments conducted with SFINA initialize just one peer with one peerlet. However this potentially allows for a very flexible use of the SFINA framework in the future.
+\todo{work over protopeer section}SFINA makes use of the Protopeer Toolkit which was developed at EPFL university Lausanne to provide a framework for peer to peer distributed experiments (\href{http://infoscience.epfl.ch/record/128659/files/protopeer_demo.pdf}{paper}). It provides useful basic functionality like time based events and measurement methods. Another important concept is peers and peerlets, which allow a fully decentralized deployment. A peer is an independent simulation instance, which can communicate over the network with other peers. Every peer can contain several peerlets, which allow to further split up a peer in seperate simulations. % Currently experiments conducted with SFINA initialize just one peer with one peerlet. However this potentially allows for a very flexible use of the SFINA framework in the future.
 %------------------------------------------------
 
 
@@ -600,9 +624,7 @@ The different agents allow a SFINA experiment to be set up in a modular way. Hen
 
 %----------------------------------------------------------------------------------------
 \section{Process flow of a basic simulation}
-\textbf{- Best would be to provide a graphic.}
-
-In the following we present the general process flow of a simulation. This is applies to the interdependent and non-interdependent case.
+\todo{Best would be to provide a graphic about the process flow}In the following we present the general process flow of a simulation. This is applies to the interdependent and non-interdependent case.
 \begin{enumerate}
 	\item Initialization:
 	\begin{itemize}
@@ -745,7 +767,7 @@ Provides the simulation of a distribution of flows in the network for given inpu
 
 %------------------------------------------------
 \section{\NegotiatorAgent}\index{Agent!\NegotiatorAgent}\label{sec:negotiator_agent}
-Responsible to resolve event conflicts in interdependent network simulations.
+Responsible to resolve event conflicts in interdependent network simulations: If an interdependent link tries to change the same property of a specific link or node, then the negotiator decides how to reconcile them.
 
 
 %----------------------------------------------------------------------------------------
@@ -755,7 +777,7 @@ Responsible to resolve event conflicts in interdependent network simulations.
 \chapter{Interdependent Network Simulations}\index{interdependent}\label{sec:interdep}
 In the following we will show how to set up a basic interdependent network simulation and explain the core ingredient in detail, namely the \CommunicationAgent{}.
 \section{The \CommunicationAgent}
-Working progress...
+\todo[inline]{complete communication agent section}
 
 \section{Simulation of an interdependent experiment}
 Equipped with the knowledge of the setup of a single network experiment (see section TBD) and the functioning of the \CommunicationAgent{} it will be easy to understand the setup of an interdependent network experiment. 
@@ -874,10 +896,10 @@ Every node and link has two general fields capacity and flow, which provide an a
 \begin{lstlisting}[frame=single]
 @Override
 public void setFlowParameters(FlowNetwork flowNetwork){
-flowNetwork.setLinkFlowType(PowerLinkState.POWER_FLOW_FROM_REAL);
-flowNetwork.setNodeFlowType(PowerNodeState.VOLTAGE_MAGNITUDE);
-flowNetwork.setLinkCapacityType(PowerLinkState.RATE_C);
-flowNetwork.setNodeCapacityType(PowerNodeState.VOLTAGE_MAX);
+    flowNetwork.setLinkFlowType(PowerLinkState.POWER_FLOW_FROM_REAL);
+    flowNetwork.setNodeFlowType(PowerNodeState.VOLTAGE_MAGNITUDE);
+    flowNetwork.setLinkCapacityType(PowerLinkState.RATE_C);
+    flowNetwork.setNodeCapacityType(PowerNodeState.VOLTAGE_MAX);
 }
 \end{lstlisting}
 
@@ -925,10 +947,11 @@ As an orientation the implementations for power simulations can be consulted in 
 
 %--------------------------------------------- Section TIME AGENT 
 \section{Time Stepping: \TimeAgent }
+\todo[inline]{complete time stepping agent section}
 
 %--------------------------------------------- Section Communication Agent
 \section{Interdependent Communication: \CommunicationAgent{}}
-
+\todo[inline]{complete communication agent section}
 
 %----------------------------------------------------------------------------------------
 %	CHAPTER APPLICATIONS
@@ -939,11 +962,9 @@ As an orientation the implementations for power simulations can be consulted in 
 \chapter{New applications}
 \label{ch:new_applications}
 
-\textit{\textbf{Graphic Needs to be replaced at some point + implement BenchmarkSimulationAgent in a modular way - Use a decorater pattern to allow for runtime additon of benchmark functionality}}
-
 \begin{figure}[!ht]
 \centering\includegraphics[width=0.95\textwidth]{applications.pdf}
-\caption{Architecture of the applications. The ones with dashed solid contours are already implemented, the dashed-contour applications are examples for possible extensions.}
+\caption{Architecture of the applications. The ones with dashed solid contours are already implemented, the dashed-contour applications are examples for possible extensions.\todo[inline]{Graphic Needs to be replaced at some point + implement BenchmarkSimulationAgent in a modular way - Use a decorater pattern to allow for runtime additon of benchmark functionality}}
 \label{fig:apps}
 \end{figure}
 
