@@ -1,16 +1,14 @@
 \defcounter {refsection}{0}\relax 
-\contentsline {todo}{paper reference smart trafo}{13}{section*.19}
+\contentsline {todo}{disaster spread description missing}{13}{section*.19}
 \defcounter {refsection}{0}\relax 
-\contentsline {todo}{disaster spread description missing}{13}{section*.20}
+\contentsline {todo}{work over protopeer section}{20}{section*.29}
 \defcounter {refsection}{0}\relax 
-\contentsline {todo}{work over protopeer section}{20}{section*.30}
+\contentsline {todo}{Best would be to provide a graphic about the process flow}{23}{section*.30}
 \defcounter {refsection}{0}\relax 
-\contentsline {todo}{Best would be to provide a graphic about the process flow}{23}{section*.31}
+\contentsline {todo}{complete communication agent section}{27}{section*.34}
 \defcounter {refsection}{0}\relax 
-\contentsline {todo}{complete communication agent section}{27}{section*.35}
+\contentsline {todo}{complete time stepping agent section}{33}{section*.35}
 \defcounter {refsection}{0}\relax 
-\contentsline {todo}{complete time stepping agent section}{33}{section*.36}
+\contentsline {todo}{complete communication agent section}{33}{section*.36}
 \defcounter {refsection}{0}\relax 
-\contentsline {todo}{complete communication agent section}{33}{section*.37}
-\defcounter {refsection}{0}\relax 
-\contentsline {todo}{Graphic Needs to be replaced at some point + implement BenchmarkSimulationAgent in a modular way - Use a decorater pattern to allow for runtime additon of benchmark functionality}{35}{section*.40}
+\contentsline {todo}{Graphic Needs to be replaced at some point + implement BenchmarkSimulationAgent in a modular way - Use a decorater pattern to allow for runtime additon of benchmark functionality}{35}{section*.39}
