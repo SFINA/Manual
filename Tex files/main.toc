@@ -38,17 +38,19 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.2.2}Using the full source code}{9}{subsection.1.2.2}
 \defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.2.3}Example input case files}{9}{subsection.1.2.3}
+\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.3}Simulations and measurements}{9}{section.1.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.3.1}The graphical user interface}{9}{subsection.1.3.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Running an experiment with the GUI}{9}{section*.15}
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Create new network}{9}{section*.16}
+\contentsline {paragraph}{Create new network}{10}{section*.16}
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Network Visualization}{10}{section*.17}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.3.2}Manual setup}{10}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.2}Manual setup}{11}{subsection.1.3.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.3.3}Measurements}{12}{subsection.1.3.3}
 \defcounter {refsection}{0}\relax 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.5)  1 JUN 2017 21:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.5)  1 JUN 2017 21:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1998,104 +1998,108 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 178.
 
 [8] [9]
-<Pictures/GUI/differentFeaturesOfTheGUIVisibleAtOnce.png, id=364, 1315.91624pt 
+<Pictures/GUI/differentFeaturesOfTheGUIVisibleAtOnce.png, id=367, 1315.91624pt 
 x 800.9925pt>
 File: Pictures/GUI/differentFeaturesOfTheGUIVisibleAtOnce.png Graphic file (typ
 e png)
  <use Pictures/GUI/differentFeaturesOfTheGUIVisibleAtOnce.png>
 Package pdftex.def Info: Pictures/GUI/differentFeaturesOfTheGUIVisibleAtOnce.pn
-g used on input line 243.
+g used on input line 246.
 (pdftex.def)             Requested size: 384.1096pt x 233.79742pt.
 
-<Pictures/GUI/createNetworkFromScratch.png, id=365, 1201.48875pt x 799.98875pt>
+<Pictures/GUI/createNetworkFromScratch.png, id=368, 1201.48875pt x 799.98875pt>
 File: Pictures/GUI/createNetworkFromScratch.png Graphic file (type png)
 <use Pictures/GUI/createNetworkFromScratch.png>
 Package pdftex.def Info: Pictures/GUI/createNetworkFromScratch.png used on inpu
-t line 248.
+t line 251.
 (pdftex.def)             Requested size: 192.0548pt x 127.86653pt.
 
-<Pictures/GUI/specifyNodeAndLinkFieldsForNetworkCreationFromScratch.png, id=366
+<Pictures/GUI/specifyNodeAndLinkFieldsForNetworkCreationFromScratch.png, id=369
 , 1200.485pt x 804.00375pt>
 File: Pictures/GUI/specifyNodeAndLinkFieldsForNetworkCreationFromScratch.png Gr
 aphic file (type png)
 
 <use Pictures/GUI/specifyNodeAndLinkFieldsForNetworkCreationFromScratch.png>
 Package pdftex.def Info: Pictures/GUI/specifyNodeAndLinkFieldsForNetworkCreatio
-nFromScratch.png used on input line 252.
+nFromScratch.png used on input line 255.
 (pdftex.def)             Requested size: 192.0548pt x 128.61868pt.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 262.
+
+Underfull \vbox (badness 5077) has occurred while \output is active []
+
+ [10 <./Pictures/GUI/differentFeaturesOfTheGUIVisibleAtOnce.png> <./Pictures/GU
+I/createNetworkFromScratch.png (PNG copy)> <./Pictures/GUI/specifyNodeAndLinkFi
+eldsForNetworkCreationFromScratch.png>]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 265.
 
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 262.
- [10 <./Pictures/GUI/differentFeaturesOfTheGUIVisibleAtOnce.png> <./Pictures/GU
-I/createNetworkFromScratch.png (PNG copy)> <./Pictures/GUI/specifyNodeAndLinkFi
-eldsForNetworkCreationFromScratch.png>]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 265.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 273.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 276.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 273.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 276.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 278.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 281.
  [11] [12]
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 365.
- [13]
+ine 371.
+
+[13]
 Chapter 2.
 File: Pictures/network2.pdf Graphic file (type pdf)
 <use Pictures/network2.pdf>
-Package pdftex.def Info: Pictures/network2.pdf used on input line 372.
+Package pdftex.def Info: Pictures/network2.pdf used on input line 378.
 (pdftex.def)             Requested size: 597.50787pt x 298.77873pt.
 
-<Pictures/file_system.pdf, id=457, 602.25pt x 451.6875pt>
+<Pictures/file_system.pdf, id=461, 602.25pt x 451.6875pt>
 File: Pictures/file_system.pdf Graphic file (type pdf)
 
 <use Pictures/file_system.pdf>
-Package pdftex.def Info: Pictures/file_system.pdf used on input line 383.
+Package pdftex.def Info: Pictures/file_system.pdf used on input line 389.
 (pdftex.def)             Requested size: 405.45047pt x 304.09708pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Package caption Warning: \label without proper reference on input line 407.
+Package caption Warning: \label without proper reference on input line 413.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Reference `table:params' on page 14 undefined on input line 394.
+LaTeX Warning: Reference `table:params' on page 14 undefined on input line 400.
 
 
 [14
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 403--403
+Underfull \hbox (badness 10000) in paragraph at lines 409--409
 []\T1/ptm/m/n/10.95 (+20) backendParameters.txt
  []
 
 [15 <./Pictures/file_system.pdf>]
-<Pictures/input_files.pdf, id=547, 648.4225pt x 159.59625pt>
+<Pictures/input_files.pdf, id=551, 648.4225pt x 159.59625pt>
 File: Pictures/input_files.pdf Graphic file (type pdf)
 
 <use Pictures/input_files.pdf>
-Package pdftex.def Info: Pictures/input_files.pdf used on input line 429.
+Package pdftex.def Info: Pictures/input_files.pdf used on input line 435.
 (pdftex.def)             Requested size: 418.2537pt x 102.94485pt.
  [16 <./Pictures/input_files.pdf>] [17] [18]
-<Pictures/flow_network.pdf, id=618, 525.965pt x 337.26pt>
+<Pictures/flow_network.pdf, id=622, 525.965pt x 337.26pt>
 File: Pictures/flow_network.pdf Graphic file (type pdf)
 
 <use Pictures/flow_network.pdf>
-Package pdftex.def Info: Pictures/flow_network.pdf used on input line 545.
+Package pdftex.def Info: Pictures/flow_network.pdf used on input line 551.
 (pdftex.def)             Requested size: 405.45047pt x 259.99461pt.
 
-Underfull \hbox (badness 2221) in paragraph at lines 562--562
+Underfull \hbox (badness 2221) in paragraph at lines 568--568
 []|\T1/ptm/m/n/10.95 (+20) Voltage mag-ni-
  []
 
 
-Overfull \hbox (8.67365pt too wide) in paragraph at lines 557--569
+Overfull \hbox (8.67365pt too wide) in paragraph at lines 563--575
  [][] 
  []
 
@@ -2104,33 +2108,33 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [19 <./Pictures/flow_network.pdf>]
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 587.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 593.
 
-Overfull \hbox (5.21304pt too wide) in paragraph at lines 587--588
+Overfull \hbox (5.21304pt too wide) in paragraph at lines 593--594
 [][][][][][][][][][][][][] 
  []
 
-<Pictures/time_iterations.pdf, id=705, 790.955pt x 202.7575pt>
+<Pictures/time_iterations.pdf, id=709, 790.955pt x 202.7575pt>
 File: Pictures/time_iterations.pdf Graphic file (type pdf)
 
 <use Pictures/time_iterations.pdf>
-Package pdftex.def Info: Pictures/time_iterations.pdf used on input line 598.
+Package pdftex.def Info: Pictures/time_iterations.pdf used on input line 604.
 (pdftex.def)             Requested size: 405.45047pt x 103.93709pt.
  [20 <./Pictures/time_iterations.pdf>]
 [21]
 Chapter 3.
 File: Pictures/network2.pdf Graphic file (type pdf)
 <use Pictures/network2.pdf>
-Package pdftex.def Info: Pictures/network2.pdf used on input line 612.
+Package pdftex.def Info: Pictures/network2.pdf used on input line 618.
 (pdftex.def)             Requested size: 597.50787pt x 298.77873pt.
  [22
 
 ]
-<Pictures/active_state.pdf, id=803, 322.20375pt x 392.8005pt>
+<Pictures/active_state.pdf, id=807, 322.20375pt x 392.8005pt>
 File: Pictures/active_state.pdf Graphic file (type pdf)
 
 <use Pictures/active_state.pdf>
-Package pdftex.def Info: Pictures/active_state.pdf used on input line 675.
+Package pdftex.def Info: Pictures/active_state.pdf used on input line 681.
 (pdftex.def)             Requested size: 256.07741pt x 312.19698pt.
 
 
@@ -2145,12 +2149,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [24 <./Pictures/active_state.pdf>]
 LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 719.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 725.
  [25] [26]
 Chapter 4.
 File: Pictures/network2.pdf Graphic file (type pdf)
 <use Pictures/network2.pdf>
-Package pdftex.def Info: Pictures/network2.pdf used on input line 777.
+Package pdftex.def Info: Pictures/network2.pdf used on input line 783.
 (pdftex.def)             Requested size: 597.50787pt x 298.77873pt.
  [27
 
@@ -2160,39 +2164,39 @@ Package pdftex.def Info: Pictures/network2.pdf used on input line 777.
 Chapter 5.
 File: Pictures/network2.pdf Graphic file (type pdf)
 <use Pictures/network2.pdf>
-Package pdftex.def Info: Pictures/network2.pdf used on input line 855.
+Package pdftex.def Info: Pictures/network2.pdf used on input line 861.
 (pdftex.def)             Requested size: 597.50787pt x 298.77873pt.
  [30
 
 ] [31] [32] [33]
 Chapter 6.
-<Pictures/network1.pdf, id=1043, 569.055pt x 284.52798pt>
+<Pictures/network1.pdf, id=1047, 569.055pt x 284.52798pt>
 File: Pictures/network1.pdf Graphic file (type pdf)
 
 <use Pictures/network1.pdf>
-Package pdftex.def Info: Pictures/network1.pdf used on input line 962.
+Package pdftex.def Info: Pictures/network1.pdf used on input line 968.
 (pdftex.def)             Requested size: 597.50787pt x 298.78056pt.
 
-<Pictures/applications.pdf, id=1044, 602.25pt x 451.6875pt>
+<Pictures/applications.pdf, id=1048, 602.25pt x 451.6875pt>
 File: Pictures/applications.pdf Graphic file (type pdf)
 
 <use Pictures/applications.pdf>
-Package pdftex.def Info: Pictures/applications.pdf used on input line 966.
+Package pdftex.def Info: Pictures/applications.pdf used on input line 972.
 (pdftex.def)             Requested size: 405.45047pt x 304.09708pt.
  [34
 
  <./Pictures/network1.pdf>] [35 <./Pictures/applications.pdf>] [36]
-Overfull \hbox (5.21304pt too wide) in paragraph at lines 1040--1041
+Overfull \hbox (5.21304pt too wide) in paragraph at lines 1046--1047
 [][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Package caption Warning: \label without proper reference on input line 1101.
+Package caption Warning: \label without proper reference on input line 1107.
 See the caption package documentation for explanation.
 
 
 LaTeX Warning: Reference `table:measurements' on page 37 undefined on input lin
-e 1075.
+e 1081.
 
 [37] [38] (./main.ptc) [39
 
@@ -2200,20 +2204,20 @@ e 1075.
 Chapter 7.
 File: Pictures/network1.pdf Graphic file (type pdf)
 <use Pictures/network1.pdf>
-Package pdftex.def Info: Pictures/network1.pdf used on input line 1121.
+Package pdftex.def Info: Pictures/network1.pdf used on input line 1127.
 (pdftex.def)             Requested size: 597.50787pt x 298.78056pt.
 
-Overfull \hbox (53.65271pt too wide) in paragraph at lines 1126--1158
+Overfull \hbox (53.65271pt too wide) in paragraph at lines 1132--1164
  [][] 
  []
 
 
-Overfull \hbox (53.65271pt too wide) in paragraph at lines 1164--1188
+Overfull \hbox (53.65271pt too wide) in paragraph at lines 1170--1194
  [][] 
  []
 
 
-Overfull \hbox (53.65271pt too wide) in paragraph at lines 1194--1218
+Overfull \hbox (53.65271pt too wide) in paragraph at lines 1200--1224
  [][] 
  []
 
@@ -2304,11 +2308,11 @@ Overfull \hbox (1.20001pt too wide) in paragraph at lines 118--119
 \tf@ptc=\write9
 \openout9 = `main.ptc'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1232.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1232.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1238.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1238.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1232.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1232.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1238.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1238.
 
 
 LaTeX Warning: There were undefined references.
@@ -2321,9 +2325,9 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 38883 strings out of 493013
- 712125 string characters out of 6133344
- 1269597 words of memory out of 5000000
+ 38884 strings out of 493013
+ 712141 string characters out of 6133344
+ 1262523 words of memory out of 5000000
  41123 multiletter control sequences out of 15000+600000
  118663 words of font info for 286 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2335,10 +2339,10 @@ xlive/2016/texmf-dist/fonts/type1/urw/avantgar/uagd8a.pfb></usr/local/texlive/2
 mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fo
 nts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/
 urw/times/utmri8a.pfb>
-Output written on main.pdf (44 pages, 1402820 bytes).
+Output written on main.pdf (44 pages, 1403403 bytes).
 PDF statistics:
- 1523 PDF objects out of 1728 (max. 8388607)
- 1202 compressed objects within 13 object streams
- 491 named destinations out of 1000 (max. 500000)
+ 1527 PDF objects out of 1728 (max. 8388607)
+ 1205 compressed objects within 13 object streams
+ 492 named destinations out of 1000 (max. 500000)
  62305 words of extra memory for PDF output out of 74296 (max. 10000000)
 

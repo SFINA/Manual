@@ -219,6 +219,9 @@ If you want to extend the core functionality to your needs, namely adding new \d
 	\item Start to adjust it to your needs by following the instructions in the following chapters.
 \end{enumerate}
 
+\subsection{Example input case files}
+The file system is explained in more detail in section \ref{sec:file_system}, however a collection of example input case files can be found in the repository www.github.com/SFINA/InputCaseCollection. They can be used in any of the following examples (of course for the corresponding domain, currently mostly power flow simulations).
+
 \section{Simulations and measurements}
 \subsection{The graphical user interface}\label{sec:GUI}\index{GUI}
 SFINA GUI \ref{fig:GUI} offers users easy to use platform to run pre-existing experiment classes, select and run different networks for specific experiment classes, edit existing networks or create new networks, edit events or backend parameters. 
@@ -348,6 +351,8 @@ All the measurement results are saved to a binary file in peerlets-log/experimen
 
 To see what is going on during the simulation, logging is useful. For this first it is necessary to make sure in conf/log4j.properties the line “log4j.rootLogger=info, I, stdout” isn’t commented out. This will show information during the simulation and also the measurement output in the console and in the file log/info.log. To get a finer grained output, uncomment “log4j.rootLogger=debug, D, stdout” in the same .properties file.
 
+All the measurement classes are in www.github.com/SFINA/Flow-Monitor.
+
 
 \section{Existing Applications}\label{sec:existing_apps}
 
@@ -357,9 +362,10 @@ This is an example of a more sophisticated application. As can be seen in figure
 	\item Cascade Agent: Implementing a general cascade algorithm with a method that checks the links for overloads (i.e. the flow in the link exceeding its capacity). It implements (overrides) the runFlowAnalysis() method of the SimulationAgent, but also introduces a new method, namely flowConvergenceStrategy() which is an intermediary step before calling the \backend{} to calculate the power flow in the network. This allows a very flexible implementation of different (\domain{} dependent) necessary adjustments. This is exactly what is implemented by the Power Cascade Agent, which brings us to the next point.
 	\item The Power Cascade Agent mainly implements flowConvergenceStrategy() from the Cascade Agent. It first checks if the current island just consists of one isolated node, returning directly non-convergence (i.e. blackout) in this case. Then it checks if there is a generator present in the island, because without power supply the island is also blacked out. Furthermore it tries to improve convergence, i.e. finding a stable solution for the power flowing in the network, by adjusting load and generation. Finally the Power Cascade Agent implements some more measurements, for example the number of islands and isolated nodes and the power demand which cannot be served (load loss).
 \end{enumerate}
+The code is in www.github.com/SFINA/Cascade.
 
 \subsection{Smart transformers for mitigation of cascading failures}
-For preventing cascading failures in power grids smart transformers can be used (Pournaras, Espejo-Uribe, \textit{Self-Repairable Smart Grids via Online Coordination of Smart Transformers}, IEEE Transactions on Industrial Informatics, 2016). This is implemented in the PowerMitigationAgent which extends the PowerCascadeAgent and introduces these smart transformers into the network. It overrides mitigateOverload() method defined in PowerCascadeAgent (see above), where it adds the sensitivity factors of each transformer, initial flow of each link (in percent) and initial angle to some links, which are defined to be transformers by the input files. The optimization problems presented in above mentioned paper are modeled and solved with the Gurobi Java API and Gurobi 6.5.2, respectively. 
+For preventing cascading failures in power grids smart transformers can be used (Pournaras, Espejo-Uribe, \textit{Self-Repairable Smart Grids via Online Coordination of Smart Transformers}, IEEE Transactions on Industrial Informatics, 2016). This is implemented in the PowerMitigationAgent which extends the PowerCascadeAgent and introduces these smart transformers into the network. It overrides mitigateOverload() method defined in PowerCascadeAgent (see above), where it adds the sensitivity factors of each transformer, initial flow of each link (in percent) and initial angle to some links, which are defined to be transformers by the input files. The optimization problems presented in above mentioned paper are modeled and solved with the Gurobi Java API and Gurobi 6.5.2, respectively. The code can be found in www.github.com/SFINA/Smart-Transformers.
 
 \subsection{Disaster spreading in complex networks}
 \todo[inline]{disaster spread description missing}
