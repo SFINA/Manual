@@ -368,7 +368,7 @@ The code is in www.github.com/SFINA/Cascade.
 For preventing cascading failures in power grids smart transformers can be used (Pournaras, Espejo-Uribe, \textit{Self-Repairable Smart Grids via Online Coordination of Smart Transformers}, IEEE Transactions on Industrial Informatics, 2016). This is implemented in the PowerMitigationAgent which extends the PowerCascadeAgent and introduces these smart transformers into the network. It overrides mitigateOverload() method defined in PowerCascadeAgent (see above), where it adds the sensitivity factors of each transformer, initial flow of each link (in percent) and initial angle to some links, which are defined to be transformers by the input files. The optimization problems presented in above mentioned paper are modeled and solved with the Gurobi Java API and Gurobi 6.5.2, respectively. The code can be found in www.github.com/SFINA/Smart-Transformers.
 
 \subsection{Disaster spreading in complex networks}
-\todo[inline]{disaster spread description missing}
+DisasterSpreadAgent is another example of application. It implements the spread of disaster in complex networks and the mitigating strategies. DisasterSpreadAgent extends the SimulationAgent. Similar to the above mentioned CascadeAgent, DisasterSpreadAgent overrides the runFlowAnalysis() method where domain specific flowAnalysis() method is called. This class also implements the various mitigation strategies. The code can be found in www.github.com/SFINA/Disaster-Spread.
 
 
 %----------------------------------------------------------------------------------------
