@@ -224,34 +224,32 @@ The file system is explained in more detail in section \ref{sec:file_system}, ho
 
 \section{Simulations and measurements}
 \subsection{The graphical user interface}\label{sec:GUI}\index{GUI}
-SFINA GUI \ref{fig:GUI} offers users easy to use platform to run pre-existing experiment classes, select and run different networks for specific experiment classes, edit existing networks or create new networks, edit events or backend parameters. 
+SFINAGUI \ref{fig:GUI} offers users easy to use platform to run pre-existing experiment classes, select and run different networks for specific experiment classes, edit existing networks or create new networks, edit events or backend parameters. 
 
-\paragraph{Running an experiment with the GUI} To use the GUI for a new experiment class (e.g. experiment.java), one needs to instantiate the GUI class and pass the experiment class to the constructor:
+\paragraph{Running an experiment with the SFINAGUI} To use the SFINAGUI, the experiment class should implement the SFINAGUIExperiment interface. SFINAGUIExperiment extends the standard runnable interface with setExperimentConfigurations() and getExperimentConfigurations() methods. To use the SFINAGUI, one needs to only instantiate the SFINAGUI with two constructor arguments: experiment class and a boolean to indicate if the experiment is for InterdependentNetworks.
 \begin{lstlisting}[frame=single] 
-experiment exp;
-GUI(exp);
-GUI.run();
+TestCommunicationAgent_TokenGUI e = new TestCommunicationAgent_TokenGUI();
+new SFINAGUI(e,false).setVisible(true);
 \end{lstlisting}
+When running the GUI class, the network/experiment files existing in the experiments/ folder of the root directory will show up on the side panel. When clicking on \textit{Experiment} -> \textit{Run}, directly, the default (if any) network/experiment files specified in the experiment class will be used. One can right click on specific folders on the side panel and click \textit{Run} to run the experiment class with selected experiment/network files. Before running the experiment, one can also add events, edit backend parameters etc.
 
-When running the GUI class, the network/experiment files existing in the experiments/ folder of the root directory will show up on the side panel. When clicking on \textit{Experiment} -> \textit{Run}, directly, the default (if any) network/experiment files will be used. One can right click on specific folders on the side panel and click \textit{Run} to run the experiment class with specific experiment/network files. Before running the experiment, one can also add events, edit backend parameters etc.
-
-\paragraph{Create new network} To create new network from scratch, users need to specify node and link fields in the beginning as shown in images \ref{fig:GUIcreate1} and \ref{fig:GUIcreate2}. To do this, users need to click on \textit{Menu} -> \textit{Edit} -> \textit{Create Network}. It will be saved in the user specified location and will show in side panel after being saved. \\
+\paragraph{Create new network} In current version, this is available only for non-interdependent networks. To create new network from scratch, users need to specify node and link fields in the beginning as shown in images \ref{fig:GUIcreate1} and \ref{fig:GUIcreate2}. To do this, users need to click on \textit{Menu} -> \textit{Edit} -> \textit{Create Network}. It will be saved in the user specified location and will show in side panel after being saved. \\
 Existing networks can be loaded and edited within the GUI: \textit{Menu} -> \textit{Edit} -> \textit{Edit Network}.
 
-\paragraph{Network Visualization} SFINANetworkGenerator is implemented as a separate library and incorporated into the GUI to visualize new networks or edit existing networks. So, to use the GUI, one needs to include the compiled SFINANetworkGenerator and obviously other usual libraries of SFINA Framework. SFINANetworkGenerator makes use of Jung Graph Library and its examples to create or edit existing networks.
+\paragraph{Network Visualization} SFINAGUI is implemented as a separate library and can be used to visually create new networks or edit existing networks. To use the SFINAGUI, one needs to include the standard SFINA libraries and dependencies and additionally Jung Graph Library, Commons IO and Collections Library. SFINAGUI makes use of Jung Graph Library and its examples to create or edit existing networks.
 
 \begin{figure}[h]
 \centering
-\begin{subfigure}[t]{0.9\columnwidth}
+\begin{subfigure}[t]{0.8\columnwidth}
 	\includegraphics[width=\columnwidth]{GUI/differentFeaturesOfTheGUIVisibleAtOnce.png}
 	\caption{}\label{fig:GUI}
 \end{subfigure}
 
-\begin{subfigure}[t]{0.45\columnwidth}
+\begin{subfigure}[t]{0.4\columnwidth}
 	\includegraphics[width=\columnwidth]{GUI/createNetworkFromScratch.png}
 	\caption{}\label{fig:GUIcreate1}
 \end{subfigure}
-\begin{subfigure}[t]{0.45\columnwidth}
+\begin{subfigure}[t]{0.4\columnwidth}
 	\includegraphics[width=\columnwidth]{GUI/specifyNodeAndLinkFieldsForNetworkCreationFromScratch.png}
 	\caption{}\label{fig:GUIcreate2}
 \end{subfigure}
@@ -277,7 +275,8 @@ If the application one wants to use is already implemented and the goal is to on
 	\end{lstlisting}
 	\item  Create a new class (e.g. testExperiment.java to run the Power\CascadeAgent{}.java application) in the following way:
 \end{itemize}
-	\begin{lstlisting}[frame=single] 
+
+\begin{lstlisting}[frame=single][h]
 import application.PowerCascadeAgent;
 import applications.BenchmarkLogReplayer;
 import protopeer.Experiment;
