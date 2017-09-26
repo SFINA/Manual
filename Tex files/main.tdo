@@ -1,12 +1,12 @@
 \defcounter {refsection}{0}\relax 
-\contentsline {todo}{work over protopeer section}{20}{section*.28}
+\contentsline {todo}{work over protopeer section}{25}{section*.47}
 \defcounter {refsection}{0}\relax 
-\contentsline {todo}{Best would be to provide a graphic about the process flow}{23}{section*.29}
+\contentsline {todo}{Best would be to provide a graphic about the process flow}{27}{section*.48}
 \defcounter {refsection}{0}\relax 
-\contentsline {todo}{complete communication agent section}{27}{section*.33}
+\contentsline {todo}{complete communication agent section}{31}{section*.52}
 \defcounter {refsection}{0}\relax 
-\contentsline {todo}{complete time stepping agent section}{33}{section*.34}
+\contentsline {todo}{complete time stepping agent section}{37}{section*.53}
 \defcounter {refsection}{0}\relax 
-\contentsline {todo}{complete communication agent section}{33}{section*.35}
+\contentsline {todo}{complete communication agent section}{37}{section*.54}
 \defcounter {refsection}{0}\relax 
-\contentsline {todo}{Graphic Needs to be replaced at some point + implement BenchmarkSimulationAgent in a modular way - Use a decorater pattern to allow for runtime additon of benchmark functionality}{35}{section*.38}
+\contentsline {todo}{Graphic Needs to be replaced at some point + implement BenchmarkSimulationAgent in a modular way - Use a decorater pattern to allow for runtime additon of benchmark functionality}{39}{section*.57}
