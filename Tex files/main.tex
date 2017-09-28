@@ -229,7 +229,7 @@ SFINAGUI \ref{fig:GUI} offers users easy to use platform to run pre-existing exp
 \paragraph{Creating an interactive experiment}
 To use the SFINAGUI interactively, the experiment class should implement the SFINAGUIExperiment interface. SFINAGUIExperiment extends the standard runnable interface with setExperimentConfigurations() and getExperimentConfigurations() methods. To use the SFINAGUI, one needs to only instantiate the SFINAGUI with two constructor arguments: an experiment class (that implements SFINAGUIExperiment) and a boolean to indicate if the experiment is for InterdependentNetworks.
 \begin{lstlisting}[frame=single] 
-TestCommunicationAgent_TokenGUI e = new TestCommunicationAgent_TokenGUI();
+TestSFINAGUIExperiment e = new TestSFINAGUIExperiment();
 new SFINAGUI(e,false).setVisible(true);
 \end{lstlisting}
 

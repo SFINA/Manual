@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  5 SEP 2017 14:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  28 SEP 2017 11:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1966,12 +1966,7 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
 [8]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 232.
-
-Overfull \hbox (17.21317pt too wide) in paragraph at lines 232--233
-[][][][][][][][][][][][][] 
- []
-
-<Pictures/GUI/sideBar.png, id=342, 225.84375pt x 198.7425pt>
+ <Pictures/GUI/sideBar.png, id=342, 225.84375pt x 198.7425pt>
 File: Pictures/GUI/sideBar.png Graphic file (type png)
 
 <use Pictures/GUI/sideBar.png>
@@ -1992,13 +1987,13 @@ File: Pictures/GUI/menuConfig.png Graphic file (type png)
 Package pdftex.def Info: Pictures/GUI/menuConfig.png used on input line 254.
 (pdftex.def)             Requested size: 128.0387pt x 66.29012pt.
 
-<Pictures/GUI/experimentConfigurations.png, id=368, 441.65pt x 352.31625pt>
+<Pictures/GUI/experimentConfigurations.png, id=368, 580.1675pt x 356.33125pt>
 File: Pictures/GUI/experimentConfigurations.png Graphic file (type png)
 
 <use Pictures/GUI/experimentConfigurations.png>
 Package pdftex.def Info: Pictures/GUI/experimentConfigurations.png used on inpu
 t line 261.
-(pdftex.def)             Requested size: 170.71393pt x 136.18245pt.
+(pdftex.def)             Requested size: 170.71393pt x 104.85037pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -2019,24 +2014,24 @@ Package pdftex.def Info: Pictures/GUI/menuCreatenetwork.png used on input line
 277.
 (pdftex.def)             Requested size: 128.0387pt x 72.58348pt.
 
-<Pictures/GUI/enterNodeFields.png, id=385, 351.3125pt x 302.12875pt>
+<Pictures/GUI/enterNodeFields.png, id=385, 447.6725pt x 309.155pt>
 File: Pictures/GUI/enterNodeFields.png Graphic file (type png)
 
 <use Pictures/GUI/enterNodeFields.png>
 Package pdftex.def Info: Pictures/GUI/enterNodeFields.png used on input line 28
 5.
-(pdftex.def)             Requested size: 128.0387pt x 110.11702pt.
- [11 <./Pictures/GUI/experimentConfigurations.png> <./Pictures/GUI/runMenu.png>
- <./Pictures/GUI/menuCreatenetwork.png> <./Pictures/GUI/enterNodeFields.png>]
-<Pictures/GUI/networkCreation.png, id=399, 1194.4625pt x 800.9925pt>
+(pdftex.def)             Requested size: 128.0387pt x 88.42142pt.
+
+<Pictures/GUI/networkCreation.png, id=387, 1194.4625pt x 800.9925pt>
 File: Pictures/GUI/networkCreation.png Graphic file (type png)
 
 <use Pictures/GUI/networkCreation.png>
 Package pdftex.def Info: Pictures/GUI/networkCreation.png used on input line 29
 3.
 (pdftex.def)             Requested size: 341.43437pt x 228.95744pt.
-
-<Pictures/GUI/exportNetwork.png, id=401, 245.91875pt x 97.36375pt>
+ [11 <./Pictures/GUI/experimentConfigurations.png> <./Pictures/GUI/runMenu.png>
+ <./Pictures/GUI/menuCreatenetwork.png> <./Pictures/GUI/enterNodeFields.png>]
+<Pictures/GUI/exportNetwork.png, id=400, 245.91875pt x 97.36375pt>
 File: Pictures/GUI/exportNetwork.png Graphic file (type png)
 
 <use Pictures/GUI/exportNetwork.png>
@@ -2044,7 +2039,7 @@ Package pdftex.def Info: Pictures/GUI/exportNetwork.png used on input line 301.
 
 (pdftex.def)             Requested size: 128.0387pt x 50.6948pt.
 
-<Pictures/GUI/addEventsMenu.png, id=403, 334.24875pt x 167.62625pt>
+<Pictures/GUI/addEventsMenu.png, id=402, 334.24875pt x 167.62625pt>
 File: Pictures/GUI/addEventsMenu.png Graphic file (type png)
 
 <use Pictures/GUI/addEventsMenu.png>
@@ -2052,23 +2047,25 @@ Package pdftex.def Info: Pictures/GUI/addEventsMenu.png used on input line 313.
 
 (pdftex.def)             Requested size: 128.0387pt x 64.21274pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [12 <./Pictures/GUI/networkCreation.png> <./Pictures/GUI/exportNetwork.png>]
-<Pictures/GUI/selectPeer.png, id=416, 621.32124pt x 174.6525pt>
+<Pictures/GUI/selectPeer.png, id=404, 621.32124pt x 174.6525pt>
 File: Pictures/GUI/selectPeer.png Graphic file (type png)
 
 <use Pictures/GUI/selectPeer.png>
 Package pdftex.def Info: Pictures/GUI/selectPeer.png used on input line 319.
 (pdftex.def)             Requested size: 213.39568pt x 59.98334pt.
 
-<Pictures/GUI/addEvents.png, id=418, 275.0275pt x 366.36874pt>
+<Pictures/GUI/addEvents.png, id=406, 350.30875pt x 373.395pt>
 File: Pictures/GUI/addEvents.png Graphic file (type png)
 
 <use Pictures/GUI/addEvents.png>
 Package pdftex.def Info: Pictures/GUI/addEvents.png used on input line 325.
-(pdftex.def)             Requested size: 128.0387pt x 170.56654pt.
+(pdftex.def)             Requested size: 128.0387pt x 136.47891pt.
 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[12 <./Pictures/GUI/networkCreation.png> <./Pictures/GUI/exportNetwork.png> <./
+Pictures/GUI/addEventsMenu.png>]
 <Pictures/GUI/editBackendParametersMenu.png, id=420, 310.15875pt x 183.68625pt>
 File: Pictures/GUI/editBackendParametersMenu.png Graphic file (type png)
 <use Pictures/GUI/editBackendParametersMenu.png>
@@ -2076,30 +2073,31 @@ Package pdftex.def Info: Pictures/GUI/editBackendParametersMenu.png used on inp
 ut line 332.
 (pdftex.def)             Requested size: 128.0387pt x 75.82755pt.
 
-<Pictures/GUI/editBackendParameters.png, id=421, 441.65pt x 352.31625pt>
+<Pictures/GUI/editBackendParameters.png, id=421, 577.15625pt x 362.35374pt>
 File: Pictures/GUI/editBackendParameters.png Graphic file (type png)
 
 <use Pictures/GUI/editBackendParameters.png>
 Package pdftex.def Info: Pictures/GUI/editBackendParameters.png used on input l
 ine 338.
-(pdftex.def)             Requested size: 128.0387pt x 102.13683pt.
- [13 <./Pictures/GUI/addEventsMenu.png> <./Pictures/GUI/selectPeer.png> <./Pict
-ures/GUI/addEvents.png> <./Pictures/GUI/editBackendParametersMenu.png>]
-<Pictures/GUI/fileSysConfigMenu.png, id=435, 309.155pt x 152.57pt>
+(pdftex.def)             Requested size: 128.0387pt x 80.38708pt.
+
+<Pictures/GUI/fileSysConfigMenu.png, id=423, 309.155pt x 152.57pt>
 File: Pictures/GUI/fileSysConfigMenu.png Graphic file (type png)
 
 <use Pictures/GUI/fileSysConfigMenu.png>
 Package pdftex.def Info: Pictures/GUI/fileSysConfigMenu.png used on input line 
 347.
 (pdftex.def)             Requested size: 128.0387pt x 63.18965pt.
+ [13 <./Pictures/GUI/selectPeer.png> <./Pictures/GUI/addEvents.png> <./Pictures
+/GUI/editBackendParametersMenu.png> <./Pictures/GUI/editBackendParameters.png>]
 
-<Pictures/GUI/fileSysConfig.png, id=436, 441.65pt x 352.31625pt>
+<Pictures/GUI/fileSysConfig.png, id=436, 620.3175pt x 357.335pt>
 File: Pictures/GUI/fileSysConfig.png Graphic file (type png)
 
 <use Pictures/GUI/fileSysConfig.png>
 Package pdftex.def Info: Pictures/GUI/fileSysConfig.png used on input line 355.
 
-(pdftex.def)             Requested size: 170.71393pt x 136.18245pt.
+(pdftex.def)             Requested size: 170.71393pt x 98.33557pt.
 
 <Pictures/GUI/differentFeaturesOfTheGUIVisibleAtOnce.png, id=437, 1315.91624pt 
 x 800.9925pt>
@@ -2129,8 +2127,7 @@ nFromScratch.png used on input line 373.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [14 <./Pictures/GUI/editBackendParameters.png> <./Pictures/GUI/fileSysConfigMe
-nu.png> <./Pictures/GUI/fileSysConfig.png>]
+ [14 <./Pictures/GUI/fileSysConfigMenu.png> <./Pictures/GUI/fileSysConfig.png>]
 LaTeX Font Info:    Try loading font information for OMS+ptm on input line 383.
 
 
@@ -2157,7 +2154,7 @@ File: Pictures/network2.pdf Graphic file (type pdf)
 Package pdftex.def Info: Pictures/network2.pdf used on input line 497.
 (pdftex.def)             Requested size: 597.50787pt x 298.77873pt.
 
-<Pictures/file_system.pdf, id=540, 602.25pt x 451.6875pt>
+<Pictures/file_system.pdf, id=535, 602.25pt x 451.6875pt>
 File: Pictures/file_system.pdf Graphic file (type pdf)
 
 <use Pictures/file_system.pdf>
@@ -2186,7 +2183,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 528--528
 Underfull \vbox (badness 1448) has occurred while \output is active []
 
  [20 <./Pictures/file_system.pdf>]
-<Pictures/input_files.pdf, id=631, 648.4225pt x 159.59625pt>
+<Pictures/input_files.pdf, id=626, 648.4225pt x 159.59625pt>
 File: Pictures/input_files.pdf Graphic file (type pdf)
 
 <use Pictures/input_files.pdf>
@@ -2196,7 +2193,7 @@ Package pdftex.def Info: Pictures/input_files.pdf used on input line 554.
 Underfull \vbox (badness 3128) has occurred while \output is active []
 
  [21 <./Pictures/input_files.pdf>] [22]
-<Pictures/flow_network.pdf, id=674, 525.965pt x 337.26pt>
+<Pictures/flow_network.pdf, id=669, 525.965pt x 337.26pt>
 File: Pictures/flow_network.pdf Graphic file (type pdf)
 
 <use Pictures/flow_network.pdf>
@@ -2224,7 +2221,7 @@ Overfull \hbox (5.21304pt too wide) in paragraph at lines 712--713
 [][][][][][][][][][][][][] 
  []
 
-<Pictures/time_iterations.pdf, id=787, 790.955pt x 202.7575pt>
+<Pictures/time_iterations.pdf, id=782, 790.955pt x 202.7575pt>
 File: Pictures/time_iterations.pdf Graphic file (type pdf)
 
 <use Pictures/time_iterations.pdf>
@@ -2241,7 +2238,7 @@ Package pdftex.def Info: Pictures/network2.pdf used on input line 737.
  [26
 
 ]
-<Pictures/active_state.pdf, id=882, 322.20375pt x 392.8005pt>
+<Pictures/active_state.pdf, id=877, 322.20375pt x 392.8005pt>
 File: Pictures/active_state.pdf Graphic file (type pdf)
 
 <use Pictures/active_state.pdf>
@@ -2281,14 +2278,14 @@ Package pdftex.def Info: Pictures/network2.pdf used on input line 980.
 
 ] [35] [36] [37]
 Chapter 6.
-<Pictures/network1.pdf, id=1122, 569.055pt x 284.52798pt>
+<Pictures/network1.pdf, id=1117, 569.055pt x 284.52798pt>
 File: Pictures/network1.pdf Graphic file (type pdf)
 
 <use Pictures/network1.pdf>
 Package pdftex.def Info: Pictures/network1.pdf used on input line 1087.
 (pdftex.def)             Requested size: 597.50787pt x 298.78056pt.
 
-<Pictures/applications.pdf, id=1123, 602.25pt x 451.6875pt>
+<Pictures/applications.pdf, id=1118, 602.25pt x 451.6875pt>
 File: Pictures/applications.pdf Graphic file (type pdf)
 
 <use Pictures/applications.pdf>
@@ -2434,7 +2431,7 @@ Package logreq Info: Writing requests to 'main.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
  37829 strings out of 493029
- 689273 string characters out of 6136234
+ 689264 string characters out of 6136234
  1220533 words of memory out of 5000000
  40017 multiletter control sequences out of 15000+600000
  119113 words of font info for 290 fonts, out of 8000000 for 9000
@@ -2446,9 +2443,9 @@ f-dist/fonts/type1/urw/avantgar/uagd8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/urw/avantgar/uagk8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/t
 imes/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (48 pages, 1599710 bytes).
+Output written on main.pdf (48 pages, 1676126 bytes).
 PDF statistics:
- 1606 PDF objects out of 1728 (max. 8388607)
+ 1601 PDF objects out of 1728 (max. 8388607)
  1249 compressed objects within 13 object streams
  513 named destinations out of 1000 (max. 500000)
  62385 words of extra memory for PDF output out of 74296 (max. 10000000)
